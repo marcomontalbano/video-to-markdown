@@ -1,0 +1,31 @@
+.button,
+.input {
+  border-radius: 0.25rem;
+  &:focus {
+    outline: none;
+  }
+}
+
+.input {
+  border: 1px solid transparent;
+  padding: 0.6rem;
+  font-size: 15px;
+  font-family: Verdana;
+  font-weight: 200;
+}
+
+.button {
+  padding: 0.6rem 2rem;
+  letter-spacing: 1px;
+  box-shadow: 0px 0px 0px 0px transparent;
+  transition: 0.3s box-shadow;
+
+  text-align: center;
+  background-color: #00000020; 
+  border: 1px solid #00000020;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.7);
+  }
+}

@@ -1,0 +1,30 @@
+.row {
+  @include grid-row();
+}
+
+.container {
+  margin: 0 auto;
+  position: relative;
+  padding: 0.5rem 1.5rem;
+}
+
+@media screen and (min-width: map-get($breakpoints, "large")) {
+  .container {
+    max-width: 960px;
+    width: 960px;
+  }
+}
+
+@media screen and (min-width: map-get($breakpoints, "xlarge")) {
+  .container {
+    max-width: 1152px;
+    width: 1152px;
+  }
+}
+
+@media screen and (min-width: map-get($breakpoints, "xxlarge")) {
+  .container {
+    max-width: 1344px;
+    width: 1344px;
+  }
+}
