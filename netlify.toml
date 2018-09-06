@@ -2,3 +2,6 @@
   command = "yarn build"
   publish = "dist/client"
   functions = "dist/server"
+
+[template.environment]
+  CLOUDINARY_CLOUD_NAME = "Cloudinary Cloud Name"
