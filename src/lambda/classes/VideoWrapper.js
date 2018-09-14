@@ -2,6 +2,7 @@ export default class VideoWrapper {
     static get videoProviders() {
         return [
             require('./Providers/Dailymotion'),
+            require('./Providers/Facebook'),
             require('./Providers/Youtube'),
             require('./Providers/Vimeo'),
         ];

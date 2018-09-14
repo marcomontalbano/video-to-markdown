@@ -43,9 +43,12 @@ export default class VideoProvider {
     }
 
     fetchCloudinary(url) {
-        const cloudinaryUrl = `http://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/fetch/h_720/l_video_to_markdown:${this.providerName}_play,g_center/${url}`;
-        this.log('fetchCloudinary', cloudinaryUrl);
-        return fetch(cloudinaryUrl)
+        let fetchUrl = url;
+        if (CLOUDINARY_CLOUD_NAME) {
+            fetchUrl = `http://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/fetch/h_720/l_video_to_markdown:${this.providerName}_play,g_center/${encodeURIComponent(url)}`;
+        }
+        this.log('fetchCloudinary', fetchUrl);
+        return fetch(fetchUrl)
             .then(response => response.buffer())
     }
 

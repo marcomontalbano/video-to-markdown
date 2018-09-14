@@ -74,7 +74,7 @@ form {
 .providers {
   @include grid-row();
   .provider {
-    @include grid-column((xxsmall: 1 of 1, small: 1 of 2, large: 1 of 3));
+    @include grid-column((xxsmall: 1 of 1, small: 1 of 2, large: 1 of 3, xlarge: 1 of 4));
     cursor: default;
     display: block;
     .fa-check {
