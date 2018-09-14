@@ -6,6 +6,9 @@ describe('Youtube', () => {
         expect(Youtube.getVideoId('https://youtu.be/oRdzL2DX0yU')).toBe('oRdzL2DX0yU');
         expect(Youtube.getVideoId('https://www.youtube.com/embed/oRdzL2DX0yU')).toBe('oRdzL2DX0yU');
         expect(Youtube.getVideoId('https://youtube.com/embed/oRdzL2DX0yU')).toBe('oRdzL2DX0yU');
+        expect(Youtube.getVideoId('https://gaming.youtube.com/watch?v=CLdvw87teRc')).toBe('CLdvw87teRc');
+        expect(Youtube.getVideoId('https://gaming.youtube.com/watch?v=CLdvw87teRc&feature=share')).toBe('CLdvw87teRc');
+        expect(Youtube.getVideoId('https://music.youtube.com/watch?v=i3MKTm-49uI&feature=share')).toBe('i3MKTm-49uI');
     });
 
     it('all methods must work.', () => {

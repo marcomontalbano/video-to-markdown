@@ -19,10 +19,7 @@
         }
         &.markdown {
           background: #fff;
-          white-space: nowrap;
-          text-overflow: ellipsis;
-          margin-top: 1px;
-          overflow: hidden;
+          margin-top: 2px;
           > pre {
             margin: 0;
             > code {
@@ -44,23 +41,7 @@
   }
 }
 
-.spinner {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.preview.loading {
-  .spinner {
-    display: block;
-  }
-}
-
 form {
-  display: block;
-  width: 100%;
 
   position: relative;
   top: 50%;
@@ -90,24 +71,19 @@ form {
   }
 }
 
-.markdown {
-  overflow: auto;
-}
-
 .providers {
   @include grid-row();
   .provider {
     @include grid-column((xxsmall: 1 of 1, small: 1 of 2, large: 1 of 3));
     cursor: default;
     display: block;
+    .fa-check {
+      color: #8bc34a;
+    }
     span {
       padding-left: 8px;
     }
   }
-}
-
-.fas.fa-check {
-  color: #8bc34a;
 }
 
 .details {

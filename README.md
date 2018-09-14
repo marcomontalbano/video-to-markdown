@@ -1,4 +1,9 @@
-# Video to Markdown
+Video to Markdown
+=================
+
+[![Build Status](https://travis-ci.org/marcomontalbano/video-to-markdown.svg?branch=master)](https://travis-ci.org/marcomontalbano/video-to-markdown)
+
+Add videos to your markdown files easier - [https://video-to-markdown.netlify.com](https://video-to-markdown.netlify.com).
 
 
 ## Why?
@@ -34,8 +39,6 @@ List of supported video providers:
 
 
 ## Hosting
-
-The project is hosted here: [https://video-to-markdown.netlify.com](https://video-to-markdown.netlify.com).
 
 If you want your own copy, just
 

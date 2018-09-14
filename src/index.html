@@ -36,7 +36,7 @@
                     <h1 class="title"><a href="/">Video to <strong>markdown</strong>!</a></h1>
                 </header>
 
-                <div class="row with-more-padding site-app">
+                <div class="row site-app">
                     <section class="site-app--input">
                         <form>
                             <label>Video Url *<input class="width-100 input" type="url" name="url" placeholder="https://youtu.be/aqz-KE-bpKQ" required="required" /></label>
@@ -49,10 +49,11 @@
                     <section class="site-app--output">
                         <div class="output-frame">
                             <div class="preview">
-                                <include src="./spinner.html"></include>
                                 <img src="./images/placeholder.jpg" />
                             </div>
-                            <div class="markdown"><pre class="language"><code class="language">&nbsp;</code></pre></div>
+                            <div class="markdown tooltipped-n border p-2 mb-2 mr-2 float-left" aria-label="Click below to copy the markdown to clipboard.">
+                                <pre class="language"><code class="language">&nbsp;</code></pre>
+                            </div>
                         </div>
                     </section>
                 </div>

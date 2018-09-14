@@ -1,8 +1,17 @@
 import $ from 'jquery';
 import Prism from 'prismjs';
+import NProgress from 'nprogress';
+import ClipboardJS from 'clipboard';
 
 import imageNotFound from './images/not-found.jpg';
 import imageLoading from './images/loading.jpg';
+
+NProgress.configure({
+    parent: '.preview',
+    showSpinner: false
+});
+
+new ClipboardJS('.markdown');
 
 const loadImage = (src, success = () => { }, error = () => { }) => {
     $('<img>')
@@ -15,34 +24,53 @@ const loadImage = (src, success = () => { }, error = () => { }) => {
         .attr('src', src);
 };
 
+const updateMarkdown = (title, imageUrl, videoUrl) => {
+    const markdown =
+        title === undefined ? '&nbsp;' :
+        `<span class="token punctuation">[![<span class="token attr-value">${title}</span>](<span class="token attr-value">${imageUrl}</span>)](<span class="token attr-value">${videoUrl}</span> "<span class="token attr-value">${title}</span>")</span>`
+    ;
+
+    $('.markdown').toggleClass('tooltipped', title !== undefined);
+    $('.markdown').attr('data-clipboard-text', $('.markdown code').html(markdown).text());
+};
+
 loadImage(imageLoading);
 loadImage(imageNotFound);
+
+let videoUrl_memo;
 
 $('form').on('submit', function(e) {
     e.preventDefault();
 
+    NProgress.start();
+
     const $form = $(this);
 
-    const url = $form.find('[name="url"]').val();
     const title = $form.find('[name="title"]').val();
-    const imageUrl = `${location.protocol}//${location.host}/.netlify/functions/image?url=${url}`;
+    const videoUrl = $form.find('[name="url"]').val();
+    const imageUrl = `${location.protocol}//${location.host}/.netlify/functions/image?url=${videoUrl}`;
 
-    $('.preview').addClass('loading');
+    if (videoUrl_memo === videoUrl) {
+        updateMarkdown(title, imageUrl, videoUrl);
+        NProgress.done();
+        return false;
+    }
+
+    videoUrl_memo = videoUrl;
+
     $('.preview img').attr('src', imageLoading);
-    $('.markdown code').html('&nbsp;');
+    updateMarkdown();
 
     loadImage(imageUrl, () => {
-        $('.preview').removeClass('loading');
+        NProgress.done();
         $('.preview img').attr('src', imageUrl);
-        $('.markdown code').html(
-            `<span class="token punctuation">[![<span class="token attr-value">${title}</span>](<span class="token attr-value">${imageUrl}</span>)](<span class="token attr-value">${url}</span> "<span class="token attr-value">${title}</span>")</span>`
-            // `[![${title}](${imageUrl})](${url} "${title}")`
-        );
+        updateMarkdown(title, imageUrl, videoUrl);
     }, () => {
         loadImage(imageNotFound, () => {
-            $('.preview').removeClass('loading');
+            NProgress.done();
+            videoUrl_memo = imageNotFound;
             $('.preview img').attr('src', imageNotFound);
-            $('.markdown code').html('&nbsp;');
+            updateMarkdown();
         });
     });
 });

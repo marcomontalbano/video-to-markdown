@@ -1,12 +1,13 @@
 // http://objectway.github.io/super-gigi/
-@import "../../node_modules/super-gigi/dist/_main";
+@import "super-gigi/dist/_main";
+@import "nprogress/nprogress";
+@import "primer-tooltips/index";
 
 //
 @import "variables";
 @import "normalize";
 @import "grid";
 @import "button";
-@import "spinner";
 @import "code";
 
 @import "homepage";
@@ -15,17 +16,6 @@ html {
   font-family: "Montserrat", sans-serif;
   background: $background-color;
   color: $color-text-dark;
-  line-height: 2rem;
-  font-size: 16px;
-}
-
-.with-more-padding {
-  padding: 2em 0;
-}
-
-img {
-  width: 100%;
-  max-width: 100%;
 }
 
 .dark-bg {
@@ -41,7 +31,6 @@ header {
 
     a {
       color: $color-white;
-      text-decoration: none;
     }
 
     strong {
@@ -58,7 +47,6 @@ footer {
   margin-bottom: 15px;
   a {
     margin-left: 12px;
-    text-decoration: none;
     color: #607d8b;
     > i {
       margin: 0 2px;

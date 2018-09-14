@@ -1,5 +1,6 @@
 .row {
   @include grid-row();
+  padding: 2em 0;
 }
 
 .container {

@@ -16,8 +16,14 @@ export default class Youtube extends VideoProvider {
             /https?\:\/\/www\.youtube\.com\/embed\/([a-zA-Z0-9\_\-]+)/,
 
             // - //youtube.com/embed/oRdzL2DX0yU
-            /https?\:\/\/youtube\.com\/embed\/([a-zA-Z0-9\_\-]+)/
-        ];
+            /https?\:\/\/youtube\.com\/embed\/([a-zA-Z0-9\_\-]+)/,
+
+            // - //gaming.youtube.com/watch?v=CLdvw87teRc
+            /https?\:\/\/gaming\.youtube\.com\/watch\?v\=([a-zA-Z0-9\_\-]+)/,
+
+            // - //music.youtube.com/watch?v=i3MKTm-49uI&feature=share
+            /https?\:\/\/music\.youtube\.com\/watch\?v\=([a-zA-Z0-9\_\-]+)/,
+        ]; 
     }
 
     getThumbnail_asUrl() {
