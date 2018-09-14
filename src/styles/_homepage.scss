@@ -48,6 +48,7 @@ form {
   transform: translateY(-50%);
 
   label {
+    position: relative;
     color: $color-white;
     font-weight: bold;
     display: block;
@@ -59,6 +60,21 @@ form {
       color: initial;
       width: 100%;
       margin: 0 0 15px;
+      height: 40px;
+
+      &[name="url"] {
+        padding-right: 40px;
+
+        ~ img {
+          position: absolute;
+          bottom: 15px;
+          right: 0px;
+          width: 40px;
+          height: 40px;
+          padding: 9px;
+          border-left: 1px solid $header-background-color;
+        }
+      }
     }
   }
 }
@@ -87,12 +103,18 @@ form {
 }
 
 .details {
-  section {
+  > section {
     padding-bottom: 3em;
     padding-top: 2em;
     border-top: 1px solid #dcdcdc;
     &:first-child {
       border-top: none;
+    }
+
+    > section {
+      border-bottom: 2px solid #ededed;
+      margin-top: 2em;
+      padding: 0 .5em;
     }
   }
 }

@@ -6,6 +6,13 @@ import ClipboardJS from 'clipboard';
 import imageNotFound from './images/not-found.jpg';
 import imageLoading from './images/loading.jpg';
 
+const videoIcons = {
+    dailymotion: require('./images/providers/dailymotion.png'),
+    facebook: require('./images/providers/facebook.png'),
+    vimeo: require('./images/providers/vimeo.png'),
+    youtube: require('./images/providers/youtube.png'),
+};
+
 NProgress.configure({
     parent: '.preview',
     showSpinner: false
@@ -48,7 +55,9 @@ $('form').on('submit', function(e) {
 
     const title = $form.find('[name="title"]').val();
     const videoUrl = $form.find('[name="url"]').val();
-    const imageUrl = `${location.protocol}//${location.host}/.netlify/functions/image?url=${videoUrl}`;
+    const lambdaUrl = `${location.protocol}//${location.host}/.netlify/functions`;
+    const jsonUrl = `${lambdaUrl}/image.json?url=${videoUrl}`;
+    const imageUrl = `${lambdaUrl}/image?url=${videoUrl}`;
 
     if (videoUrl_memo === videoUrl) {
         updateMarkdown(title, imageUrl, videoUrl);
@@ -58,17 +67,26 @@ $('form').on('submit', function(e) {
 
     videoUrl_memo = videoUrl;
 
+    $form.find('[name="url"] ~ img').attr('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
     $('.preview img').attr('src', imageLoading);
     updateMarkdown();
 
-    loadImage(imageUrl, () => {
-        NProgress.done();
-        $('.preview img').attr('src', imageUrl);
-        updateMarkdown(title, imageUrl, videoUrl);
-    }, () => {
+    $.getJSON({
+        url: jsonUrl
+    })
+    .done((data) => {
+        loadImage(data.base64, () => {
+            NProgress.done();
+            $form.find('[name="url"] ~ img').attr('src', videoIcons[data.provider]);
+            $('.preview img').attr('src', data.base64);
+            updateMarkdown(title, imageUrl, videoUrl);
+        });
+    })
+    .fail(() => {
         loadImage(imageNotFound, () => {
             NProgress.done();
             videoUrl_memo = imageNotFound;
+            $form.find('[name="url"] ~ img').attr('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
             $('.preview img').attr('src', imageNotFound);
             updateMarkdown();
         });
