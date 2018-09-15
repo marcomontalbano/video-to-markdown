@@ -1,8 +1,6 @@
 import fileType from 'file-type';
 import VideoWrapper from './classes/VideoWrapper';
 
-const isDevelopment = process.env.NODE_ENV === 'development';
-
 const throwException = (statusCode, message, callback) => {
     callback = callback || (() => {});
     const error = {
