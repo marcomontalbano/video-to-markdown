@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import fetch from './proxiedFetch';
 
 const { CLOUDINARY_CLOUD_NAME } = process.env;
 

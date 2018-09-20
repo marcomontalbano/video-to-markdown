@@ -1,5 +1,5 @@
 import VideoProvider from '../VideoProvider';
-import fetch from 'node-fetch';
+import fetch from '../proxiedFetch';
 
 // https://vimeo.com/
 

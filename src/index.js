@@ -6,6 +6,8 @@ import ClipboardJS from 'clipboard';
 import imageNotFound from './images/not-found.jpg';
 import imageLoading from './images/loading.jpg';
 
+const lambdaUrl = `${location.protocol}//${location.host}/.netlify/functions`;
+
 const videoIcons = {
     dailymotion: require('./images/providers/dailymotion.png'),
     facebook: require('./images/providers/facebook.png'),
@@ -46,6 +48,35 @@ loadImage(imageNotFound);
 
 let videoUrl_memo;
 
+function updateQuota(data, functionType) {
+    let used       = data.capabilities.functions[functionType].used;
+    let included   = data.capabilities.functions[functionType].included;
+    let unit       = data.capabilities.functions[functionType].unit;
+
+    const percentage = (used / included * 100);
+
+    if (unit === 'seconds') {
+        used = `~ ${Math.round(used / 3600)}`;
+        included /= 3600;
+        unit = 'hours';
+    }
+
+
+    $(`.donations .${functionType} .progress > div`).attr('style', `--percentage: ${percentage};`);
+    $(`.donations .${functionType} small`).text(`${used} / ${included} ${unit}`);
+}
+
+$.getJSON({
+    url: `${lambdaUrl}/netlify` 
+})
+.done((data) => {
+    if (data.error !== true) {
+        updateQuota(data, 'invocations');
+        updateQuota(data, 'runtime');
+        $('.donations').show();
+    }
+});
+
 $('form').on('submit', function(e) {
     e.preventDefault();
 
@@ -55,7 +86,6 @@ $('form').on('submit', function(e) {
 
     const title = $form.find('[name="title"]').val();
     const videoUrl = $form.find('[name="url"]').val();
-    const lambdaUrl = `${location.protocol}//${location.host}/.netlify/functions`;
     const jsonUrl = `${lambdaUrl}/image-json?url=${videoUrl}`;
     const imageUrl = `${lambdaUrl}/image?url=${videoUrl}`;
 

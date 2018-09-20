@@ -42,6 +42,7 @@
     "babel-preset-env": "^1.7.0",
     "dotenv": "^5.0.1",
     "file-loader": "^2.0.0",
+    "https-proxy-agent": "^2.2.1",
     "jest": "^23.5.0",
     "netlify-lambda": "^0.4.0",
     "node-fetch": "^2.1.2",

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -42,7 +42,7 @@
                             <label>
                                 Video Url *
                                 <input class="width-100 input" type="url" name="url" placeholder="https://youtu.be/aqz-KE-bpKQ" required="required" />
-                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
+                                <img alt="1px transparent image" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
                             </label>
                             <label>Title<input class="width-100 input" type="text" name="title" /></label>
                             <div class="buttons">
@@ -53,7 +53,7 @@
                     <section class="site-app--output">
                         <div class="output-frame">
                             <div class="preview">
-                                <img src="./images/placeholder.jpg" />
+                                <img alt="sample image" src="./images/placeholder.jpg" />
                             </div>
                             <div class="markdown tooltipped-n border p-2 mb-2 mr-2 float-left" aria-label="Click below to copy the markdown to clipboard.">
                                 <pre class="language"><code class="language">&nbsp;</code></pre>
@@ -95,10 +95,28 @@
                 </div>
             </section>
 
+            <section class="donations" style="display: none;">
+                <h2>Donations</h2>
+                <p>If you like this project and its useful to you, support it!</p>
+                <section class="invocations">
+                    <div class="progress">
+                        <div style="--percentage: 0;"></div>
+                    </div>
+                    <small>&nbsp;</small>
+                </section>
+
+                <section class="runtime">
+                    <div class="progress">
+                        <div style="--percentage: 0;"></div>
+                    </div>
+                    <small>&nbsp;</small>
+                </section>
+            </section>
+
             <section>
                 <h2>API</h2>
 
-                <section>
+                <section class="bordered">
                     <pre class="language"><code class="language"><span class="token punctuation"><span class="method">[GET]</span> <span class="url">https://video-to-markdown.netlify.com/.netlify/functions/<b>image-json</b></span>?<span class="param-name">url</span>=<span class="param-value">{video-url}</span></span></code></pre>
                     <p>
 <pre class="language-javascript"><code>{
@@ -110,23 +128,23 @@
                     </p>
                     <p>
                         The <code>image-json</code> API accept only one <code><b class="param-name">url</b></code> parameter.<br />
-                        The value <code><b class="param-value">{video-url}</b></code> is a video url <small>(e.g. <a href="https://youtu.be/aqz-KE-bpKQ" rel="nofollow" target="_blank">https://youtu.be/aqz-KE-bpKQ</a>)</small>
+                        The value <code><b class="param-value">{video-url}</b></code> is a video url <small>(e.g. <a rel="noopener noreferrer" href="https://youtu.be/aqz-KE-bpKQ" rel="nofollow" target="_blank">https://youtu.be/aqz-KE-bpKQ</a>)</small>
                     </p>
                 </section>
 
-                <section>
+                <section class="bordered">
                     <pre class="language"><code class="language"><span class="token punctuation"><span class="method">[GET]</span> <span class="url">https://video-to-markdown.netlify.com/.netlify/functions/<b>image</b></span>?<span class="param-name">url</span>=<span class="param-value">{video-url}</span></span></code></pre>
                     <p><code>output</code>:&nbsp;&nbsp;&nbsp;<i class="far fa-image"></i>&nbsp;&nbsp;<small>image</small></p>
                     <p>
                         The <code>image</code> API accept only one <code><b class="param-name">url</b></code> parameter.<br />
-                        The value <code><b class="param-value">{video-url}</b></code> is a video url <small>(e.g. <a href="https://youtu.be/aqz-KE-bpKQ" rel="nofollow" target="_blank">https://youtu.be/aqz-KE-bpKQ</a>)</small>
+                        The value <code><b class="param-value">{video-url}</b></code> is a video url <small>(e.g. <a rel="noopener noreferrer" href="https://youtu.be/aqz-KE-bpKQ" rel="nofollow" target="_blank">https://youtu.be/aqz-KE-bpKQ</a>)</small>
                     </p>
                 </section>
             </section>
 
             <footer>
-                <a href="https://marcomontalbano.com" target="_blank">Marco Montalbano</a> 
-                <a href="https://github.com/marcomontalbano/video-to-markdown" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                <a rel="noopener noreferrer" href="https://marcomontalbano.com" target="_blank">Marco Montalbano</a> 
+                <a rel="noopener noreferrer" href="https://github.com/marcomontalbano/video-to-markdown" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             </footer>
         </div>
 
