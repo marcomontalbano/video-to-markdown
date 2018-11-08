@@ -9,6 +9,9 @@ export default class Youtube extends VideoProvider {
             // - //www.youtube.com/watch?v=oRdzL2DX0yU
             /https?\:\/\/www\.youtube\.com\/watch\?v\=([a-zA-Z0-9\_\-]+)/,
 
+            // - //m.youtube.com/watch?v=oRdzL2DX0yU
+            /https?\:\/\/m\.youtube\.com\/watch\?v\=([a-zA-Z0-9\_\-]+)/,
+
             // - //youtu.be/oRdzL2DX0yU
             /https?\:\/\/youtu\.be\/([a-zA-Z0-9\_\-]+)/,
 

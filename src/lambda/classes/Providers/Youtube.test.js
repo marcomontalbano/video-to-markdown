@@ -3,6 +3,7 @@ import Youtube from './Youtube';
 describe('Youtube', () => {
     it('"regex" must be correct.', () => {
         expect(Youtube.getVideoId('https://www.youtube.com/watch?v=oRdzL2DX0yU')).toBe('oRdzL2DX0yU');
+        expect(Youtube.getVideoId('https://m.youtube.com/watch?v=oRdzL2DX0yU')).toBe('oRdzL2DX0yU');
         expect(Youtube.getVideoId('https://youtu.be/oRdzL2DX0yU')).toBe('oRdzL2DX0yU');
         expect(Youtube.getVideoId('https://www.youtube.com/embed/oRdzL2DX0yU')).toBe('oRdzL2DX0yU');
         expect(Youtube.getVideoId('https://youtube.com/embed/oRdzL2DX0yU')).toBe('oRdzL2DX0yU');
