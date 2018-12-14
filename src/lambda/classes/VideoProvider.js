@@ -7,6 +7,8 @@ export default class VideoProvider {
 
     static get useCloudinary() { return true }
 
+    get providerName() { }
+
     static check(url) {
         return this.getVideoId(url) ? true : false;
     }
@@ -26,10 +28,6 @@ export default class VideoProvider {
 
     getId() {
         return this.constructor.getVideoId(this.url);
-    }
-
-    get providerName() {
-        return this.constructor.name.toLowerCase();
     }
 
     getThumbnail_asUrl() {

@@ -4,6 +4,11 @@ import fetch from '../proxiedFetch';
 // https://www.youtube.com/
 
 export default class Youtube extends VideoProvider {
+
+    get providerName() {
+        return 'youtube';
+    }
+
     static get regex() {
         return [
             // - //www.youtube.com/watch?v=oRdzL2DX0yU

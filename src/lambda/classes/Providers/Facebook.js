@@ -6,6 +6,11 @@ const { FACEBOOK_ACCESS_TOKEN } = process.env;
 // https://www.facebook.com/backintimetheparty/videos/1588846901182916/
 
 export default class Facebook extends VideoProvider {
+
+    get providerName() {
+        return 'facebook';
+    }
+
     static get regex() {
         return [
             // - //www.facebook.com/backintimetheparty/videos/1588846901182916/

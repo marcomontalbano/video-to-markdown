@@ -4,6 +4,11 @@ import fetch from '../proxiedFetch';
 // https://vimeo.com/
 
 export default class Vimeo extends VideoProvider {
+
+    get providerName() {
+        return 'vimeo';
+    }
+
     static get regex() {
         return [
             // - //vimeo.com/263856289

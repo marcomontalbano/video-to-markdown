@@ -87,8 +87,8 @@ $('form').on('submit', function(e) {
 
     const title = $form.find('[name="title"]').val();
     const videoUrl = $form.find('[name="url"]').val();
-    const jsonUrl = `${lambdaUrl}/image-json?url=${videoUrl}`;
-    const imageUrl = `${lambdaUrl}/image?url=${videoUrl}`;
+    const jsonUrl = `${lambdaUrl}/image-json?url=${encodeURIComponent(videoUrl)}`;
+    const imageUrl = `${lambdaUrl}/image?url=${encodeURIComponent(videoUrl)}`;
 
     if (videoUrl_memo === videoUrl) {
         updateMarkdown(title, imageUrl, videoUrl);

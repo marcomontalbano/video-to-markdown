@@ -4,6 +4,11 @@ import fetch from '../proxiedFetch';
 // https://developer.dailymotion.com/api
 
 export default class Dailymotion extends VideoProvider {
+
+    get providerName() {
+        return 'dailymotion';
+    }
+
     static get regex() {
         return [
             // - //www.dailymotion.com/video/x3ke49

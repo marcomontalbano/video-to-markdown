@@ -32,19 +32,20 @@
   },
   "babel": {
     "presets": [
-      "env"
+      "@babel/preset-env"
     ]
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.6.0",
-    "babel-loader": "^7.1.5",
-    "babel-preset-env": "^1.7.0",
+    "babel-loader": "^8.0.4",
     "dotenv": "^6.2.0",
     "file-loader": "^2.0.0",
     "https-proxy-agent": "^2.2.1",
     "jest": "^23.6.0",
-    "netlify-lambda": "^0.4.0",
+    "netlify-lambda": "^1.1.0",
     "node-fetch": "^2.3.0",
     "node-sass": "^4.11.0",
     "npm-run-all": "^4.1.5",
