@@ -13,6 +13,7 @@ const videoIcons = {
     facebook: require('./images/providers/facebook.png'),
     vimeo: require('./images/providers/vimeo.png'),
     youtube: require('./images/providers/youtube.png'),
+    asciinema: require('./images/providers/asciinema.png'),
 };
 
 NProgress.configure({

@@ -5,6 +5,8 @@ const { CLOUDINARY_CLOUD_NAME } = process.env;
 export default class VideoProvider {
     static get regex() {}
 
+    static get useCloudinary() { return true }
+
     static check(url) {
         return this.getVideoId(url) ? true : false;
     }
@@ -37,19 +39,19 @@ export default class VideoProvider {
     getThumbnail_asBuffer() {
         return this.getThumbnail_asUrl()
             .then(url => {
-                this.log('getThumbnail_asUrl', url);
-                return this.fetchCloudinary(url)
+                this.log('getThumbnail', this.getThumbnail_validateUrl(url));
+
+                return fetch(this.getThumbnail_validateUrl(url))
+                    .then(response => response.buffer());
             })
     }
 
-    fetchCloudinary(url) {
-        let fetchUrl = url;
-        if (CLOUDINARY_CLOUD_NAME) {
-            fetchUrl = `http://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/fetch/h_720/l_video_to_markdown:${this.providerName}_play,g_center/${encodeURIComponent(url)}`;
+    getThumbnail_validateUrl(url) {
+        if (this.constructor.useCloudinary && CLOUDINARY_CLOUD_NAME) {
+            return `http://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/fetch/h_720/l_video_to_markdown:${this.providerName}_play,g_center/${encodeURIComponent(url)}`;
         }
-        this.log('fetchCloudinary', fetchUrl);
-        return fetch(fetchUrl)
-            .then(response => response.buffer())
+
+        return url;
     }
 
     constructor(url) {

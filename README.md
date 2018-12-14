@@ -34,8 +34,10 @@ You just need to paste the video url in the field above and you will get the mar
 List of supported video providers:
 
 - Youtube
+- Facebook (low-quality)
 - Dailymotion
 - Vimeo
+- Asciinema
 
 
 ## Hosting
