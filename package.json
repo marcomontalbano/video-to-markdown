@@ -1,6 +1,6 @@
 {
   "name": "video-to-markdown",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Add videos to your markdown files easier.",
   "homepage": "https://video-to-markdown.netlify.com/",
@@ -36,25 +36,23 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
-    "babel-core": "7.0.0-bridge.0",
-    "babel-jest": "^23.6.0",
-    "babel-loader": "^8.0.4",
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "babel-jest": "^24.3.1",
     "dotenv": "^6.2.0",
     "file-loader": "^2.0.0",
     "https-proxy-agent": "^2.2.1",
-    "jest": "^23.6.0",
-    "netlify-lambda": "^1.1.0",
+    "jest": "^24.3.1",
+    "netlify-lambda": "^1.4.2",
     "node-fetch": "^2.3.0",
     "node-sass": "^4.11.0",
     "npm-run-all": "^4.1.5",
     "parcel": "^1.10.3",
     "posthtml-include": "^1.2.0",
     "super-gigi": "^1.17.1",
-    "webpack": "^4.27.1",
-    "webpack-cli": "^3.1.2",
-    "webpack-dev-server": "^3.1.10"
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
     "clipboard": "^2.0.4",
@@ -67,8 +65,8 @@
   "scripts": {
     "test": "jest",
     "start:parcel": "parcel watch src/index.html -d dist/client",
-    "start:client": "webpack-dev-server --mode development --hot --config webpack.client.js",
-    "start:server": "netlify-lambda serve src/lambda -c webpack.server.js",
+    "start:client": "webpack-dev-server --mode development --hot --config webpack.client.js --port 8080",
+    "start:server": "netlify-lambda serve src/lambda -c webpack.server.js --port 8081",
     "start": "npm-run-all -p start:*",
     "build:client": "parcel build src/index.html -d dist/client",
     "build:server": "netlify-lambda build src/lambda",

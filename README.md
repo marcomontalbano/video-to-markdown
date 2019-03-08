@@ -55,22 +55,21 @@ To run the project locally, here’s what you’ll need:
 
 * [git](https://git-scm.com)
 * [NodeJS](nodejs.org) 8 or greater
-* [yarn](yarnpkg.com)
 
 ### Setup
 
-`cd` into your local copy of the repository and run `yarn`
+`cd` into your local copy of the repository and run `npm install`
 
 ```
 cd video-to-markdown
-yarn
+npm install
 ```
 
 ```
-yarn start
+npm start
 ```
 
-This will start the client server on http://localhost:8080, and the netlify-lambda server on http://localhost:9000.
+This will start the client server on http://localhost:8080, and the netlify-lambda server on http://localhost:8081.
 
 [netlify-lambda](https://github.com/netlify/netlify-lambda) isn’t required to deploy Lambda functions to Netlify, but it offers some handy features out of the box that make it quicker to get started, like the local dev server and nice defaults for transpiling and bundling functions in production.
 
