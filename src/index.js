@@ -40,7 +40,7 @@ const updateMarkdown = (title, imageUrl, videoUrl) => {
         `<span class="token punctuation">[![<span class="token attr-value">${title}</span>](<span class="token attr-value">${imageUrl}</span>)](<span class="token attr-value">${videoUrl}</span> "<span class="token attr-value">${title}</span>")</span>`
     ;
 
-    $('.markdown').toggleClass('tooltipped', title !== undefined);
+    $('.markdown').toggleClass('hint--top', title !== undefined);
     $('.markdown').attr('data-clipboard-text', $('.markdown code').html(markdown).text());
 };
 

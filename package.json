@@ -1,6 +1,6 @@
 {
   "name": "video-to-markdown",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "description": "Add videos to your markdown files easier.",
   "homepage": "https://video-to-markdown.netlify.com/",
@@ -19,8 +19,10 @@
     "markdown",
     "video",
     "youtube",
+    "facebook",
     "vimeo",
-    "dailymotion"
+    "dailymotion",
+    "asciinema"
   ],
   "engines": {
     "node": ">= 8.x"
@@ -57,9 +59,9 @@
   "dependencies": {
     "clipboard": "^2.0.4",
     "file-type": "^10.6.0",
+    "hint.css": "~2.5.1",
     "jquery": "^3.3.1",
     "nprogress": "^0.2.0",
-    "primer-tooltips": "^1.5.9",
     "prismjs": "^1.15.0"
   },
   "scripts": {
