@@ -1,4 +1,3 @@
-import $ from 'jquery';
 import Prism from 'prismjs';
 import NProgress from 'nprogress';
 import ClipboardJS from 'clipboard';
@@ -24,14 +23,16 @@ NProgress.configure({
 new ClipboardJS('.markdown');
 
 const loadImage = (src, success = () => { }, error = () => { }) => {
-    $('<img>')
-        .on('load', () => {
-            success.apply(this, arguments);
-        })
-        .on('error', () => {
-            error.apply(this, arguments);
-        })
-        .attr('src', src);
+    const img = document.createElement('img');
+    img.addEventListener('load', () => {
+        success.apply(this, arguments);
+    });
+
+    img.addEventListener('error', () => {
+        error.apply(this, arguments);
+    });
+
+    img.src = src;
 };
 
 const updateMarkdown = (title, imageUrl, videoUrl) => {
@@ -40,8 +41,11 @@ const updateMarkdown = (title, imageUrl, videoUrl) => {
         `<span class="token punctuation">[![<span class="token attr-value">${title}</span>](<span class="token attr-value">${imageUrl}</span>)](<span class="token attr-value">${videoUrl}</span> "<span class="token attr-value">${title}</span>")</span>`
     ;
 
-    $('.markdown').toggleClass('hint--top', title !== undefined);
-    $('.markdown').attr('data-clipboard-text', $('.markdown code').html(markdown).text());
+    const markdownElement = document.querySelector('.markdown');
+    const markdownCodeElement = markdownElement.querySelector('code');
+    markdownCodeElement.innerHTML = markdown;
+    markdownElement.classList.toggle('hint--top', title !== undefined);
+    markdownElement.setAttribute('data-clipboard-text', markdownCodeElement.textContent);
 };
 
 loadImage(imageLoading);
@@ -62,31 +66,29 @@ function updateQuota(data, functionType) {
         unit = 'hours';
     }
 
-
-    $(`.donations .${functionType} .progress > div`).attr('style', `--percentage: ${percentage};`);
-    $(`.donations .${functionType} small`).text(`${used} / ${included} ${unit}`);
+    document.querySelector(`.donations .${functionType} .progress > div`).style.setProperty('--percentage', percentage);
+    document.querySelector(`.donations .${functionType} small`).textContent = `${used} / ${included} ${unit}`;
 }
 
-$.getJSON({
-    url: `${lambdaUrl}/netlify` 
-})
-.done((data) => {
-    if (data.error !== true) {
-        updateQuota(data, 'invocations');
-        updateQuota(data, 'runtime');
-        $('.donations').show();
-    }
-});
+fetch(`${lambdaUrl}/netlify`)
+    .then(response => response.json())
+    .then(data => {
+        if (data.error !== true) {
+            updateQuota(data, 'invocations');
+            updateQuota(data, 'runtime');
+            document.querySelector('.donations').classList.remove('hidden');
+        }
+    });
 
-$('form').on('submit', function(e) {
+document.querySelector('form').addEventListener('submit', function (e) {
     e.preventDefault();
 
     NProgress.start();
 
-    const $form = $(this);
+    const formElement = e.currentTarget;
 
-    const title = $form.find('[name="title"]').val();
-    const videoUrl = $form.find('[name="url"]').val();
+    const title = formElement.querySelector('[name="title"]').value;
+    const videoUrl = formElement.querySelector('[name="url"]').value;
     const jsonUrl = `${lambdaUrl}/image-json?url=${encodeURIComponent(videoUrl)}`;
     const imageUrl = `${lambdaUrl}/image?url=${encodeURIComponent(videoUrl)}`;
 
@@ -98,28 +100,27 @@ $('form').on('submit', function(e) {
 
     videoUrl_memo = videoUrl;
 
-    $form.find('[name="url"] ~ img').attr('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
-    $('.preview img').attr('src', imageLoading);
+    formElement.querySelector('[name="url"] ~ img').setAttribute('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+    document.querySelector('.preview img').setAttribute('src', imageLoading);
     updateMarkdown();
 
-    $.getJSON({
-        url: jsonUrl
-    })
-    .done((data) => {
-        loadImage(data.base64, () => {
-            NProgress.done();
-            $form.find('[name="url"] ~ img').attr('src', videoIcons[data.provider]);
-            $('.preview img').attr('src', data.base64);
-            updateMarkdown(title, imageUrl, videoUrl);
-        });
-    })
-    .fail(() => {
-        loadImage(imageNotFound, () => {
-            NProgress.done();
-            videoUrl_memo = imageNotFound;
-            $form.find('[name="url"] ~ img').attr('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
-            $('.preview img').attr('src', imageNotFound);
-            updateMarkdown();
-        });
-    });
+    fetch(jsonUrl).then(r => r.json())
+        .then(data => {
+            loadImage(data.base64, () => {
+                NProgress.done();
+                formElement.querySelector('[name="url"] ~ img').setAttribute('src', videoIcons[data.provider]);
+                document.querySelector('.preview img').setAttribute('src', data.base64);
+                updateMarkdown(title, imageUrl, videoUrl);
+            });
+        })
+        .catch(() => {
+            loadImage(imageNotFound, () => {
+                NProgress.done();
+                videoUrl_memo = imageNotFound;
+                formElement.querySelector('[name="url"] ~ img').setAttribute('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+                document.querySelector('.preview img').setAttribute('src', imageNotFound);
+                updateMarkdown();
+            });
+        })
+        ;
 });

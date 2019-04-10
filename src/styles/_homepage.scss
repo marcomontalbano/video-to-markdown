@@ -126,9 +126,13 @@ form {
 
 .details {
   > section {
-    padding-bottom: 3em;
-    padding-top: 2em;
+    padding: {
+      top: 2em;
+      bottom: 3em;
+    }
     border-top: 1px solid #dcdcdc;
+    opacity: 1;
+    transition: opacity .5s;
     &:first-child {
       border-top: none;
     }
@@ -139,6 +143,12 @@ form {
       &.bordered {
         border-bottom: 2px solid #ededed;
       }
+    }
+
+    &.hidden {
+      opacity: 0;
+      max-height: 0;
+      padding: 0;
     }
   }
 }
