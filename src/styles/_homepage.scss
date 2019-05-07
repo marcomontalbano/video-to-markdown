@@ -1,10 +1,17 @@
 .site-app {
-  &--input {
-    @include grid-column((xxsmall: 1 of 1, large: 2 of 5));
-  }
 
+  &--input {
+    @media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
+      width: 40%;
+    }
+  }
+  
   &--output {
-    @include grid-column((xxsmall: 1 of 1, large: 3 of 5));
+    @media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
+      width: 60%;
+    }
+
+    grid-template-columns: 1fr 5fr;
     .output-frame {
       border-radius: 0px 0px 0.3em 0.3em;
       overflow: hidden;
@@ -32,7 +39,7 @@
       }
     }
 
-    @media screen and (max-width: map-get($breakpoints, "large") - 0.05em) {
+    @media screen and (max-width: ((map-get($breakpoints, "large") - 1) + "px")) {
       .output-frame {
         width: 100vw;
         margin: 0 -1.5em -2.5em;
@@ -89,9 +96,16 @@ form {
 }
 
 .providers {
-  @include grid-row();
   .provider {
-    @include grid-column((xxsmall: 1 of 1, small: 1 of 2, large: 1 of 3, xlarge: 1 of 4));
+    @media screen and (min-width: (map-get($breakpoints, "small") + "px")) {
+      width: (100% / 2);
+    }
+    @media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
+      width: (100% / 3);
+    }
+    @media screen and (min-width: (map-get($breakpoints, "xlarge") + "px")) {
+      width: (100% / 4);
+    }
     cursor: default;
     display: block;
     .fa-check {

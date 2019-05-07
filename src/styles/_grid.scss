@@ -1,6 +1,19 @@
 .row {
-  @include grid-row();
+  display: flex;
+  flex: 1 0 auto;
+  flex-wrap: wrap;
   padding: 2em 0;
+
+  @media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
+    margin: 0 -15px;
+  }
+
+  > * {
+    @media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
+      padding: 0 15px;
+    }
+    width: 100%;
+  }
 }
 
 .container {
@@ -9,21 +22,21 @@
   padding: 0.5rem 1.5rem;
 }
 
-@media screen and (min-width: map-get($breakpoints, "large")) {
+@media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
   .container {
     max-width: 960px;
     width: 960px;
   }
 }
 
-@media screen and (min-width: map-get($breakpoints, "xlarge")) {
+@media screen and (min-width: (map-get($breakpoints, "xlarge") + "px")) {
   .container {
     max-width: 1152px;
     width: 1152px;
   }
 }
 
-@media screen and (min-width: map-get($breakpoints, "xxlarge")) {
+@media screen and (min-width: (map-get($breakpoints, "xxlarge") + "px")) {
   .container {
     max-width: 1344px;
     width: 1344px;

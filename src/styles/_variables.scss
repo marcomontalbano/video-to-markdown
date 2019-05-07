@@ -11,3 +11,13 @@ $color-text-dark: #37474f;
 
 $header-background-color: #494949;
 $header-background-color: #42474b;
+
+$breakpoints: (
+  xxsmall: 0,
+  xsmall: 480,
+  small: 640,
+  medium: 720,
+  large: 1024,
+  xlarge: 1280,
+  xxlarge: 1440
+) !default;

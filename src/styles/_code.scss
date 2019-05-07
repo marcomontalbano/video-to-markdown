@@ -196,12 +196,12 @@ pre .line-highlight {
 }
 
 pre.language {
-  @extend pre[class*="language-"];
+  @extend pre, [class*=language-];
 }
 
 code.language {
-  @extend code[class*="language-"];
-  @extend code[class*="language"];
+  @extend code, [class*=language-];
+  @extend code, [class*=language];
 }
 
 code {
