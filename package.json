@@ -39,30 +39,30 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.4",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "babel-jest": "^24.8.0",
     "dotenv": "^8.0.0",
     "encoding": "~0.1.12",
-    "file-loader": "^4.0.0",
-    "https-proxy-agent": "^2.2.1",
+    "file-loader": "^4.2.0",
+    "https-proxy-agent": "^2.2.2",
     "jest": "^24.8.0",
-    "netlify-lambda": "^1.4.13",
+    "netlify-lambda": "^1.5.1",
     "node-fetch": "^2.6.0",
     "npm-run-all": "^4.1.5",
     "parcel": "^1.12.3",
     "posthtml-include": "^1.2.0",
-    "sass": "~1.21.0",
-    "webpack": "^4.33.0",
-    "webpack-cli": "^3.3.3",
-    "webpack-dev-server": "^3.7.1"
+    "sass": "~1.22.9",
+    "webpack": "^4.39.2",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
     "clipboard": "^2.0.4",
-    "file-type": "^11.1.0",
+    "file-type": "^12.1.0",
     "hint.css": "^2.6.0",
     "nprogress": "^0.2.0",
-    "prismjs": "^1.16.0"
+    "prismjs": "^1.17.1"
   },
   "scripts": {
     "test": "jest",
