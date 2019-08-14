@@ -66,8 +66,8 @@ function updateQuota(data, functionType) {
         unit = 'hours';
     }
 
-    document.querySelector(`.donations .${functionType} .progress > div`).style.setProperty('--percentage', percentage);
-    document.querySelector(`.donations .${functionType} small`).textContent = `${used} / ${included} ${unit}`;
+    document.querySelector(`.functions .${functionType} .progress > div`).style.setProperty('--percentage', percentage);
+    document.querySelector(`.functions .${functionType} small`).textContent = `${used} / ${included} ${unit}`;
 }
 
 fetch(`${lambdaUrl}/netlify`)
@@ -76,7 +76,7 @@ fetch(`${lambdaUrl}/netlify`)
         if (data.error !== true) {
             updateQuota(data, 'invocations');
             updateQuota(data, 'runtime');
-            document.querySelector('.donations').classList.remove('hidden');
+            document.querySelector('.functions').classList.remove('hidden');
         }
     });
 

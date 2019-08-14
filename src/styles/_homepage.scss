@@ -117,6 +117,24 @@ form {
   }
 }
 
+.donations {
+  a {
+    white-space: nowrap;
+    &.beer {
+      color: #f85d5d;
+      img {
+        width: auto;
+        height: 24px;
+        vertical-align: text-bottom;
+        margin-bottom: 1px;
+      }
+    }
+    &.star {
+      color: #F9A825;
+    }
+  }
+}
+
 .progress {
   background: #efefef;
   height: 12px;
