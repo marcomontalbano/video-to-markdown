@@ -1,13 +1,12 @@
 Video to Markdown
 =================
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/545bbce5-8f34-4834-9e16-685a9990c987/deploy-status)](https://app.netlify.com/sites/video-to-markdown/deploys)
-
 [![Build Status](https://travis-ci.org/marcomontalbano/video-to-markdown.svg?branch=master)](https://travis-ci.org/marcomontalbano/video-to-markdown)
 [![Beerpay](https://beerpay.io/marcomontalbano/video-to-markdown/badge.svg?style=beer)](https://beerpay.io/marcomontalbano/video-to-markdown)
 [![Beerpay](https://img.shields.io/badge/make-wish-f95c5c.svg)](https://beerpay.io/marcomontalbano/video-to-markdown)
 [![PayPal.me](https://img.shields.io/badge/paypal-donate-119fde.svg)](https://www.paypal.me/marcomontalbano)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/545bbce5-8f34-4834-9e16-685a9990c987/deploy-status)](https://app.netlify.com/sites/video-to-markdown/deploys)
 
 Add videos to your markdown files easier - [https://video-to-markdown.netlify.com](https://video-to-markdown.netlify.com).
 
