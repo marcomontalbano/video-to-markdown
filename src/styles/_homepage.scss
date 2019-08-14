@@ -111,8 +111,14 @@ form {
     .fa-check {
       color: #8bc34a;
     }
-    span {
+    .fa-plus {
+      color: #00BCD4;
+    }
+    span, a {
       padding-left: 8px;
+    }
+    a:link {
+      text-decoration: underline;
     }
   }
 }
