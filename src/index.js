@@ -61,7 +61,9 @@ function updateQuota(data, functionType) {
     const percentage = (used / included * 100);
 
     if (unit === 'seconds') {
-        used = `~ ${Math.round(used / 3600)}`;
+        const hours = Math.round(used / 3600);
+        const minutes = Math.round(used / 60);
+        used = hours >= 1 ? `~ ${hours}` : `${minutes} minutes`;
         included /= 3600;
         unit = 'hours';
     }
