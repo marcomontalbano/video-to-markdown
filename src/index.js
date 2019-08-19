@@ -82,8 +82,23 @@ fetch(`${lambdaUrl}/netlify`)
         }
     });
 
+document.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+        ga('send', 'event', {
+            eventCategory: 'Outbound Link',
+            eventAction: 'click',
+            eventLabel: e.target.href
+        });
+    });
+})
+
 document.querySelector('form').addEventListener('submit', function (e) {
     e.preventDefault();
+
+    ga('send', 'event', {
+        eventCategory: 'V2M',
+        eventAction: 'convert'
+    });
 
     NProgress.start();
 
