@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
     module: {
         rules: [{
