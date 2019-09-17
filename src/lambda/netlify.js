@@ -1,4 +1,4 @@
-import fetch from './classes/proxiedFetch';
+const fetch = require('./classes/proxiedFetch');
 
 const { SITE_ID, NETLIFY_ACCESS_TOKEN } = process.env;
 

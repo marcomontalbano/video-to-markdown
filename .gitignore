@@ -8,3 +8,5 @@ yarn-error.log
 
 /.cache
 /dist
+
+/src/db.json

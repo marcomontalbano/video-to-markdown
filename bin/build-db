@@ -1,0 +1,14 @@
+#!/usr/bin/env node
+
+require('dotenv').config();
+
+const fs = require('fs');
+
+const netlify = require('../src/lambda/netlify');
+const dbPath = `${__dirname}/../src/db.json`;
+
+fs.writeFileSync(dbPath, '{}');
+netlify.handler({}, {}, (error, content) => {
+    const netlify = JSON.parse(content.body);
+    fs.writeFileSync(dbPath, JSON.stringify({ netlify }, undefined, 2));
+});

@@ -6,7 +6,7 @@ import imageNotFound from './images/not-found.jpg';
 import imageLoading from './images/loading.jpg';
 
 const lambdaUrl = `${location.protocol}//${location.host}/.netlify/functions`;
-const enableFunctionUsageSummary = false;
+const enableFunctionUsageSummary = true;
 
 const videoIcons = {
     dailymotion: require('./images/providers/dailymotion.png'),
@@ -74,15 +74,13 @@ function updateQuota(data, functionType) {
 }
 
 if (enableFunctionUsageSummary) {
-    fetch(`${lambdaUrl}/netlify`)
-        .then(response => response.json())
-        .then(data => {
-            if (data.error !== true) {
-                updateQuota(data, 'invocations');
-                updateQuota(data, 'runtime');
-                document.querySelector('.functions').classList.remove('hidden');
-            }
-        });
+    const { netlify } = require('./db.json');
+
+    if (netlify) {
+        updateQuota(netlify, 'invocations');
+        updateQuota(netlify, 'runtime');
+        document.querySelector('.functions').classList.remove('hidden');
+    }
 }
 
 document.querySelectorAll('a').forEach(function (a) {
