@@ -1,6 +1,8 @@
 import fileType from 'file-type';
 import VideoWrapper from './classes/VideoWrapper';
 
+import { sendLambdaEvent } from './classes/google-ua';
+
 const throwException = (statusCode, message, callback) => {
     callback = callback || (() => {});
     const error = {
@@ -19,6 +21,8 @@ const throwException = (statusCode, message, callback) => {
 };
 
 exports.handler = (event, context, callback) => {
+    sendLambdaEvent(event);
+
     const url = event.queryStringParameters.url;
 
     const video = VideoWrapper.create(url);

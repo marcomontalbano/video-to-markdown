@@ -8,7 +8,7 @@ const netlify = require('../src/lambda/netlify');
 const dbPath = `${__dirname}/../src/db.json`;
 
 fs.writeFileSync(dbPath, '{}');
-netlify.handler({}, {}, (error, content) => {
+netlify.handler({ path: '/netlify' }, {}, (error, content) => {
     const netlify = JSON.parse(content.body);
     fs.writeFileSync(dbPath, JSON.stringify({ netlify }, undefined, 2));
 });
