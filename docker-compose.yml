@@ -1,0 +1,22 @@
+version: "3.7"
+services:
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./dist/client:/var/www/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - lambda_functions
+
+  lambda_functions:
+    image: node:alpine
+    environment: 
+      NODE_ENV: production
+    working_dir: /home/app
+    restart: always
+    volumes:
+      - ./:/home/app
+    command: ["npm", "run", "start:server"]
