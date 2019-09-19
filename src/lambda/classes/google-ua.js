@@ -1,22 +1,24 @@
 const ua = require('universal-analytics');
 const visitor = ua('UA-50467643-11');
+const path = require('path');
 
 const sendEvent = (...args) => {
     visitor.event(...args).send();
 }
 
-const sendLambdaEvent = event => {
+const sendLambdaEvent = (event, send = sendEvent) => {
     const {
-        path,
+        path: functionUrl,
         headers: {
             referer
         } = {}
     } = event;
 
-    const category = `Lambda Function - ${path}`;
+    const functionName = path.basename(functionUrl);
+    const category = `Lambda Function - ${functionName}`;
     const label = referer ? `referer - ${referer}` : '';
 
-    sendEvent(category, 'invoke', label);
+    send(category, 'invoke', label);
 }
 
 module.exports = { sendLambdaEvent };
