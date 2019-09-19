@@ -27,8 +27,7 @@
         <meta name="theme-color" content="#ffffff">
         <script>
             (function() {
-                var isProd = location.hostname === 'video-to-markdown.netlify.com';
-                if (isProd) {
+                if (process.env.NODE_ENV === 'production' && process.env.GA_TRACKING_ID) {
                     window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
                     ga('create', process.env.GA_TRACKING_ID, 'auto');
                     ga('send', 'pageview');
@@ -175,6 +174,7 @@
 
             <footer>
                 <a rel="noopener noreferrer" href="https://marcomontalbano.com" target="_blank">Marco Montalbano</a> 
+                <a rel="noopener noreferrer" href="https://github.com/marcomontalbano/video-to-markdown#user-content-privacy" target="_blank">Privacy</a> 
                 <a rel="noopener noreferrer" href="https://github.com/marcomontalbano/video-to-markdown" target="_blank"><i class="fab fa-github"></i> GitHub</a>
             </footer>
         </div>

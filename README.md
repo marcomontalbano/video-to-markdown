@@ -79,3 +79,12 @@ This will start the client server on http://localhost:8080, and the netlify-lamb
 [netlify-lambda](https://github.com/netlify/netlify-lambda) isn’t required to deploy Lambda functions to Netlify, but it offers some handy features out of the box that make it quicker to get started, like the local dev server and nice defaults for transpiling and bundling functions in production.
 
 The client server is configured to proxy `/.netlify` requests to the Lambda server (see [webpack.client.js](webpack.client.js)). This is the same behavior the site has when it’s deployed to Netlify.
+
+## Privacy
+
+Google Analytics is used to record the following:
+
+* [Basic visit data](https://support.google.com/analytics/answer/6004245?ref_topic=2919631).
+* `referer` or `video url` to track api usage.
+
+By clicking on `convert to markdown` or consuming api you accept this terms & condition; no additional data is sent to the server.
