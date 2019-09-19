@@ -11,6 +11,9 @@ const sendEvent = (...args) => {
 const sendLambdaEvent = (event, send = sendEvent) => {
     const {
         path: functionUrl,
+        queryStringParameters: {
+            url
+        } = {},
         headers: {
             referer
         } = {}
@@ -18,7 +21,9 @@ const sendLambdaEvent = (event, send = sendEvent) => {
 
     const functionName = path.basename(functionUrl);
     const category = `Lambda Function - ${functionName}`;
-    const label = referer ? `referer - ${referer}` : '';
+    const refererText = referer ? `referer - ${referer}` : '';
+    const urlText = url ? `videoUrl - ${url}` : '';
+    const label = refererText ? refererText : urlText;
 
     send(category, 'invoke', label);
 }
