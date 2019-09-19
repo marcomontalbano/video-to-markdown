@@ -34,7 +34,7 @@ export default class Youtube extends VideoProvider {
         ]; 
     }
 
-    getThumbnail_asUrl() {
+    getThumbnail_asVideoUrl() {
         const maxVideoImage = `https://i.ytimg.com/vi/${this.getId()}/maxresdefault.jpg`;
         const hqVideoImage = `https://i.ytimg.com/vi/${this.getId()}/hqdefault.jpg`;
 

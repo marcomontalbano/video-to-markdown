@@ -19,7 +19,7 @@ export default class Vimeo extends VideoProvider {
         ];
     }
 
-    getThumbnail_asUrl() {
+    getThumbnail_asVideoUrl() {
         const endpoint = `https://vimeo.com/api/v2/video/${this.getId()}.json`;
 
         return fetch(endpoint)

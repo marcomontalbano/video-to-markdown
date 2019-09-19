@@ -36,16 +36,14 @@ exports.handler = (event, context, callback) => {
     video.log('GET', url);
 
     video
-        .getThumbnail_asBuffer()
-        .then(buffer => {
+        .getThumbnail_asImgbbUrl()
+        .then(url => {
             callback(null, {
-                statusCode: 200,
+                statusCode: 301,
                 headers: {
-                    'Content-Type': fileType(buffer).mime
-                },
-                body: isDevelopment ? buffer : buffer.toString('base64'),
-                isBase64Encoded: isDevelopment ? false : true
-            });
+                    'Location': url
+                }
+            });;
         })
         .catch(error => {
             callback(null, {
@@ -53,4 +51,23 @@ exports.handler = (event, context, callback) => {
                 body: JSON.stringify({ error: true })
             });
         });
+
+    // video
+    //     .getThumbnail_asBuffer()
+    //     .then(buffer => {
+    //         callback(null, {
+    //             statusCode: 200,
+    //             headers: {
+    //                 'Content-Type': fileType(buffer).mime
+    //             },
+    //             body: isDevelopment ? buffer : buffer.toString('base64'),
+    //             isBase64Encoded: isDevelopment ? false : true
+    //         });
+    //     })
+    //     .catch(error => {
+    //         callback(null, {
+    //             statusCode: 422,
+    //             body: JSON.stringify({ error: true })
+    //         });
+    //     });
 };

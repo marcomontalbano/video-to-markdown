@@ -19,7 +19,7 @@ export default class Dailymotion extends VideoProvider {
         ];
     }
 
-    getThumbnail_asUrl() {
+    getThumbnail_asVideoUrl() {
         const endpoint = `https://api.dailymotion.com/video/${this.getId()}?fields=title,thumbnail_720_url`;
 
         return fetch(endpoint)

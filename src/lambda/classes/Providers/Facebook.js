@@ -21,7 +21,7 @@ export default class Facebook extends VideoProvider {
         ];
     }
 
-    getThumbnail_asUrl() {
+    getThumbnail_asVideoUrl() {
         // unfortunately the FACEBOOK_ACCESS_TOKEN is temporally and there is no way to get a quality thumbnail without a valid token.
         if (FACEBOOK_ACCESS_TOKEN) {
             return fetch(`https://graph.facebook.com/${this.getId()}?access_token=${FACEBOOK_ACCESS_TOKEN}&fields=title,description,updated_time,id,thumbnails`)
