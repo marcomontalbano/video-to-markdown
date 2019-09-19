@@ -1,6 +1,6 @@
 import fetch from './proxiedFetch';
 
-const { CLOUDINARY_CLOUD_NAME } = process.env;
+const { CLOUDINARY_CLOUD_NAME, IMGBB_API_KEY } = process.env;
 
 export default class VideoProvider {
     static get regex() {}
@@ -30,17 +30,28 @@ export default class VideoProvider {
         return this.constructor.getVideoId(this.url);
     }
 
-    getThumbnail_asUrl() {
-        return new Promise()
+    getThumbnail_asVideoUrl() {
+        return new Promise();
+    }
+
+    getThumbnail_asCloudinaryUrl() {
+        return this.getThumbnail_asVideoUrl().then(url => this.getThumbnail_validateUrl(url));
+    }
+
+    getThumbnail_asImgbbUrl() {
+        return this.getThumbnail_asCloudinaryUrl().then(url => {
+            return fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}&image=${this.getThumbnail_validateUrl(url)}`)
+                .then(response => response.json())
+                .then(json => json.data.image.url);
+        });
     }
 
     getThumbnail_asBuffer() {
-        return this.getThumbnail_asUrl()
+        return this.getThumbnail_asImgbbUrl()
             .then(url => {
-                this.log('getThumbnail', this.getThumbnail_validateUrl(url));
+                this.log('getThumbnail', url);
 
-                return fetch(this.getThumbnail_validateUrl(url))
-                    .then(response => response.buffer());
+                return fetch(url).then(response => response.buffer());
             })
     }
 
