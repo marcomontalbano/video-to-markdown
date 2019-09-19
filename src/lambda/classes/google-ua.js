@@ -1,6 +1,8 @@
 const ua = require('universal-analytics');
-const visitor = ua('UA-50467643-11');
 const path = require('path');
+
+const { GA_TRACKING_ID } = process.env;
+const visitor = ua(GA_TRACKING_ID);
 
 const sendEvent = (...args) => {
     visitor.event(...args).send();

@@ -30,7 +30,7 @@
                 var isProd = location.hostname === 'video-to-markdown.netlify.com';
                 if (isProd) {
                     window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
-                    ga('create', 'UA-50467643-11', 'auto');
+                    ga('create', process.env.GA_TRACKING_ID, 'auto');
                     ga('send', 'pageview');
                 }
             })();
