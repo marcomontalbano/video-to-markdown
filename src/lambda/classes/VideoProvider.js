@@ -39,19 +39,25 @@ export default class VideoProvider {
     }
 
     getThumbnail_asImgbbUrl() {
-        return this.getThumbnail_asCloudinaryUrl().then(url => {
-            return fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}&image=${this.getThumbnail_validateUrl(url)}`)
+        return this.getThumbnail_asCloudinaryUrl().then(cloudinaryUrl => {
+            return fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}&image=${this.getThumbnail_validateUrl(cloudinaryUrl)}`)
                 .then(response => response.json())
-                .then(json => json.data.image.url);
+                .then(({
+                    data: {
+                        image: {
+                            url: imgbbUrl 
+                        } = {}
+                    } = {}
+                }) => imgbbUrl ? imgbbUrl : cloudinaryUrl);
         });
     }
 
-    getThumbnail_asBuffer() {
+    getThumbnail() {
         return this.getThumbnail_asImgbbUrl()
             .then(url => {
                 this.log('getThumbnail', url);
 
-                return fetch(url).then(response => response.buffer());
+                return fetch(url).then(response => response.buffer()).then(buffer => ({ buffer, url }));
             })
     }
 

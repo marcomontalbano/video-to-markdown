@@ -34,13 +34,14 @@ exports.handler = (event, context, callback) => {
     video.log('GET', url);
 
     video
-        .getThumbnail_asBuffer()
-        .then(buffer => {
+        .getThumbnail()
+        .then(({ buffer, url }) => {
             callback(null, {
                 statusCode: 200,
                 body: JSON.stringify({
                     provider: video.providerName,
                     url: video.url,
+                    image: url,
                     mime: fileType(buffer).mime,
                     base64: `data:${fileType(buffer).mime};base64,${buffer.toString('base64')}`,
                 }),

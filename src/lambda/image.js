@@ -53,8 +53,8 @@ exports.handler = (event, context, callback) => {
         });
 
     // video
-    //     .getThumbnail_asBuffer()
-    //     .then(buffer => {
+    //     .getThumbnail()
+    //     .then(({ buffer }) => {
     //         callback(null, {
     //             statusCode: 200,
     //             headers: {

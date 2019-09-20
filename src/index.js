@@ -36,18 +36,31 @@ const loadImage = (src, success = () => { }, error = () => { }) => {
     img.src = src;
 };
 
-const updateMarkdown = (title, imageUrl, videoUrl) => {
-    const markdown =
-        title === undefined ? '&nbsp;' :
-        `<span class="token punctuation">[![<span class="token attr-value">${title}</span>](<span class="token attr-value">${imageUrl}</span>)](<span class="token attr-value">${videoUrl}</span> "<span class="token attr-value">${title}</span>")</span>`
-    ;
+const updateMarkdown = (() => {
+    let imageUrl_memo, videoUrl_memo;
 
-    const markdownElement = document.querySelector('.markdown');
-    const markdownCodeElement = markdownElement.querySelector('code');
-    markdownCodeElement.innerHTML = markdown;
-    markdownElement.classList.toggle('hint--top', title !== undefined);
-    markdownElement.setAttribute('data-clipboard-text', markdownCodeElement.textContent);
-};
+    return (title, imageUrl = imageUrl_memo, videoUrl = videoUrl_memo) => {
+
+        if (title === undefined) {
+            imageUrl_memo = undefined;
+            videoUrl_memo = undefined;
+        }
+
+        imageUrl_memo = imageUrl ? imageUrl : imageUrl_memo;
+        videoUrl_memo = videoUrl ? videoUrl : videoUrl_memo;
+
+        const markdown =
+            title === undefined ? '&nbsp;' :
+                `<span class="token punctuation">[![<span class="token attr-value">${title}</span>](<span class="token attr-value">${imageUrl}</span>)](<span class="token attr-value">${videoUrl}</span> "<span class="token attr-value">${title}</span>")</span>`
+            ;
+
+        const markdownElement = document.querySelector('.markdown');
+        const markdownCodeElement = markdownElement.querySelector('code');
+        markdownCodeElement.innerHTML = markdown;
+        markdownElement.classList.toggle('hint--top', title !== undefined);
+        markdownElement.setAttribute('data-clipboard-text', markdownCodeElement.textContent);
+    };
+})();
 
 loadImage(imageLoading);
 loadImage(imageNotFound);
@@ -93,6 +106,15 @@ document.querySelectorAll('a').forEach(function (a) {
     });
 })
 
+const loadErrorImage = (formElement) => {
+    loadImage(imageNotFound, () => {
+        NProgress.done();
+        formElement.querySelector('[name="url"] ~ img').setAttribute('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+        document.querySelector('.preview img').setAttribute('src', imageNotFound);
+        updateMarkdown();
+    });
+}
+
 document.querySelector('form').addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -107,11 +129,9 @@ document.querySelector('form').addEventListener('submit', function (e) {
 
     const title = formElement.querySelector('[name="title"]').value;
     const videoUrl = formElement.querySelector('[name="url"]').value;
-    const jsonUrl = `${lambdaUrl}/image-json?url=${encodeURIComponent(videoUrl)}`;
-    const imageUrl = `${lambdaUrl}/image?url=${encodeURIComponent(videoUrl)}`;
 
     if (videoUrl_memo === videoUrl) {
-        updateMarkdown(title, imageUrl, videoUrl);
+        updateMarkdown(title);
         NProgress.done();
         return false;
     }
@@ -122,23 +142,20 @@ document.querySelector('form').addEventListener('submit', function (e) {
     document.querySelector('.preview img').setAttribute('src', imageLoading);
     updateMarkdown();
 
-    fetch(jsonUrl).then(r => r.json())
+    fetch(`${lambdaUrl}/image-json?url=${encodeURIComponent(videoUrl)}`).then(r => r.json())
         .then(data => {
+            if (data.error) {
+                return loadErrorImage(formElement);
+            }
+
             loadImage(data.base64, () => {
                 NProgress.done();
                 formElement.querySelector('[name="url"] ~ img').setAttribute('src', videoIcons[data.provider]);
                 document.querySelector('.preview img').setAttribute('src', data.base64);
-                updateMarkdown(title, imageUrl, videoUrl);
+                updateMarkdown(title, data.image, videoUrl);
             });
         })
         .catch(() => {
-            loadImage(imageNotFound, () => {
-                NProgress.done();
-                videoUrl_memo = imageNotFound;
-                formElement.querySelector('[name="url"] ~ img').setAttribute('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
-                document.querySelector('.preview img').setAttribute('src', imageNotFound);
-                updateMarkdown();
-            });
-        })
-        ;
+            loadErrorImage(formElement);
+        });
 });
