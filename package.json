@@ -23,6 +23,7 @@
     "vimeo",
     "dailymotion",
     "asciinema",
+    "google-drive",
     "netlify"
   ],
   "engines": {

@@ -14,6 +14,7 @@ const videoIcons = {
     vimeo: require('./images/providers/vimeo.png'),
     youtube: require('./images/providers/youtube.png'),
     asciinema: require('./images/providers/asciinema.png'),
+    'google-drive': require('./images/providers/google-drive.png'),
 };
 
 NProgress.configure({

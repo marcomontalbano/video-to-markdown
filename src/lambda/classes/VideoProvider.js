@@ -40,7 +40,8 @@ export default class VideoProvider {
 
     getThumbnail_asImgbbUrl() {
         return this.getThumbnail_asCloudinaryUrl().then(cloudinaryUrl => {
-            return fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}&image=${this.getThumbnail_validateUrl(cloudinaryUrl)}`)
+            const validImageUrl = encodeURIComponent(this.getThumbnail_validateUrl(cloudinaryUrl));
+            return fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}&image=${validImageUrl}`)
                 .then(response => response.json())
                 .then(({
                     data: {

@@ -6,6 +6,7 @@ export default class VideoWrapper {
             require('./Providers/Youtube'),
             require('./Providers/Vimeo'),
             require('./Providers/Asciinema'),
+            require('./Providers/GoogleDrive'),
         ];
     }
 
