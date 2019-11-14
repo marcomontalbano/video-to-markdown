@@ -64,7 +64,11 @@ form {
     width: 100%;
     letter-spacing: 1px;
 
-    .input {
+    .input[type="checkbox"] {
+      margin-right: 10px;
+    }
+
+    .input[type="text"], .input[type="url"] {
       color: initial;
       width: 100%;
       margin: 0 0 15px;

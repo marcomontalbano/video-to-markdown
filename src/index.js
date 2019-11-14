@@ -66,8 +66,6 @@ const updateMarkdown = (() => {
 loadImage(imageLoading);
 loadImage(imageNotFound);
 
-let videoUrl_memo;
-
 function updateQuota(data, functionType) {
     let used       = data.capabilities.functions[functionType].used;
     let included   = data.capabilities.functions[functionType].included;
@@ -116,6 +114,7 @@ const loadErrorImage = (formElement) => {
     });
 }
 
+let memoFormSubmit;
 document.querySelector('form').addEventListener('submit', function (e) {
     e.preventDefault();
 
@@ -130,20 +129,22 @@ document.querySelector('form').addEventListener('submit', function (e) {
 
     const title = formElement.querySelector('[name="title"]').value;
     const videoUrl = formElement.querySelector('[name="url"]').value;
+    const showPlayIcon = formElement.querySelector('[name="show-play-icon"]').checked;
+    const newMemoFormSubmit = `${videoUrl}|${showPlayIcon}`;
 
-    if (videoUrl_memo === videoUrl) {
+    if (memoFormSubmit === newMemoFormSubmit) {
         updateMarkdown(title);
         NProgress.done();
         return false;
     }
 
-    videoUrl_memo = videoUrl;
+    memoFormSubmit = newMemoFormSubmit;
 
     formElement.querySelector('[name="url"] ~ img').setAttribute('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
     document.querySelector('.preview img').setAttribute('src', imageLoading);
     updateMarkdown();
 
-    fetch(`${lambdaUrl}/image-json?url=${encodeURIComponent(videoUrl)}`).then(r => r.json())
+    fetch(`${lambdaUrl}/image-json?showPlayIcon=${showPlayIcon}&url=${encodeURIComponent(videoUrl)}`).then(r => r.json())
         .then(data => {
             if (data.error) {
                 return loadErrorImage(formElement);

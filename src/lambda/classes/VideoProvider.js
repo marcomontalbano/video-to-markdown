@@ -40,8 +40,7 @@ export default class VideoProvider {
 
     getThumbnail_asImgbbUrl() {
         return this.getThumbnail_asCloudinaryUrl().then(cloudinaryUrl => {
-            const validImageUrl = encodeURIComponent(this.getThumbnail_validateUrl(cloudinaryUrl));
-            return fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}&image=${validImageUrl}`)
+            return fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}&image=${encodeURIComponent(cloudinaryUrl)}`)
                 .then(response => response.json())
                 .then(({
                     data: {
@@ -64,13 +63,14 @@ export default class VideoProvider {
 
     getThumbnail_validateUrl(url) {
         if (this.constructor.useCloudinary && CLOUDINARY_CLOUD_NAME) {
-            return `http://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/fetch/h_720/l_video_to_markdown:${this.providerName}_play,g_center/${encodeURIComponent(url)}`;
+            const cloudinaryPlayIcon = this.options.showPlayIcon ? `l_video_to_markdown:${this.providerName}_play,g_center/` : '';
+            return `http://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/fetch/h_720/${cloudinaryPlayIcon}${encodeURIComponent(url)}`;
         }
 
         return url;
     }
 
-    constructor(url) {
+    constructor(url, options) {
         if (!this.constructor.check(url)) {
             throw new Error(
                 `Invalid url for ${this.providerName} provider.`
@@ -78,5 +78,6 @@ export default class VideoProvider {
         }
 
         this.url = url;
+        this.options = options;
     }
 }
