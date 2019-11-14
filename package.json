@@ -75,6 +75,8 @@
     "build:client": "parcel build src/index.html -d dist/client",
     "build:server": "netlify-lambda build src/lambda",
     "build": "npm-run-all test build:*",
-    "postinstall": "./bin/build-db"
+    "build-db": "./bin/build-db",
+    "prestart": "npm run build-db",
+    "prebuild": "npm run build-db"
   }
 }
