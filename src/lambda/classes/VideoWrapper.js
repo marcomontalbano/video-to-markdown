@@ -6,10 +6,11 @@ export default class VideoWrapper {
             require('./Providers/Youtube'),
             require('./Providers/Vimeo'),
             require('./Providers/Asciinema'),
+            require('./Providers/GoogleDrive'),
         ];
     }
 
-    static create(url) {
+    static create(url, options) {
         const videoProvider = this.videoProviders.filter(vp => {
             return vp.default.check(url);
         });
@@ -18,6 +19,6 @@ export default class VideoWrapper {
             throw new Error('VideoProvider not found.');
         }
 
-        return new videoProvider[0].default(url);
+        return new videoProvider[0].default(url, options);
     }
 }

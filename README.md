@@ -43,6 +43,7 @@ List of supported video providers:
 - Dailymotion
 - Vimeo
 - Asciinema
+- Google Drive
 
 
 ## Hosting

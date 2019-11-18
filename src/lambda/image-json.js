@@ -25,7 +25,9 @@ exports.handler = (event, context, callback) => {
 
     const url = event.queryStringParameters.url;
 
-    const video = VideoWrapper.create(url);
+    const video = VideoWrapper.create(url, {
+        showPlayIcon: event.queryStringParameters.showPlayIcon === 'true'
+    });
 
     if (url === undefined) {
         return throwException(422, 'param URL is mandatory.', callback);
