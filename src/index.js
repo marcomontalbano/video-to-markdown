@@ -150,10 +150,10 @@ document.querySelector('form').addEventListener('submit', function (e) {
                 return loadErrorImage(formElement);
             }
 
-            loadImage(data.base64, () => {
+            loadImage(data.image, () => {
                 NProgress.done();
                 formElement.querySelector('[name="url"] ~ img').setAttribute('src', videoIcons[data.provider]);
-                document.querySelector('.preview img').setAttribute('src', data.base64);
+                document.querySelector('.preview img').setAttribute('src', data.image);
                 updateMarkdown(title, data.image, videoUrl);
             });
         })

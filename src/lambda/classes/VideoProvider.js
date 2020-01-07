@@ -1,4 +1,5 @@
 import fetch from './proxiedFetch';
+import * as imgbb from './imgbb';
 
 const { CLOUDINARY_CLOUD_NAME, IMGBB_API_KEY } = process.env;
 
@@ -39,17 +40,7 @@ export default class VideoProvider {
     }
 
     getThumbnail_asImgbbUrl() {
-        return this.getThumbnail_asCloudinaryUrl().then(cloudinaryUrl => {
-            return fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}&image=${encodeURIComponent(cloudinaryUrl)}`)
-                .then(response => response.json())
-                .then(({
-                    data: {
-                        image: {
-                            url: imgbbUrl 
-                        } = {}
-                    } = {}
-                }) => imgbbUrl ? imgbbUrl : cloudinaryUrl);
-        });
+        return this.getThumbnail_asCloudinaryUrl().then(cloudinaryUrl => imgbb.create(cloudinaryUrl));
     }
 
     getThumbnail() {
