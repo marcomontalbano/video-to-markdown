@@ -60,7 +60,6 @@
   "dependencies": {
     "clipboard": "^2.0.4",
     "dotenv": "~8.2.0",
-    "file-type": "^13.0.2",
     "hint.css": "^2.6.0",
     "nprogress": "^0.2.0",
     "prismjs": "^1.18.0",

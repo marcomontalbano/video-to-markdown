@@ -1,4 +1,3 @@
-import fileType from 'file-type';
 import VideoWrapper from './classes/VideoWrapper';
 import * as imgbb from './classes/imgbb';
 
@@ -68,19 +67,6 @@ exports.handler = (event, context, callback) => {
                     }),
                 });
             })
-            // .getThumbnail()
-            // .then(({ buffer, url }) => {
-            //     callback(null, {
-            //         statusCode: 200,
-            //         body: JSON.stringify({
-            //             provider: video.providerName,
-            //             url: video.url,
-            //             image: url,
-            //             mime: fileType(buffer).mime,
-            //             base64: `data:${fileType(buffer).mime};base64,${buffer.toString('base64')}`,
-            //         }),
-            //     });
-            // })
             .catch(error => {
                 callback(null, {
                     statusCode: 422,
