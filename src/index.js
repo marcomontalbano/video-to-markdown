@@ -26,11 +26,11 @@ new ClipboardJS('.markdown');
 
 const loadImage = (src, success = () => { }, error = () => { }) => {
     const img = document.createElement('img');
-    img.addEventListener('load', () => {
+    img.addEventListener('load', function() {
         success.apply(this, arguments);
     });
 
-    img.addEventListener('error', () => {
+    img.addEventListener('error', function() {
         error.apply(this, arguments);
     });
 
@@ -150,10 +150,10 @@ document.querySelector('form').addEventListener('submit', function (e) {
                 return loadErrorImage(formElement);
             }
 
-            loadImage(data.image, () => {
+            loadImage(data.image, function() {
                 NProgress.done();
                 formElement.querySelector('[name="url"] ~ img').setAttribute('src', videoIcons[data.provider]);
-                document.querySelector('.preview img').setAttribute('src', data.image);
+                document.querySelector('.preview img').replaceWith(this);
                 updateMarkdown(title, data.image, videoUrl);
             });
         })
