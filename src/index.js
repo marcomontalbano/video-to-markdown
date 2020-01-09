@@ -121,11 +121,6 @@ let memoFormSubmit;
 document.querySelector('form').addEventListener('submit', function (e) {
     e.preventDefault();
 
-    ga('send', 'event', {
-        eventCategory: 'V2M',
-        eventAction: 'convert'
-    });
-
     NProgress.start();
 
     const formElement = e.currentTarget;
@@ -134,6 +129,12 @@ document.querySelector('form').addEventListener('submit', function (e) {
     const videoUrl = formElement.querySelector('[name="url"]').value;
     const showPlayIcon = formElement.querySelector('[name="show-play-icon"]').checked;
     const newMemoFormSubmit = `${videoUrl}|${showPlayIcon}`;
+
+    ga('send', 'event', {
+        eventCategory: 'V2M',
+        eventAction: 'convert',
+        eventLabel: videoUrl
+    });
 
     if (memoFormSubmit === newMemoFormSubmit) {
         updateMarkdown(title);
