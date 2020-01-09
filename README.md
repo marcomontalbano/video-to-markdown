@@ -60,7 +60,7 @@ To run the project locally, here’s what you’ll need:
 ### System Requirements
 
 * [git](https://git-scm.com)
-* [NodeJS](nodejs.org) 8 or greater
+* [NodeJS](nodejs.org) 10 or greater
 
 ### Setup
 
