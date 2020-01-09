@@ -35,9 +35,20 @@ exports.handler = (event, context, callback) => {
         return throwException(422, 'param URL is mandatory.', callback);
     }
 
-    const video = VideoWrapper.create(url, {
-        showPlayIcon: getParam(event, 'showPlayIcon') === 'true'
-    });
+    let video;
+    try {
+        video = VideoWrapper.create(url, {
+            showPlayIcon: getParam(event, 'showPlayIcon') === 'true'
+        });
+    } catch (e) {
+        return callback(null, {
+            statusCode: 422,
+            body: JSON.stringify({
+                error: true,
+                message: e.message
+            })
+        });
+    }
 
     video.log('httpMethod', event.httpMethod);
     video.log('url', url);

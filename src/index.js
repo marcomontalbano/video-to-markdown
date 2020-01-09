@@ -6,7 +6,6 @@ import imageNotFound from './images/not-found.jpg';
 import imageLoading from './images/loading.jpg';
 
 const lambdaUrl = `${location.protocol}//${location.host}/.netlify/functions`;
-const enableFunctionUsageSummary = true;
 
 const videoIcons = {
     dailymotion: require('./images/providers/dailymotion.png'),
@@ -25,14 +24,18 @@ NProgress.configure({
 new ClipboardJS('.markdown');
 
 const loadImage = (src, success = () => { }, error = () => { }) => {
-    const img = document.createElement('img');
-    img.addEventListener('load', function() {
-        success.apply(this, arguments);
-    });
+    const img = new Image();
 
-    img.addEventListener('error', function() {
+    const loadHandler = function() {
+        success.apply(this, arguments);
+    }
+
+    const errorHandler = function() {
         error.apply(this, arguments);
-    });
+    }
+
+    img.addEventListener('load', loadHandler, { once: true });
+    img.addEventListener('error', errorHandler, { once: true });
 
     img.src = src;
 };
@@ -85,14 +88,14 @@ function updateQuota(data, functionType) {
     document.querySelector(`.functions .${functionType} small`).textContent = `${used} / ${included} ${unit}`;
 }
 
-if (enableFunctionUsageSummary) {
-    const { netlify } = require('./db.json');
+const { netlify } = require('./db.json');
 
-    if (netlify) {
-        updateQuota(netlify, 'invocations');
-        updateQuota(netlify, 'runtime');
-        document.querySelector('.functions').classList.remove('hidden');
-    }
+if (netlify) {
+    updateQuota(netlify, 'invocations');
+    updateQuota(netlify, 'runtime');
+    document.querySelector('.functions').classList.remove('hidden');
+} else {
+    document.querySelector('.functions').remove();
 }
 
 document.querySelectorAll('a').forEach(function (a) {
