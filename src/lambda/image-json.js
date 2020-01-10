@@ -1,5 +1,4 @@
 import VideoWrapper from './classes/VideoWrapper';
-import * as imgbb from './classes/imgbb';
 
 import { sendLambdaEvent } from './classes/google-ua';
 
@@ -29,7 +28,6 @@ exports.handler = (event, context, callback) => {
     sendLambdaEvent(event);
 
     const url = getParam(event, 'url');
-    const image = getParam(event, 'image');
 
     if (url === undefined || url === null) {
         return throwException(422, 'param URL is mandatory.', callback);
@@ -38,52 +36,39 @@ exports.handler = (event, context, callback) => {
     let video;
     try {
         video = VideoWrapper.create(url, {
-            showPlayIcon: getParam(event, 'showPlayIcon') === 'true'
+            showPlayIcon: getParam(event, 'showPlayIcon') === 'true',
+            image: getParam(event, 'image')
         });
-    } catch (e) {
+    } catch (error) {
         return callback(null, {
             statusCode: 422,
             body: JSON.stringify({
                 error: true,
-                message: e.message
+                message: error.message
             })
         });
     }
 
     video.log('httpMethod', event.httpMethod);
     video.log('url', url);
-    video.log('image', image);
 
-    if (image) {
-        imgbb.create(image).then(imageUrl => {
+    video
+        .getThumbnail_asUrl()
+        .then(imageUrl => {
             callback(null, {
                 statusCode: 200,
                 body: JSON.stringify({
                     provider: video.providerName,
                     url: video.url,
-                    image: imageUrl
+                    image: imageUrl,
                 }),
             });
-        });
-    } else {
-        video
-            .getThumbnail_asImgbbUrl()
-            .then(imageUrl => {
-                callback(null, {
-                    statusCode: 200,
-                    body: JSON.stringify({
-                        provider: video.providerName,
-                        url: video.url,
-                        image: imageUrl,
-                    }),
-                });
-            })
-            .catch(error => {
-                callback(null, {
-                    statusCode: 422,
-                    body: JSON.stringify({ error: true })
-                });
+        })
+        .catch(error => {
+            callback(null, {
+                statusCode: 422,
+                body: JSON.stringify({ error: true })
             });
-    }
+        });
 
 };

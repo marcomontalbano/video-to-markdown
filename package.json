@@ -59,6 +59,7 @@
   },
   "dependencies": {
     "clipboard": "^2.0.4",
+    "cloudinary": "~1.18.1",
     "dotenv": "~8.2.0",
     "hint.css": "^2.6.0",
     "nprogress": "^0.2.0",
