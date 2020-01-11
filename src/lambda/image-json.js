@@ -1,4 +1,5 @@
 import VideoWrapper from './classes/VideoWrapper';
+import cloudinary from './classes/cloudinary';
 
 import { sendLambdaEvent } from './classes/google-ua';
 
@@ -37,7 +38,8 @@ exports.handler = (event, context, callback) => {
     try {
         video = VideoWrapper.create(url, {
             showPlayIcon: getParam(event, 'showPlayIcon') === 'true',
-            image: getParam(event, 'image')
+            image: getParam(event, 'image'),
+            ImageService: cloudinary
         });
     } catch (error) {
         return callback(null, {

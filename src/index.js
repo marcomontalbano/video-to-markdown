@@ -8,6 +8,7 @@ import imageLoading from './images/loading.jpg';
 const lambdaUrl = `${location.protocol}//${location.host}/.netlify/functions`;
 
 const videoIcons = {
+    video: require('./images/providers/video.png'),
     dailymotion: require('./images/providers/dailymotion.png'),
     facebook: require('./images/providers/facebook.png'),
     vimeo: require('./images/providers/vimeo.png'),
@@ -117,6 +118,73 @@ const loadErrorImage = (formElement) => {
     });
 }
 
+const imageJsonConverter = (formElement, title, videoUrl, showPlayIcon, image = '') => {
+    fetch(`${lambdaUrl}/image-json`, {
+        method: 'POST',
+        body: new URLSearchParams([
+            ['image', image],
+            ['url', videoUrl],
+            ['showPlayIcon', showPlayIcon],
+        ])
+      }).then(r => r.json())
+        .then(data => {
+            if (data.error) {
+                return loadErrorImage(formElement);
+            }
+
+            loadImage(data.image, function() {
+                NProgress.done();
+                formElement.querySelector('[name="url"] ~ img').setAttribute('src', videoIcons[data.provider]);
+                document.querySelector('.preview img').replaceWith(this);
+                updateMarkdown(title, data.image, videoUrl);
+            });
+        })
+        .catch(() => {
+            loadErrorImage(formElement);
+        });
+};
+
+const videoConverter = (formElement, title, videoUrl, showPlayIcon) => {
+
+    const video = document.createElement('video');
+    var canvas = document.createElement('canvas');
+
+    video.setAttribute('crossOrigin', 'anonymous');
+
+    video.addEventListener('loadeddata', function() {
+        reloadRandomFrame();
+    }, false);
+
+    video.addEventListener('error', function() {
+        loadErrorImage(formElement);
+    }, false);
+   
+    video.addEventListener('seeked', function() {
+        try {
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+            const base64 = canvas.toDataURL('image/jpeg');
+            imageJsonConverter(formElement, title, videoUrl, showPlayIcon, base64);
+        } catch (e) {
+            loadErrorImage(formElement);
+        }
+    }, false);
+
+    video.src = videoUrl;
+   
+    function reloadRandomFrame() {
+        if (!isNaN(video.duration)) {
+            const rand = Math.round(Math.random() * video.duration * 1000) + 1;
+            video.currentTime = rand / 1000;
+        }
+    }
+   
+};
+
+import Video from './lambda/classes/Providers/Video';
+
 let memoFormSubmit;
 document.querySelector('form').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -148,20 +216,9 @@ document.querySelector('form').addEventListener('submit', function (e) {
     document.querySelector('.preview img').setAttribute('src', imageLoading);
     updateMarkdown();
 
-    fetch(`${lambdaUrl}/image-json?showPlayIcon=${showPlayIcon}&url=${encodeURIComponent(videoUrl)}`).then(r => r.json())
-        .then(data => {
-            if (data.error) {
-                return loadErrorImage(formElement);
-            }
-
-            loadImage(data.image, function() {
-                NProgress.done();
-                formElement.querySelector('[name="url"] ~ img').setAttribute('src', videoIcons[data.provider]);
-                document.querySelector('.preview img').replaceWith(this);
-                updateMarkdown(title, data.image, videoUrl);
-            });
-        })
-        .catch(() => {
-            loadErrorImage(formElement);
-        });
+    if (Video.check(videoUrl)) {
+        videoConverter(formElement, title, videoUrl, showPlayIcon);
+    } else {
+        imageJsonConverter(formElement, title, videoUrl, showPlayIcon);
+    }
 });

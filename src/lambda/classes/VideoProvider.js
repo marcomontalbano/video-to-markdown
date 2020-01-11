@@ -1,5 +1,3 @@
-import cloudinary from './cloudinary';
-
 export default class VideoProvider {
     static get regex() {}
 
@@ -38,7 +36,7 @@ export default class VideoProvider {
                 return videoUrl;
             }
 
-            return cloudinary.create(videoUrl, this, {
+            return this.options.ImageService.create(videoUrl, this, {
                 showPlayIcon: this.options.showPlayIcon
             }).then(response => response.secure_url);
         });
