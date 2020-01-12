@@ -48,7 +48,9 @@ List of supported video providers:
 
 ## Hosting
 
-If you want your own copy, just
+First of all you need to create a [Cloudinary](https://cloudinary.com) account (I'm using this service to generate and host images) so that you can copy your personal `CLOUDINARY_URL` from your dashboard. The url is something similar to `cloudinary://my_key:my_secret@my_cloud_name`.
+
+Now you can easily deploy your own copy on Netlify.
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/marcomontalbano/video-to-markdown)
 
