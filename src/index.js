@@ -1,6 +1,8 @@
 import Prism from 'prismjs';
 import NProgress from 'nprogress';
-import ClipboardJS from 'clipboard';
+
+import * as netlify from './web/netlify';
+import * as markdown from './web/markdown';
 
 import imageNotFound from './images/not-found.jpg';
 import imageLoading from './images/loading.jpg';
@@ -17,12 +19,21 @@ const videoIcons = {
     'google-drive': require('./images/providers/google-drive.png'),
 };
 
+const domElements = {
+    get formElement() { return document.querySelector('form') },
+    get previewImage() { return document.querySelector('.preview img') },
+    get providerImage() { return this.formElement.querySelector('[name="url"] ~ img') },
+    get title() { return this.formElement.querySelector('[name="title"]').value },
+    get url() { return this.formElement.querySelector('[name="url"]').value },
+    get showPlayIcon() { return this.formElement.querySelector('[name="show-play-icon"]').checked },
+};
+
+netlify.loadStats();
+
 NProgress.configure({
     parent: '.preview',
     showSpinner: false
 });
-
-new ClipboardJS('.markdown');
 
 const loadImage = (src, success = () => { }, error = () => { }) => {
     const img = new Image();
@@ -39,64 +50,23 @@ const loadImage = (src, success = () => { }, error = () => { }) => {
     img.addEventListener('error', errorHandler, { once: true });
 
     img.src = src;
-};
-
-const updateMarkdown = (() => {
-    let imageUrl_memo, videoUrl_memo;
-
-    return (title, imageUrl = imageUrl_memo, videoUrl = videoUrl_memo) => {
-
-        if (title === undefined) {
-            imageUrl_memo = undefined;
-            videoUrl_memo = undefined;
-        }
-
-        imageUrl_memo = imageUrl ? imageUrl : imageUrl_memo;
-        videoUrl_memo = videoUrl ? videoUrl : videoUrl_memo;
-
-        const markdown =
-            title === undefined ? '&nbsp;' :
-                `<span class="token punctuation">[![<span class="token attr-value">${title}</span>](<span class="token attr-value">${imageUrl}</span>)](<span class="token attr-value">${videoUrl}</span> "<span class="token attr-value">${title}</span>")</span>`
-            ;
-
-        const markdownElement = document.querySelector('.markdown');
-        const markdownCodeElement = markdownElement.querySelector('code');
-        markdownCodeElement.innerHTML = markdown;
-        markdownElement.classList.toggle('hint--top', title !== undefined);
-        markdownElement.setAttribute('data-clipboard-text', markdownCodeElement.textContent);
-    };
-})();
-
-loadImage(imageLoading);
-loadImage(imageNotFound);
-
-function updateQuota(data, functionType) {
-    let used       = data.capabilities.functions[functionType].used;
-    let included   = data.capabilities.functions[functionType].included;
-    let unit       = data.capabilities.functions[functionType].unit;
-
-    const percentage = (used / included * 100);
-
-    if (unit === 'seconds') {
-        const hours = Math.round(used / 3600);
-        const minutes = Math.round(used / 60);
-        used = hours >= 1 ? `~ ${hours}` : `${minutes} minutes`;
-        included /= 3600;
-        unit = 'hours';
-    }
-
-    document.querySelector(`.functions .${functionType} .progress > div`).style.setProperty('--percentage', percentage);
-    document.querySelector(`.functions .${functionType} small`).textContent = `${used} / ${included} ${unit}`;
 }
 
-const { netlify } = require('./db.json');
+const loadLoadingImage = () => {
+    loadImage(imageLoading, () => {
+        domElements.providerImage.setAttribute('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+        domElements.previewImage.setAttribute('src', imageLoading);
+        markdown.update();
+    });
+}
 
-if (netlify) {
-    updateQuota(netlify, 'invocations');
-    updateQuota(netlify, 'runtime');
-    document.querySelector('.functions').classList.remove('hidden');
-} else {
-    document.querySelector('.functions').remove();
+const loadErrorImage = () => {
+    loadImage(imageNotFound, () => {
+        NProgress.done();
+        domElements.providerImage.setAttribute('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
+        domElements.previewImage.setAttribute('src', imageNotFound);
+        markdown.update();
+    });
 }
 
 document.querySelectorAll('a').forEach(function (a) {
@@ -109,16 +79,7 @@ document.querySelectorAll('a').forEach(function (a) {
     });
 })
 
-const loadErrorImage = (formElement) => {
-    loadImage(imageNotFound, () => {
-        NProgress.done();
-        formElement.querySelector('[name="url"] ~ img').setAttribute('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
-        document.querySelector('.preview img').setAttribute('src', imageNotFound);
-        updateMarkdown();
-    });
-}
-
-const imageJsonConverter = (formElement, title, videoUrl, showPlayIcon, image = '') => {
+const imageJsonConverter = (title, videoUrl, showPlayIcon, image = '') => {
     fetch(`${lambdaUrl}/image-json`, {
         method: 'POST',
         body: new URLSearchParams([
@@ -129,58 +90,49 @@ const imageJsonConverter = (formElement, title, videoUrl, showPlayIcon, image = 
       }).then(r => r.json())
         .then(data => {
             if (data.error) {
-                return loadErrorImage(formElement);
+                return loadErrorImage();
             }
 
             loadImage(data.image, function() {
                 NProgress.done();
-                formElement.querySelector('[name="url"] ~ img').setAttribute('src', videoIcons[data.provider]);
-                document.querySelector('.preview img').replaceWith(this);
-                updateMarkdown(title, data.image, videoUrl);
+                domElements.providerImage.setAttribute('src', videoIcons[data.provider]);
+                domElements.previewImage.replaceWith(this);
+                markdown.update(title, videoUrl, data.image);
             });
         })
         .catch(() => {
-            loadErrorImage(formElement);
+            loadErrorImage();
         });
 };
 
-const videoConverter = (formElement, title, videoUrl, showPlayIcon) => {
+const videoConverter = (title, videoUrl, showPlayIcon) => {
 
     const video = document.createElement('video');
-    var canvas = document.createElement('canvas');
+    const canvas = document.createElement('canvas');
 
-    video.setAttribute('crossOrigin', 'anonymous');
-
-    video.addEventListener('loadeddata', function() {
-        reloadRandomFrame();
-    }, false);
-
-    video.addEventListener('error', function() {
-        loadErrorImage(formElement);
-    }, false);
-   
-    video.addEventListener('seeked', function() {
-        try {
-            const context = canvas.getContext('2d');
-            canvas.width = video.videoWidth;
-            canvas.height = video.videoHeight;
-            context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
-            const base64 = canvas.toDataURL('image/jpeg');
-            imageJsonConverter(formElement, title, videoUrl, showPlayIcon, base64);
-        } catch (e) {
-            loadErrorImage(formElement);
-        }
-    }, false);
-
-    video.src = videoUrl;
-   
-    function reloadRandomFrame() {
+    const loadRandomFrame = () => {
         if (!isNaN(video.duration)) {
             const rand = Math.round(Math.random() * video.duration * 1000) + 1;
             video.currentTime = rand / 1000;
         }
     }
-   
+
+    video.setAttribute('crossOrigin', 'anonymous');
+    video.addEventListener('loadeddata', loadRandomFrame, false);
+    video.addEventListener('error', loadErrorImage, false);
+    video.addEventListener('seeked', () => {
+        try {
+            const context = canvas.getContext('2d');
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+            imageJsonConverter(title, videoUrl, showPlayIcon, canvas.toDataURL('image/jpeg'));
+        } catch (e) {
+            loadErrorImage();
+        }
+    }, false);
+
+    video.src = videoUrl;
 };
 
 import Video from './lambda/classes/Providers/Video';
@@ -191,34 +143,26 @@ document.querySelector('form').addEventListener('submit', function (e) {
 
     NProgress.start();
 
-    const formElement = e.currentTarget;
-
-    const title = formElement.querySelector('[name="title"]').value;
-    const videoUrl = formElement.querySelector('[name="url"]').value;
-    const showPlayIcon = formElement.querySelector('[name="show-play-icon"]').checked;
-    const newMemoFormSubmit = `${videoUrl}|${showPlayIcon}`;
-
     ga('send', 'event', {
         eventCategory: 'V2M',
         eventAction: 'convert',
-        eventLabel: videoUrl
+        eventLabel: domElements.url
     });
 
+    const newMemoFormSubmit = `${domElements.url}|${domElements.showPlayIcon}`;
     if (memoFormSubmit === newMemoFormSubmit) {
-        updateMarkdown(title);
+        markdown.update(domElements.title);
         NProgress.done();
         return false;
     }
 
+    loadLoadingImage();
+
     memoFormSubmit = newMemoFormSubmit;
 
-    formElement.querySelector('[name="url"] ~ img').setAttribute('src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=');
-    document.querySelector('.preview img').setAttribute('src', imageLoading);
-    updateMarkdown();
-
-    if (Video.check(videoUrl)) {
-        videoConverter(formElement, title, videoUrl, showPlayIcon);
+    if (Video.check(domElements.url)) {
+        videoConverter(domElements.title, domElements.url, domElements.showPlayIcon);
     } else {
-        imageJsonConverter(formElement, title, videoUrl, showPlayIcon);
+        imageJsonConverter(domElements.title, domElements.url, domElements.showPlayIcon);
     }
 });
