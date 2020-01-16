@@ -1,5 +1,5 @@
-import fileType from 'file-type';
 import VideoWrapper from './classes/VideoWrapper';
+import cloudinary from './classes/cloudinary';
 
 import { sendLambdaEvent } from './classes/google-ua';
 
@@ -20,32 +20,49 @@ const throwException = (statusCode, message, callback) => {
     return error;
 };
 
+const getParam  = (event, paramName) => {
+    const urlSearchParams = new URLSearchParams(event.body);
+    return event.httpMethod === 'GET' ? event.queryStringParameters[paramName] : urlSearchParams.get(paramName);
+};
+
 exports.handler = (event, context, callback) => {
     sendLambdaEvent(event);
 
-    const url = event.queryStringParameters.url;
+    const url = getParam(event, 'url');
 
-    const video = VideoWrapper.create(url, {
-        showPlayIcon: event.queryStringParameters.showPlayIcon === 'true'
-    });
-
-    if (url === undefined) {
+    if (url === undefined || url === null) {
         return throwException(422, 'param URL is mandatory.', callback);
     }
 
-    video.log('GET', url);
+    let video;
+    try {
+        video = VideoWrapper.create(url, {
+            showPlayIcon: getParam(event, 'showPlayIcon') === 'true',
+            image: getParam(event, 'image'),
+            ImageService: cloudinary
+        });
+    } catch (error) {
+        return callback(null, {
+            statusCode: 422,
+            body: JSON.stringify({
+                error: true,
+                message: error.message
+            })
+        });
+    }
+
+    video.log('httpMethod', event.httpMethod);
+    video.log('url', url);
 
     video
-        .getThumbnail()
-        .then(({ buffer, url }) => {
+        .getThumbnail_asUrl()
+        .then(imageUrl => {
             callback(null, {
                 statusCode: 200,
                 body: JSON.stringify({
                     provider: video.providerName,
                     url: video.url,
-                    image: url,
-                    mime: fileType(buffer).mime,
-                    base64: `data:${fileType(buffer).mime};base64,${buffer.toString('base64')}`,
+                    image: imageUrl,
                 }),
             });
         })
@@ -55,4 +72,5 @@ exports.handler = (event, context, callback) => {
                 body: JSON.stringify({ error: true })
             });
         });
+
 };

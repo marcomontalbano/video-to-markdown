@@ -4,6 +4,5 @@
   functions = "dist/server"
 
 [template.environment]
-  NODE_ENV = "Node Environment"
-  CLOUDINARY_CLOUD_NAME = "Cloudinary Cloud Name"
+  CLOUDINARY_URL = "Cloudinary URL"
   GA_TRACKING_ID = "Google Analytics Tracking ID"

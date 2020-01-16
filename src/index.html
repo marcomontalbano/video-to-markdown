@@ -80,17 +80,21 @@
 
         </div>
 
-        <div class="container details">
+        <section class="container donations">
+            <h2>Disclaimer</h2>
+            <p>
+                This is an open source project with no sponsor (yet). I'm trying doing my best using free services which I cannot guarantee will always be 100% up and running.
+                To be totally safe, I suggest you generate the video image and download it, storing it directly into your repository or server.
+                Otherwise you can host <a class="host" href="https://github.com/marcomontalbano/video-to-markdown#hosting">your own copy <img alt="netlify"
+                    src="./images/netlify.svg"></a>.<br />
+                If you like this project and you find it useful, you can
+                <a class="beer" href="https://beerpay.io/marcomontalbano/video-to-markdown">buy me a <img alt="beer"
+                        src="./images/beerpay-logo-stoke.svg"></a>
+                or just <a class="star" href="https://github.com/marcomontalbano/video-to-markdown">star it ⭐</a>!
+            </p>
+        </section>
 
-            <section class="donations">
-                <h2>Donations</h2>
-                <p>
-                    If you like this project and you find it useful, you can
-                    <a class="beer" href="https://beerpay.io/marcomontalbano/video-to-markdown">buy me a <img alt="beer"
-                            src="./images/beerpay-logo-stoke.svg"></a>
-                    or just <a class="star" href="https://github.com/marcomontalbano/video-to-markdown">star it ⭐</a>!
-                </p>
-            </section>
+        <div class="container details">
 
             <section>
                 <h2>Why?</h2>
@@ -147,35 +151,6 @@
                     <small>&nbsp;</small>
                 </section>
             </section>
-
-            <!-- <section>
-                <h2>API</h2>
-
-                <section class="bordered">
-                    <pre class="language"><code class="language"><span class="token punctuation"><span class="method">[GET]</span> <span class="url">https://video-to-markdown.netlify.com/.netlify/functions/<b>image-json</b></span>?<span class="param-name">url</span>=<span class="param-value">{video-url}</span></span></code></pre>
-                    <p>
-<pre class="language-javascript"><code>{
-  "provider": "youtube",
-  "url": "https://youtu.be/aqz-KE-bpKQ",
-  "mime": "image/jpeg",
-  "base64": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAlgCWAAD/2wBDAAYEBQYFBA..."
-}</code></pre>
-                    </p>
-                    <p>
-                        The <code>image-json</code> API accept only one <code><b class="param-name">url</b></code> parameter.<br />
-                        The value <code><b class="param-value">{video-url}</b></code> is a video url <small>(e.g. <a rel="noopener noreferrer" href="https://youtu.be/aqz-KE-bpKQ" rel="nofollow" target="_blank">https://youtu.be/aqz-KE-bpKQ</a>)</small>
-                    </p>
-                </section>
-
-                <section class="bordered">
-                    <pre class="language"><code class="language"><span class="token punctuation"><span class="method">[GET]</span> <span class="url">https://video-to-markdown.netlify.com/.netlify/functions/<b>image</b></span>?<span class="param-name">url</span>=<span class="param-value">{video-url}</span></span></code></pre>
-                    <p><code>output</code>:&nbsp;&nbsp;&nbsp;<i class="far fa-image"></i>&nbsp;&nbsp;<small>image</small></p>
-                    <p>
-                        The <code>image</code> API accept only one <code><b class="param-name">url</b></code> parameter.<br />
-                        The value <code><b class="param-value">{video-url}</b></code> is a video url <small>(e.g. <a rel="noopener noreferrer" href="https://youtu.be/aqz-KE-bpKQ" rel="nofollow" target="_blank">https://youtu.be/aqz-KE-bpKQ</a>)</small>
-                    </p>
-                </section>
-            </section> -->
 
             <footer>
                 <a rel="noopener noreferrer" href="https://marcomontalbano.com" target="_blank">Marco Montalbano</a> 

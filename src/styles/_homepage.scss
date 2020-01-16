@@ -128,19 +128,27 @@ form {
 }
 
 .donations {
+  background: #f6f3f4;
+  border-bottom: 1px solid #EF9A9A;
   a {
     white-space: nowrap;
-    &.beer {
-      color: #f85d5d;
+    &.beer,
+    &.host {
       img {
         width: auto;
-        height: 24px;
+        height: 20px;
         vertical-align: text-bottom;
-        margin-bottom: 1px;
+        margin: 0px 1px 1px;
       }
+    }
+    &.beer {
+      color: #f85d5d;
     }
     &.star {
       color: #F9A825;
+    }
+    &.host {
+      color: #14bbab;
     }
   }
 }

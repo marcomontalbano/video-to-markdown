@@ -1,7 +1,3 @@
-import fetch from './proxiedFetch';
-
-const { CLOUDINARY_CLOUD_NAME, IMGBB_API_KEY } = process.env;
-
 export default class VideoProvider {
     static get regex() {}
 
@@ -34,43 +30,19 @@ export default class VideoProvider {
         return new Promise();
     }
 
-    getThumbnail_asCloudinaryUrl() {
-        return this.getThumbnail_asVideoUrl().then(url => this.getThumbnail_validateUrl(url));
-    }
+    getThumbnail_asUrl() {
+        return this.getThumbnail_asVideoUrl().then(videoUrl => {
+            if (!this.constructor.useCloudinary) {
+                return videoUrl;
+            }
 
-    getThumbnail_asImgbbUrl() {
-        return this.getThumbnail_asCloudinaryUrl().then(cloudinaryUrl => {
-            return fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_API_KEY}&image=${encodeURIComponent(cloudinaryUrl)}`)
-                .then(response => response.json())
-                .then(({
-                    data: {
-                        image: {
-                            url: imgbbUrl 
-                        } = {}
-                    } = {}
-                }) => imgbbUrl ? imgbbUrl : cloudinaryUrl);
+            return this.options.ImageService.create(videoUrl, this, {
+                showPlayIcon: this.options.showPlayIcon
+            }).then(response => response.secure_url);
         });
     }
 
-    getThumbnail() {
-        return this.getThumbnail_asImgbbUrl()
-            .then(url => {
-                this.log('getThumbnail', url);
-
-                return fetch(url).then(response => response.buffer()).then(buffer => ({ buffer, url }));
-            })
-    }
-
-    getThumbnail_validateUrl(url) {
-        if (this.constructor.useCloudinary && CLOUDINARY_CLOUD_NAME) {
-            const cloudinaryPlayIcon = this.options.showPlayIcon ? `l_video_to_markdown:${this.providerName}_play,g_center/` : '';
-            return `http://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/fetch/h_720/${cloudinaryPlayIcon}${encodeURIComponent(url)}`;
-        }
-
-        return url;
-    }
-
-    constructor(url, options) {
+    constructor(url, options = {}) {
         if (!this.constructor.check(url)) {
             throw new Error(
                 `Invalid url for ${this.providerName} provider.`

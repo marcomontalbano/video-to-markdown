@@ -4,11 +4,22 @@ require('dotenv').config();
 
 const fs = require('fs');
 
-const netlify = require('../src/lambda/netlify');
+const fetch = require('../src/lambda/classes/proxiedFetch');
 const dbPath = `${__dirname}/../src/db.json`;
 
-fs.writeFileSync(dbPath, '{}');
-netlify.handler({ path: '/netlify' }, {}, (error, content) => {
-    const netlify = JSON.parse(content.body);
-    fs.writeFileSync(dbPath, JSON.stringify({ netlify }, undefined, 2));
-});
+const { SITE_ID, NETLIFY_ACCESS_TOKEN } = process.env;
+
+fetch(`https://api.netlify.com/api/v1/sites/${SITE_ID}?access_token=${NETLIFY_ACCESS_TOKEN}`)
+    .then(response => response.json())
+    .then(({ capabilities: { functions } }) => {
+        fs.writeFileSync(dbPath, JSON.stringify({
+            netlify: {
+                capabilities: {
+                    functions
+                }
+            }
+        }, undefined, 2));
+    })
+    .catch((error) => {
+        fs.writeFileSync(dbPath, '{}');
+    })

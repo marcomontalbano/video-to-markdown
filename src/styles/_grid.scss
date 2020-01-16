@@ -16,29 +16,26 @@
   }
 }
 
+@mixin container-padding($max-width: 100vw) {
+  $padding-tb: .5rem;
+  $padding-lr: 1.5rem;
+  padding: $padding-tb calc(#{$padding-lr} + 50vw - #{$max-width} / 2);
+}
+
 .container {
-  margin: 0 auto;
   position: relative;
-  padding: 0.5rem 1.5rem;
-}
+  @include container-padding;
 
-@media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
-  .container {
-    max-width: 960px;
-    width: 960px;
+  @media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
+    @include container-padding(960px);
+  }
+  
+  @media screen and (min-width: (map-get($breakpoints, "xlarge") + "px")) {
+    @include container-padding(1152px);
+  }
+  
+  @media screen and (min-width: (map-get($breakpoints, "xxlarge") + "px")) {
+    @include container-padding(1344px);
   }
 }
 
-@media screen and (min-width: (map-get($breakpoints, "xlarge") + "px")) {
-  .container {
-    max-width: 1152px;
-    width: 1152px;
-  }
-}
-
-@media screen and (min-width: (map-get($breakpoints, "xxlarge") + "px")) {
-  .container {
-    max-width: 1344px;
-    width: 1344px;
-  }
-}
