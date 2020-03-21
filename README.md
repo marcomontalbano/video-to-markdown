@@ -90,4 +90,7 @@ Google Analytics is used to record the following:
 * [Basic visit data](https://support.google.com/analytics/answer/6004245?ref_topic=2919631).
 * `referer` or `video url` to track api usage.
 
+All images are generated via [Cloudinary](https://cloudinary.com/) and stored in it.
+In this way the generated images are cached so we can avoid to call Netlify functions again thus reducing the quota consumption.
+
 By clicking on `convert to markdown` or consuming api you accept this terms & condition; no additional data is sent to the server.

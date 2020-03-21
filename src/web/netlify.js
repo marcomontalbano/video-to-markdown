@@ -1,6 +1,6 @@
 const { netlify } = require('../db.json');
 
-function updateQuota(data, functionType) {
+const updateQuota = (data, functionType) => {
     let used       = data.capabilities.functions[functionType].used;
     let included   = data.capabilities.functions[functionType].included;
     let unit       = data.capabilities.functions[functionType].unit;
@@ -19,8 +19,15 @@ function updateQuota(data, functionType) {
     document.querySelector(`.functions .${functionType} small`).textContent = `${used} / ${included} ${unit}`;
 }
 
+const isStatsVisible = () => {
+    return netlify && (
+        netlify.capabilities.functions.runtime.included / 2 <= netlify.capabilities.functions.runtime.used ||
+        netlify.capabilities.functions.invocations.included / 2 <= netlify.capabilities.functions.invocations.used
+    )
+}
+
 const loadStats = () => {
-    if (netlify) {
+    if (isStatsVisible()) {
         updateQuota(netlify, 'invocations');
         updateQuota(netlify, 'runtime');
         document.querySelector('.functions').classList.remove('hidden');
