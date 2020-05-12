@@ -53,6 +53,7 @@ exports.handler = (event, context, callback) => {
 
     video.log('httpMethod', event.httpMethod);
     video.log('url', url);
+    video.log('highQuality', cloudinary.useHighQuality() ? 'true' : 'false');
 
     video
         .getThumbnail_asUrl()
