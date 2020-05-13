@@ -48,7 +48,7 @@ List of supported video providers:
 
 ## Hosting
 
-First of all you need to create a [Cloudinary](https://cloudinary.com) account (I'm using this service to generate and host images) so that you can copy your personal `CLOUDINARY_URL` from your dashboard. The url is something similar to `cloudinary://my_key:my_secret@my_cloud_name`.
+First of all you need to create a [Cloudinary] account (I'm using this service to generate and host images) so that you can copy your personal `CLOUDINARY_URL` from your dashboard. The url is something similar to `cloudinary://my_key:my_secret@my_cloud_name`.
 
 Now you can easily deploy your own copy on Netlify.
 
@@ -59,10 +59,10 @@ Now you can easily deploy your own copy on Netlify.
 
 To run the project locally, here’s what you’ll need:
 
-### System Requirements
+### Requirements
 
-* [git](https://git-scm.com)
-* [NodeJS](nodejs.org) 10 or greater
+* [Cloudinary] account
+* [Node.js](https://nodejs.org/) 10 or greater
 
 ### Setup
 
@@ -90,7 +90,9 @@ Google Analytics is used to record the following:
 * [Basic visit data](https://support.google.com/analytics/answer/6004245?ref_topic=2919631).
 * `referer` or `video url` to track api usage.
 
-All images are generated via [Cloudinary](https://cloudinary.com/) and stored in it.
+All images are generated via [Cloudinary] and stored in it.
 In this way the generated images are cached so we can avoid to call Netlify functions again thus reducing the quota consumption.
 
 By clicking on `convert to markdown` or consuming api you accept this terms & condition; no additional data is sent to the server.
+
+[Cloudinary]: https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/nfvt85kdqleszdah0hxq
