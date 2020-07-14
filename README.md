@@ -44,6 +44,7 @@ List of supported video providers:
 - Vimeo
 - Asciinema
 - Google Drive
+- Loom
 
 
 ## Hosting

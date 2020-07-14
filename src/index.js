@@ -17,6 +17,7 @@ const videoIcons = {
     youtube: require('./images/providers/youtube.png'),
     asciinema: require('./images/providers/asciinema.png'),
     'google-drive': require('./images/providers/google-drive.png'),
+    loom: require('./images/providers/loom.png'),
 };
 
 const domElements = {

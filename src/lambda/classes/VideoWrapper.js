@@ -8,6 +8,7 @@ export default class VideoWrapper {
             require('./Providers/Asciinema'),
             require('./Providers/GoogleDrive'),
             require('./Providers/Video'),
+            require('./Providers/Loom'),
         ];
     }
 
