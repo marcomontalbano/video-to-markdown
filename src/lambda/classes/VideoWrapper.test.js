@@ -19,7 +19,7 @@ describe('VideoWrapper', () => {
         });
 
         it('asciinema', () => {
-            expect(VideoWrapper.create('https://asciinema.org/a/113463').providerName).toBe('asciinema');
+            expect(VideoWrapper.create('https://asciinema.org/a/335480').providerName).toBe('asciinema');
         });
 
         it('google-drive', () => {

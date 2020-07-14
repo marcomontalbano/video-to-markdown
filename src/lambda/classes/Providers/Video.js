@@ -10,7 +10,7 @@ export default class Video extends VideoProvider {
 
     static get regex() {
         return [
-            // - //asciinema.org/a/113463
+            // - //example.com/video.mp4
             /^https?\:\/\/.*\.(mp4|mov|webm)$/
         ];
     }

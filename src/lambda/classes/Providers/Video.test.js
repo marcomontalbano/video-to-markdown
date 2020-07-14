@@ -3,7 +3,7 @@ import Video from './Video';
 describe('Video', () => {
     it('"regex" must be correct.', () => {
         expect(Video.getVideoId('https://i.imgur.com/vhjwXMB.mp4')).toBe('f48ef897bfabed6334368c76e716f871');
-        expect(Video.check('https://asciinema.org/a/113463')).toBe(false);
+        expect(Video.check('https://asciinema.org/a/335480')).toBe(false);
     });
 
     it('all methods must work.', () => {
