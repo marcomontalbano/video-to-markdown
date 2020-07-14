@@ -24,6 +24,7 @@
     "dailymotion",
     "asciinema",
     "google-drive",
+    "loom",
     "netlify"
   ],
   "engines": {

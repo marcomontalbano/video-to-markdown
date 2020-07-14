@@ -29,5 +29,9 @@ describe('VideoWrapper', () => {
         it('video', () => {
             expect(VideoWrapper.create('https://i.imgur.com/vhjwXMB.mp4').providerName).toBe('video');
         });
+
+        it('loom', () => {
+            expect(VideoWrapper.create('https://www.loom.com/share/3d0b326f650749bbb1fa13895dcd6563').providerName).toBe('loom');
+        });
     });
 });
