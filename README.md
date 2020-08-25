@@ -38,13 +38,14 @@ You just need to paste the video url in the field above and you will get the mar
 
 List of supported video providers:
 
-- Youtube
-- Facebook (low-quality)
-- Dailymotion
-- Vimeo
-- Asciinema
-- Google Drive
-- Loom
+- [x] Youtube
+- [x] Facebook (low-quality)
+- [x] Dailymotion
+- [x] Vimeo
+- [x] Asciinema
+- [x] Google Drive
+- [x] Loom
+- [x] Wistia
 
 
 ## Hosting

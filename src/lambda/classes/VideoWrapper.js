@@ -9,6 +9,7 @@ export default class VideoWrapper {
             require('./Providers/GoogleDrive'),
             require('./Providers/Video'),
             require('./Providers/Loom'),
+            require('./Providers/Wistia'),
         ];
     }
 

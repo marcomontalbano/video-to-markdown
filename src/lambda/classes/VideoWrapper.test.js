@@ -33,5 +33,9 @@ describe('VideoWrapper', () => {
         it('loom', () => {
             expect(VideoWrapper.create('https://www.loom.com/share/3d0b326f650749bbb1fa13895dcd6563').providerName).toBe('loom');
         });
+
+        it('wistia', () => {
+            expect(VideoWrapper.create('https://home.wistia.com/medias/e4a27b971d').providerName).toBe('wistia');
+        });
     });
 });

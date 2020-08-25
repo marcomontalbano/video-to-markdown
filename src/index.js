@@ -18,6 +18,7 @@ const videoIcons = {
     asciinema: require('./images/providers/asciinema.png'),
     'google-drive': require('./images/providers/google-drive.png'),
     loom: require('./images/providers/loom.png'),
+    wistia: require('./images/providers/wistia.png'),
 };
 
 const domElements = {
