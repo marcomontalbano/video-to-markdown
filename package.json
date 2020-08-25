@@ -25,6 +25,7 @@
     "asciinema",
     "google-drive",
     "loom",
+    "wistia",
     "netlify"
   ],
   "engines": {
