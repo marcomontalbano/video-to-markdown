@@ -21,8 +21,9 @@ export default class Loom extends VideoProvider {
     }
 
     getThumbnail_asVideoUrl() {
-        const gifImage = `https://cdn.loom.com/sessions/thumbnails/${this.getId()}-with-play.gif`;
-        const jpgImage = `https://cdn.loom.com/sessions/thumbnails/${this.getId()}-with-play.jpg`;
+        const playIconSuffix = this.options.showPlayIcon ? 'with-play' : '00001';
+        const gifImage = `https://cdn.loom.com/sessions/thumbnails/${this.getId()}-${playIconSuffix}.gif`;
+        const jpgImage = `https://cdn.loom.com/sessions/thumbnails/${this.getId()}-${playIconSuffix}.jpg`;
 
         return fetch(gifImage)
             .then(response => response.status === 200 ? response.url : jpgImage)
