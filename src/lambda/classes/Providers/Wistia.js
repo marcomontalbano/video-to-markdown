@@ -31,6 +31,14 @@ export default class Wistia extends VideoProvider {
 
         return fetch(endpoint)
             .then(response => response.json())
-            .then(json => `${json.thumbnail_url}${this.options.showPlayIcon ? '&image_play_button=1' : ''}`)
+            .then(json => {
+                const { thumbnail_url, player_color = '686560' } = json;
+                const options = [
+                    this.options.showPlayIcon && 'image_play_button=1',
+                    `image_play_button_color=${player_color}EE`
+                ];
+
+                return `${thumbnail_url}&${options.filter(elm => elm).join('&')}`
+            })
     }
 }
