@@ -46,6 +46,7 @@ List of supported video providers:
 - [x] Google Drive
 - [x] Loom
 - [x] Wistia
+- [x] Streamable
 
 
 ## Hosting

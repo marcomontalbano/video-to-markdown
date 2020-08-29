@@ -37,5 +37,9 @@ describe('VideoWrapper', () => {
         it('wistia', () => {
             expect(VideoWrapper.create('https://home.wistia.com/medias/e4a27b971d').providerName).toBe('wistia');
         });
+
+        it('streamable', () => {
+            expect(VideoWrapper.create('https://streamable.com/1nvj5i').providerName).toBe('streamable');
+        });
     });
 });

@@ -22,7 +22,7 @@ export default class Wistia extends VideoProvider {
         ];
     }
 
-    static get useCloudinary() {
+    needsCloudinary() {
         return false
     }
 

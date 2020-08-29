@@ -10,6 +10,7 @@ export default class VideoWrapper {
             require('./Providers/Video'),
             require('./Providers/Loom'),
             require('./Providers/Wistia'),
+            require('./Providers/Streamable'),
         ];
     }
 

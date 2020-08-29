@@ -16,7 +16,7 @@ export default class Loom extends VideoProvider {
         ];
     }
 
-    static get useCloudinary() {
+    needsCloudinary() {
         return false
     }
 

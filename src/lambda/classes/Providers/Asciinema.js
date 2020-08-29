@@ -15,7 +15,7 @@ export default class Asciinema extends VideoProvider {
         ];
     }
 
-    static get useCloudinary() {
+    needsCloudinary() {
         return false
     }
 
