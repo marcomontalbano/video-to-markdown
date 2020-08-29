@@ -19,6 +19,7 @@ const videoIcons = {
     'google-drive': require('./images/providers/google-drive.png'),
     loom: require('./images/providers/loom.png'),
     wistia: require('./images/providers/wistia.png'),
+    streamable: require('./images/providers/streamable.png'),
 };
 
 const domElements = {

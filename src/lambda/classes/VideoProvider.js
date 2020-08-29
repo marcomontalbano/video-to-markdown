@@ -1,8 +1,6 @@
 export default class VideoProvider {
     static get regex() {}
 
-    static get useCloudinary() { return true }
-
     get providerName() { }
 
     static check(url) {
@@ -16,6 +14,10 @@ export default class VideoProvider {
                 return id;
             })
             .filter(id => id)[0];
+    }
+
+    needsCloudinary() {
+        return this.options.showPlayIcon
     }
 
     log(key, value) {
@@ -32,7 +34,7 @@ export default class VideoProvider {
 
     getThumbnail_asUrl() {
         return this.getThumbnail_asVideoUrl().then(videoUrl => {
-            if (!this.constructor.useCloudinary) {
+            if (!this.needsCloudinary()) {
                 return videoUrl;
             }
 

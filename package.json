@@ -26,6 +26,7 @@
     "google-drive",
     "loom",
     "wistia",
+    "streamable",
     "netlify"
   ],
   "engines": {
