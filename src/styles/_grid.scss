@@ -17,7 +17,7 @@
 }
 
 @mixin container-padding($max-width: 100vw) {
-  $padding-tb: .5rem;
+  $padding-tb: 1rem;
   $padding-lr: 1.5rem;
   padding: $padding-tb calc(#{$padding-lr} + 50vw - #{$max-width} / 2);
 }
