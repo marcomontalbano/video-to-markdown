@@ -134,6 +134,7 @@ form {
     white-space: nowrap;
     color: #0288D1;
     &.beer,
+    &.sponsor,
     &.host {
       img {
         width: auto;
@@ -145,11 +146,23 @@ form {
     &.beer {
       color: #f85d5d;
     }
+    &.sponsor {
+      color: #db61a2;
+      svg {
+        fill: #db61a2;
+      }
+    }
     &.star {
       color: #F9A825;
+      svg {
+        fill: #F9A825;
+      }
     }
     &.host {
       color: #14bbab;
+    }
+    svg {
+      vertical-align: text-top;
     }
   }
 }
