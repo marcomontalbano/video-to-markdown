@@ -1,0 +1,43 @@
+html {
+  font-family: "Montserrat", sans-serif;
+  background: $background-color;
+  color: $color-text-dark;
+  scroll-behavior: smooth;
+}
+
+.dark-bg {
+  color: $color-white;
+  background-color: $header-background-color;
+}
+
+header {
+  h1.title {
+    margin: 0.5em 0 0.25em;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+
+    a {
+      color: $color-white;
+    }
+
+    strong {
+      color: #2d3130;
+      text-shadow: 1px 1px #ffffff4d;
+      margin-right: 6px;
+      font-size: 1.1em;
+    }
+  }
+}
+
+footer {
+  text-align: right;
+  margin-bottom: 15px;
+  font-size: 15px;
+  a {
+    margin-left: 12px;
+    color: #607d8b;
+    > i {
+      margin: 0 2px;
+    }
+  }
+}

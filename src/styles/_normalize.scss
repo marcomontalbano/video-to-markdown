@@ -20,7 +20,7 @@ body {
 a,
 button {
   color: inherit;
-  transition: 0.3s;
+  transition: $transition-duration;
 }
 
 a {

@@ -18,7 +18,7 @@
   padding: 0.6rem 2rem;
   letter-spacing: 1px;
   box-shadow: 0px 0px 0px 0px transparent;
-  transition: 0.3s box-shadow;
+  transition: $transition-duration box-shadow;
 
   text-align: center;
   background-color: #00000020; 

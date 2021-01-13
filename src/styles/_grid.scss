@@ -37,5 +37,25 @@
   @media screen and (min-width: (map-get($breakpoints, "xxlarge") + "px")) {
     @include container-padding(1344px);
   }
+
+  > section {
+    padding: {
+      top: 2em;
+      bottom: 3em;
+    }
+    border-top: 1px solid #dcdcdc;
+    opacity: 1;
+    transition: opacity $transition-duration;
+
+    &:first-child {
+      border-top: none;
+    }
+
+    &.hidden {
+      opacity: 0;
+      max-height: 0;
+      padding: 0;
+    }
+  }
 }
 

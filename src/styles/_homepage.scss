@@ -99,34 +99,6 @@ form {
   }
 }
 
-.providers {
-  .provider {
-    @media screen and (min-width: (map-get($breakpoints, "small") + "px")) {
-      width: (100% / 2);
-    }
-    @media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
-      width: (100% / 3);
-    }
-    @media screen and (min-width: (map-get($breakpoints, "xlarge") + "px")) {
-      width: (100% / 4);
-    }
-    cursor: default;
-    display: block;
-    .fa-check {
-      color: #8bc34a;
-    }
-    .fa-plus {
-      color: #00BCD4;
-    }
-    span, a {
-      padding-left: 8px;
-    }
-    a:link {
-      text-decoration: underline;
-    }
-  }
-}
-
 .donations {
   background: #f6f3f4;
   border-bottom: 1px solid #EF9A9A;
@@ -135,7 +107,7 @@ form {
     z-index: 1;
     background: #f6f3f4;
     padding: 8px 20px;
-    border-radius: 8px;
+    border-radius: 3px;
   }
   .close {
     width: 24px;
@@ -147,11 +119,14 @@ form {
     box-sizing: content-box;
 
     opacity: 0;
-    transition: .3s opacity;
+    transition: opacity $transition-duration;
     pointer-events: none;
 
-    img {
+    svg {
       pointer-events: none;
+      width: 100%;
+      height: 100%;
+      fill: $color-text-dark
     }
   }
   a {
@@ -199,11 +174,11 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: black;
+    background: $header-background-color;
     z-index: 1;
     opacity: 0;
     pointer-events: none;
-    transition: .3s opacity;
+    transition: opacity $transition-duration;
   }
   &.modal {
     overflow: hidden;
@@ -218,58 +193,8 @@ body {
     }
 
     &:before {
-      opacity: 0.85;
+      opacity: 0.7;
       pointer-events: all;
-    }
-  }
-}
-
-.progress {
-  background: #efefef;
-  height: 12px;
-  border-radius: 20px;
-  overflow: hidden;
-
-  > div {
-    --percentage: 0;
-    width: calc(var(--percentage) * 1%);
-    height: 100%;
-    background-color: hsl(calc(120 - var(--percentage) / 100 * 120), 38%, 62%);
-    border-radius: 4px;
-    transition: width 1.2s, background-color 1.2s;
-  }
-
-  ~ small {
-    text-align: right;
-    display: block;;
-  }
-}
-
-.details {
-  > section {
-    padding: {
-      top: 2em;
-      bottom: 3em;
-    }
-    border-top: 1px solid #dcdcdc;
-    opacity: 1;
-    transition: opacity .5s;
-    &:first-child {
-      border-top: none;
-    }
-
-    > section {
-      margin-top: 2em;
-      padding: 0 .5em;
-      &.bordered {
-        border-bottom: 2px solid #ededed;
-      }
-    }
-
-    &.hidden {
-      opacity: 0;
-      max-height: 0;
-      padding: 0;
     }
   }
 }
