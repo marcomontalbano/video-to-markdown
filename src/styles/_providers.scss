@@ -1,0 +1,27 @@
+.providers {
+  .provider {
+    @media screen and (min-width: (map-get($breakpoints, "small") + "px")) {
+      width: (100% / 2);
+    }
+    @media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
+      width: (100% / 3);
+    }
+    @media screen and (min-width: (map-get($breakpoints, "xlarge") + "px")) {
+      width: (100% / 4);
+    }
+    cursor: default;
+    display: block;
+    .fa-check {
+      color: #8bc34a;
+    }
+    .fa-plus {
+      color: #00BCD4;
+    }
+    span, a {
+      padding-left: 8px;
+    }
+    a:link {
+      text-decoration: underline;
+    }
+  }
+}

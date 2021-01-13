@@ -26,7 +26,7 @@ const isStatsVisible = () => {
     )
 }
 
-const loadStats = () => {
+export const loadStats = () => {
     if (isStatsVisible()) {
         updateQuota(netlify, 'invocations');
         updateQuota(netlify, 'runtime');
@@ -35,7 +35,3 @@ const loadStats = () => {
         document.querySelector('.functions').remove();
     }
 }
-
-export {
-    loadStats
-};

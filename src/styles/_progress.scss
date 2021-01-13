@@ -1,0 +1,20 @@
+.progress {
+  background: #efefef;
+  height: 12px;
+  border-radius: 20px;
+  overflow: hidden;
+
+  > div {
+    --percentage: 0;
+    width: calc(var(--percentage) * 1%);
+    height: 100%;
+    background-color: hsl(calc(120 - var(--percentage) / 100 * 120), 38%, 62%);
+    border-radius: 4px;
+    transition: width 1.2s, background-color 1.2s;
+  }
+
+  ~ small {
+    text-align: right;
+    display: block;;
+  }
+}

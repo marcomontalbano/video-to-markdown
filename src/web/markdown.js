@@ -1,10 +1,6 @@
 import ClipboardJS from 'clipboard';
 
-const markdownElement = document.querySelector('.markdown');
-
-new ClipboardJS(markdownElement);
-
-const update = (() => {
+const update = (markdownElement) => {
     let videoUrl_memo, imageUrl_memo;
 
     return (title, videoUrl = videoUrl_memo, imageUrl = imageUrl_memo) => {
@@ -27,8 +23,12 @@ const update = (() => {
         markdownElement.classList.toggle('hint--top', title !== undefined);
         markdownElement.setAttribute('data-clipboard-text', markdownCodeElement.textContent);
     };
-})();
+};
 
-export {
-    update
+export const load = () => {
+    const markdownElement = document.querySelector('.markdown');
+
+    new ClipboardJS(markdownElement);
+
+    return update(markdownElement);
 }

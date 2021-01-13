@@ -17,5 +17,11 @@ module.exports = {
                 pathRewrite: { '^/.netlify/functions': '' }
             }
         }
+    },
+    resolve: {
+        fallback: {
+            "crypto": require.resolve("crypto-browserify"),
+            "stream": require.resolve("stream-browserify"),
+        }
     }
 };
