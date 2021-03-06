@@ -41,5 +41,9 @@ describe('VideoWrapper', () => {
         it('streamable', () => {
             expect(VideoWrapper.create('https://streamable.com/1nvj5i').providerName).toBe('streamable');
         });
+
+        it('cleanshot-cloud', () => {
+            expect(VideoWrapper.create('https://cln.sh/YRePNX').providerName).toBe('cleanshot-cloud');
+        });
     });
 });
