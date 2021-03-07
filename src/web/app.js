@@ -22,6 +22,7 @@ const videoIcons = {
     loom: require('../images/providers/loom.png'),
     wistia: require('../images/providers/wistia.png'),
     streamable: require('../images/providers/streamable.png'),
+    'cleanshot-cloud': require('../images/providers/cleanshot-cloud.png'),
 };
 
 const domElements = {

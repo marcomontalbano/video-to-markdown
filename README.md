@@ -46,6 +46,7 @@ List of supported video providers:
 - [x] Loom
 - [x] Wistia
 - [x] Streamable
+- [x] CleanShot Cloud
 
 
 ## Hosting
