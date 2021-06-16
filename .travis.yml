@@ -6,4 +6,4 @@ node_js:
   - "12"
 
 script:
-  - npm test
+  - yarn test

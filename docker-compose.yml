@@ -19,4 +19,4 @@ services:
     restart: always
     volumes:
       - ./:/home/app
-    command: ["npm", "run", "start:server"]
+    command: ["yarn", "start:server"]

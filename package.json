@@ -43,34 +43,37 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.11",
-    "babel-jest": "^26.6.3",
-    "cloudinary": "~1.23.0",
+    "@babel/core": "^7.14.6",
+    "@babel/preset-env": "^7.14.5",
+    "babel-jest": "^27.0.2",
+    "cloudinary": "~1.26.0",
     "crypto-browserify": "^3.12.0",
-    "dotenv": "~8.2.0",
+    "dotenv": "~10.0.0",
     "encoding": "~0.1.13",
     "file-loader": "^6.2.0",
     "https-proxy-agent": "^5.0.0",
-    "jest": "^26.6.3",
-    "netlify-lambda": "^2.0.2",
+    "jest": "^27.0.4",
+    "netlify-lambda": "^2.0.9",
     "node-fetch": "^2.6.1",
     "npm-run-all": "^4.1.5",
     "parcel": "^1.12.4",
-    "posthtml-include": "^1.6.0",
-    "sass": "~1.32.4",
+    "posthtml-include": "^1.7.1",
+    "sass": "~1.32.13",
     "stream-browserify": "^3.0.0",
-    "webpack": "^5.13.0",
-    "webpack-cli": "^4.3.1",
+    "webpack": "^5.39.0",
+    "webpack-cli": "^4.7.2",
     "webpack-dev-server": "^3.11.2"
   },
   "dependencies": {
-    "clipboard": "^2.0.6",
+    "clipboard": "^2.0.8",
     "hint.css": "^2.6.0",
-    "html-miner": "^3.1.0",
+    "html-miner": "^3.1.1",
     "nprogress": "^0.2.0",
     "prismjs": "^1.23.0",
     "universal-analytics": "~0.4.23"
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.13.8"
   },
   "scripts": {
     "test": "jest",
@@ -82,8 +85,8 @@
     "build:server": "netlify-lambda build src/lambda",
     "build": "npm-run-all test build:*",
     "build-db": "./bin/build-db",
-    "pretest": "npm run build-db",
-    "prestart": "npm run build-db",
-    "prebuild": "npm run build-db"
+    "pretest": "yarn build-db",
+    "prestart": "yarn build-db",
+    "prebuild": "yarn build-db"
   }
 }

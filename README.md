@@ -69,15 +69,15 @@ To run the project locally, here’s what you’ll need:
 
 ### Setup
 
-`cd` into your local copy of the repository and run `npm install`
+`cd` into your local copy of the repository and run `yarn install`
 
 ```
 cd video-to-markdown
-npm install
+yarn install
 ```
 
 ```
-npm start
+yarn start
 ```
 
 This will start the client server on http://localhost:8080, and the netlify-lambda server on http://localhost:8081.
