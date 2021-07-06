@@ -1,11 +1,10 @@
-#!/usr/bin/env node
-
 require('dotenv').config();
 
 const fs = require('fs');
+const path = require('path');
 
 const fetch = require('../src/lambda/classes/proxiedFetch');
-const dbPath = `${__dirname}/../src/db.json`;
+const dbPath = path.resolve(__dirname, '..', 'src', 'db.json');
 
 const { SITE_ID, NETLIFY_ACCESS_TOKEN } = process.env;
 

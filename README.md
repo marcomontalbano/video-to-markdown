@@ -65,18 +65,29 @@ To run the project locally, here’s what you’ll need:
 ### Requirements
 
 * [Cloudinary] account
-* [Node.js](https://nodejs.org/) 10 or greater
+* [Node.js](https://nodejs.org/) 14 or greater
 
 ### Setup
 
 `cd` into your local copy of the repository and run `yarn install`
 
-```
+```sh
 cd video-to-markdown
 yarn install
 ```
 
+```sh
+cp .env.sample .env
+# update the .env with proper values
 ```
+
+* `CLOUDINARY_URL` ( **required** ) - this is the `API Environment variable` that you can get from your Cloudinary dashboard inside the **Account Details** section.
+* `GA_TRACKING_ID` ( _optional_ ) - this is a Google Analytics Tracking ID. Can be used if you need to track page views and events.
+* `NETLIFY_ACCESS_TOKEN` ( _optional_ ) - this a Netlify Access Token. In combination with the `SITE_ID` can be used to display the **API Usage** in the website.
+* `SITE_ID` ( _optional_ ) - this the Netlify Site ID. In combination with the `NETLIFY_ACCESS_TOKEN` can be used to display the **API Usage** in the website.
+* `USE_HIGH_QUALITY` ( _optional_ ) - this is a boolean flag. If `true`, the generated images will be stored in Contenful with hi-res quality (default to `false`)
+
+```sh
 yarn start
 ```
 
