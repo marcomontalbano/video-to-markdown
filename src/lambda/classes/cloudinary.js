@@ -18,8 +18,8 @@ const create = (source, video, options = {}) => new Promise((resolve, reject) =>
         { height: 720 },
     ]
     const lowQuality = [
-        { height: 540 },
-        { quality: 'auto:eco' },
+        { height: 500 },
+        { quality: 'auto:low' },
     ]
 
     const overlayHeight = useHighQuality() ? '1.0' : (lowQuality[0].height / highQuality[0].height).toFixed(2).toString();
