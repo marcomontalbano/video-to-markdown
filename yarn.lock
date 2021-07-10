@@ -4669,10 +4669,10 @@ html-escaper@^2.0.0:
   resolved "https://registry.yarnpkg.com/html-escaper/-/html-escaper-2.0.2.tgz#dfd60027da36a36dfcbe236262c00a5822681453"
   integrity sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==
 
-html-miner@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/html-miner/-/html-miner-3.1.1.tgz#a0fd37fbe4f7ab7362f50ccce9dc97eeb3db93ca"
-  integrity sha512-pr/8YPPuk/uNaXuGJKyB/MJuNJAnl6J26+VI2k3gmfVQiOSy8RtVs1LqTQW9msjvrMh2LNb9uJehcBGpCg32BA==
+html-miner@^3.1.2:
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/html-miner/-/html-miner-3.1.2.tgz#e89292e8b0b8b97d60c7671444e5a132a2b55020"
+  integrity sha512-5tgJDyS3xV0Hogbc0IuxK9JgHTM8dNvcwB/kLLsOvvEqvqXPBNGsHBNLGC8vm1lm2pjs1VEgbUV1UYpH/qkDLg==
   dependencies:
     cheerio "^0.22.0"
     lodash "^4.17.21"
