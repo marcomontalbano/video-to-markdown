@@ -1,13 +1,15 @@
+@use "sass:math";
+
 .providers {
   .provider {
     @media screen and (min-width: (map-get($breakpoints, "small") + "px")) {
-      width: (100% / 2);
+      width: math.div(100%, 2);
     }
     @media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
-      width: (100% / 3);
+      width: math.div(100%, 3);
     }
     @media screen and (min-width: (map-get($breakpoints, "xlarge") + "px")) {
-      width: (100% / 4);
+      width: math.div(100%, 4);
     }
     cursor: default;
     display: block;
