@@ -10,7 +10,9 @@ module.exports = {
         }]
     },
     devServer: {
-        contentBase: require('path').join(__dirname, 'dist/client'),
+        static: {
+            directory: require('path').join(__dirname, 'dist/client'),
+        },
         proxy: {
             '/.netlify': {
                 target: 'http://localhost:8081',
