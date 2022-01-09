@@ -36,7 +36,7 @@ const create = (source, video, options = {}) => new Promise((resolve, reject) =>
     const cloudinaryOptions = {
         folder: 'video_to_markdown/images',
         public_id: `${video.providerName}--${video.getId()}-${hash}`,
-        context: `url=${video.url}`,
+        context: `url=${video.url}|provider=${video.providerName}`,
         secure: true,
         transformation: [
             ...(useHighQuality() ? highQuality : lowQuality),
