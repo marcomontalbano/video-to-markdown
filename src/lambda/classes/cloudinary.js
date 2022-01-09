@@ -13,16 +13,24 @@ const useHighQuality = () => USE_HIGH_QUALITY == 'true';
 
 const create = (source, video, options = {}) => new Promise((resolve, reject) => {
 
+    const highQualitySize = 720;
+    const lowQualitySize = 500;
+
     // https://cloudinary.com/documentation/image_transformations#adjusting_image_quality
     const highQuality = [
-        { height: 720 },
-    ]
-    const lowQuality = [
-        { height: 500 },
-        { quality: 'auto:low' },
+        { height: highQualitySize },
     ]
 
-    const overlayHeight = useHighQuality() ? '1.0' : (lowQuality[0].height / highQuality[0].height).toFixed(2).toString();
+    const lowQuality = [
+        { quality: 'auto:low' },
+        { if: "w_gt_h" },
+        { height: lowQualitySize },
+        { if: "else" },
+        { width: lowQualitySize },
+        { if: "end" }
+    ]
+
+    const overlayHeight = useHighQuality() ? '1.0' : (lowQualitySize / highQualitySize).toFixed(2).toString();
     const transformations = options.showPlayIcon ? { overlay: `video_to_markdown:icons:${video.providerName}`, height: overlayHeight, flag: 'relative', gravity: 'center' } : {};
     const hash = crypto.createHash('md5').update(JSON.stringify(options)).digest('hex');
     const cloudinaryOptions = {

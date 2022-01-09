@@ -80,7 +80,7 @@
     "start:parcel": "parcel watch src/index.html -d dist/client",
     "start:client": "webpack serve --mode development --hot --config webpack.client.js --host 0.0.0.0 --port 8080",
     "start:server": "netlify-lambda serve src/lambda -c webpack.server.js --port 8081",
-    "start": "npm-run-all -p start:*",
+    "start": "NODE_ENV=development npm-run-all -p start:*",
     "build:client": "parcel build src/index.html -d dist/client",
     "build:server": "netlify-lambda build src/lambda",
     "build": "npm-run-all test build:*",

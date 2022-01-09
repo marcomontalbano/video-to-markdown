@@ -1,17 +1,18 @@
 export default class VideoWrapper {
     static get videoProviders() {
         return [
+            require('./Providers/Asciinema'),
+            require('./Providers/CleanShotCloud'),
             require('./Providers/Dailymotion'),
             require('./Providers/Facebook'),
-            require('./Providers/Youtube'),
-            require('./Providers/Vimeo'),
-            require('./Providers/Asciinema'),
             require('./Providers/GoogleDrive'),
-            require('./Providers/Video'),
             require('./Providers/Loom'),
-            require('./Providers/Wistia'),
             require('./Providers/Streamable'),
-            require('./Providers/CleanShotCloud'),
+            require('./Providers/TikTok'),
+            require('./Providers/Video'),
+            require('./Providers/Vimeo'),
+            require('./Providers/Wistia'),
+            require('./Providers/Youtube'),
         ];
     }
 

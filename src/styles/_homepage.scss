@@ -15,14 +15,20 @@
     .output-frame {
       border-radius: 0px 0px 0.3em 0.3em;
       overflow: hidden;
-      box-shadow: 1px 1px 1px #747474;
+      // box-shadow: 1px 1px 1px #747474;
       > div {
         color: $color-text-dark;
         &.preview {
           font-size: 0;
           line-height: 0;
           position: relative;
-          background: #fff;
+          text-align: center;
+          // background: #fff;
+
+          img {
+            width: auto;
+            max-height: 500px;
+          }
         }
         &.markdown {
           background: #fff;

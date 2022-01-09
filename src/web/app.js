@@ -12,17 +12,18 @@ const updateMarkdown = loadMarkdown();
 const lambdaUrl = `${location.protocol}//${location.host}/.netlify/functions`;
 
 const videoIcons = {
-    video: require('../images/providers/video.png'),
-    dailymotion: require('../images/providers/dailymotion.png'),
-    facebook: require('../images/providers/facebook.png'),
-    vimeo: require('../images/providers/vimeo.png'),
-    youtube: require('../images/providers/youtube.png'),
-    asciinema: require('../images/providers/asciinema.png'),
-    'google-drive': require('../images/providers/google-drive.png'),
-    loom: require('../images/providers/loom.png'),
-    wistia: require('../images/providers/wistia.png'),
-    streamable: require('../images/providers/streamable.png'),
+    'asciinema': require('../images/providers/asciinema.png'),
     'cleanshot-cloud': require('../images/providers/cleanshot-cloud.png'),
+    'dailymotion': require('../images/providers/dailymotion.png'),
+    'facebook': require('../images/providers/facebook.png'),
+    'google-drive': require('../images/providers/google-drive.png'),
+    'loom': require('../images/providers/loom.png'),
+    'streamable': require('../images/providers/streamable.png'),
+    'tiktok': require('../images/providers/tiktok.png'),
+    'video': require('../images/providers/video.png'),
+    'vimeo': require('../images/providers/vimeo.png'),
+    'wistia': require('../images/providers/wistia.png'),
+    'youtube': require('../images/providers/youtube.png'),
 };
 
 const domElements = {

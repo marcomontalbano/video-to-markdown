@@ -3,6 +3,8 @@ import cloudinary from './classes/cloudinary';
 
 import { sendLambdaEvent } from './classes/google-ua';
 
+const isProduction = process.env.NODE_ENV === 'production'
+
 const throwException = (statusCode, message, callback) => {
     callback = callback || (() => {});
     const error = {
@@ -70,7 +72,10 @@ exports.handler = (event, context, callback) => {
         .catch(error => {
             callback(null, {
                 statusCode: 422,
-                body: JSON.stringify({ error: true })
+                body: JSON.stringify({
+                    error: true,
+                    message: isProduction ? undefined : error.message
+                })
             });
         });
 
