@@ -6,6 +6,7 @@ const closeModal = (event) => {
         document.body.classList.remove('modal');
         window.scrollTo(0, 0);
         sessionStorage.setItem('prompt-donation', 'false');
+        document.removeEventListener('click', closeModal);
     }
 }
 
