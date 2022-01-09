@@ -43,50 +43,54 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "@babel/preset-env": "^7.15.8",
-    "babel-jest": "^27.3.1",
-    "cloudinary": "~1.27.1",
+    "@babel/core": "^7.16.7",
+    "@babel/preset-env": "^7.16.7",
+    "@parcel/packager-raw-url": "^2.1.1",
+    "@parcel/transformer-sass": "^2.1.1",
+    "@parcel/transformer-webmanifest": "^2.1.1",
+    "babel-jest": "^27.4.6",
+    "cloudinary": "~1.28.1",
     "crypto-browserify": "^3.12.0",
     "dotenv": "~10.0.0",
     "encoding": "~0.1.13",
     "file-loader": "^6.2.0",
     "https-proxy-agent": "^5.0.0",
-    "jest": "^27.3.1",
+    "jest": "^27.4.7",
     "netlify-lambda": "^2.0.15",
-    "node-fetch": "^2.6.5",
+    "node-fetch": "^2.6.6",
     "npm-run-all": "^4.1.5",
-    "parcel": "^1.12.4",
+    "parcel": "^2.1.1",
     "posthtml-include": "^1.7.2",
-    "sass": "~1.43.2",
+    "sass": "~1.47.0",
     "stream-browserify": "^3.0.0",
-    "webpack": "^5.59.1",
+    "webpack": "^5.65.0",
     "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.3.1"
+    "webpack-dev-server": "^4.7.2"
   },
   "dependencies": {
     "clipboard": "^2.0.8",
     "hint.css": "^2.7.0",
     "html-miner": "^3.1.2",
     "nprogress": "^0.2.0",
-    "prismjs": "^1.25.0",
-    "universal-analytics": "~0.4.23"
+    "prismjs": "^1.26.0",
+    "universal-analytics": "~0.5.3"
   },
   "resolutions": {
     "@babel/preset-env": "7.13.8"
   },
   "scripts": {
     "test": "jest",
-    "start:parcel": "parcel watch src/index.html -d dist/client",
+    "start:parcel": "parcel watch src/index.html --dist-dir dist/client",
     "start:client": "webpack serve --mode development --hot --config webpack.client.js --host 0.0.0.0 --port 8080",
     "start:server": "netlify-lambda serve src/lambda -c webpack.server.js --port 8081",
     "start": "NODE_ENV=development npm-run-all -p start:*",
-    "build:client": "parcel build src/index.html -d dist/client",
+    "build:client": "parcel build src/index.html --dist-dir dist/client",
     "build:server": "netlify-lambda build src/lambda",
     "build": "npm-run-all test build:*",
     "build-db": "node ./scripts/build-db",
     "pretest": "yarn build-db",
     "prestart": "yarn build-db",
     "prebuild": "yarn build-db"
-  }
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
 }
