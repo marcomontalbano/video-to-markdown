@@ -19,6 +19,7 @@ const videoIcons = {
     'google-drive': require('../images/providers/google-drive.png'),
     'loom': require('../images/providers/loom.png'),
     'onedrive': require('../images/providers/onedrive.png'),
+    'peertube': require('../images/providers/peertube.png'),
     'streamable': require('../images/providers/streamable.png'),
     'tiktok': require('../images/providers/tiktok.png'),
     'video': require('../images/providers/video.png'),

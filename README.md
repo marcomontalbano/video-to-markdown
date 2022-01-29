@@ -45,6 +45,7 @@ List of supported video providers:
 - [x] Google Drive
 - [x] Loom
 - [x] OneDrive
+- [x] PeerTube
 - [x] Streamable
 - [x] TikTok
 - [x] Vimeo

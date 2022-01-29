@@ -8,6 +8,7 @@ export default class VideoWrapper {
             require('./Providers/GoogleDrive'),
             require('./Providers/Loom'),
             require('./Providers/OneDrive'),
+            require('./Providers/PeerTube'),
             require('./Providers/Streamable'),
             require('./Providers/TikTok'),
             require('./Providers/Video'),
@@ -22,8 +23,12 @@ export default class VideoWrapper {
             return vp.default.check(url);
         });
 
-        if (videoProvider.length !== 1) {
+        if (videoProvider.length === 0) {
             throw new Error('VideoProvider not found.');
+        }
+
+        if (videoProvider.length > 1) {
+            throw new Error(`More than one VideoProvider (${ videoProvider.map(vp => vp.default.name).join(', ') }).`);
         }
 
         return new videoProvider[0].default(url, options);

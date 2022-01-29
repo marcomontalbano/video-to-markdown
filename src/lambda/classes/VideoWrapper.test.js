@@ -30,6 +30,10 @@ describe('VideoWrapper', () => {
             expect(VideoWrapper.create('https://1drv.ms/v/s!An21T-lhvYKSkFpqKTb4YeZpKfzC?e=iXCxja').providerName).toBe('onedrive');
         });
 
+        it('peertube', () => {
+            expect(VideoWrapper.create('https://framatube.org/w/kkGMgK9ZtnKfYAgnEtQxbv?start=1s').providerName).toBe('peertube');
+        });
+
         it('tiktok', () => {
             expect(VideoWrapper.create('https://www.tiktok.com/@tiktok/video/6584647400055377158').providerName).toBe('tiktok');
         });
