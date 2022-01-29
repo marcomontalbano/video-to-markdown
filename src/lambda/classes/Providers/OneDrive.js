@@ -23,7 +23,6 @@ export default class OneDrive extends VideoProvider {
     getThumbnail_asVideoUrl() {
         return fetch(this.url)
             .then(response => response.text())
-            .then(html => (console.log(html), html))
             .then(html => htmlMiner(html, arg => arg.$('[property="og:image"]').attr('content')))
     }
 }
