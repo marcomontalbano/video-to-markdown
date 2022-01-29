@@ -18,6 +18,7 @@ const videoIcons = {
     'facebook': require('../images/providers/facebook.png'),
     'google-drive': require('../images/providers/google-drive.png'),
     'loom': require('../images/providers/loom.png'),
+    'onedrive': require('../images/providers/onedrive.png'),
     'streamable': require('../images/providers/streamable.png'),
     'tiktok': require('../images/providers/tiktok.png'),
     'video': require('../images/providers/video.png'),

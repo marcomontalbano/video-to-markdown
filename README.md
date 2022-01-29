@@ -44,6 +44,7 @@ List of supported video providers:
 - [x] Facebook (low-quality)
 - [x] Google Drive
 - [x] Loom
+- [x] OneDrive
 - [x] Streamable
 - [x] TikTok
 - [x] Vimeo

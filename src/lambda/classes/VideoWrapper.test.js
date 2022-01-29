@@ -26,6 +26,10 @@ describe('VideoWrapper', () => {
             expect(VideoWrapper.create('https://drive.google.com/file/d/5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc/view').providerName).toBe('google-drive');
         });
 
+        it('onedrive', () => {
+            expect(VideoWrapper.create('https://1drv.ms/v/s!An21T-lhvYKSkFpqKTb4YeZpKfzC?e=iXCxja').providerName).toBe('onedrive');
+        });
+
         it('tiktok', () => {
             expect(VideoWrapper.create('https://www.tiktok.com/@tiktok/video/6584647400055377158').providerName).toBe('tiktok');
         });

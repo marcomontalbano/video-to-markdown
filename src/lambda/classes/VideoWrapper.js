@@ -7,6 +7,7 @@ export default class VideoWrapper {
             require('./Providers/Facebook'),
             require('./Providers/GoogleDrive'),
             require('./Providers/Loom'),
+            require('./Providers/OneDrive'),
             require('./Providers/Streamable'),
             require('./Providers/TikTok'),
             require('./Providers/Video'),
