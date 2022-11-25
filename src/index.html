@@ -27,9 +27,9 @@
         <meta name="theme-color" content="#ffffff">
         <script>
             (function() {
-                if (process.env.NODE_ENV === 'production' && process.env.GA_TRACKING_ID) {
+                if ('{{ NODE_ENV }}' === 'production' && '{{GA_TRACKING_ID}}' !== 'undefined') {
                     window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date;
-                    ga('create', process.env.GA_TRACKING_ID, 'auto');
+                    ga('create', '{{GA_TRACKING_ID}}', 'auto');
                     ga('send', 'pageview');
                 }
             })();
