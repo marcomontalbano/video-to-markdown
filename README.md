@@ -43,6 +43,7 @@ List of supported video providers:
 - [x] Dailymotion
 - [x] Facebook (low-quality)
 - [x] Google Drive
+- [x] Imgur
 - [x] Loom
 - [x] OneDrive
 - [x] PeerTube

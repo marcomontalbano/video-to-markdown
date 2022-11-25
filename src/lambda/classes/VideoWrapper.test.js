@@ -23,7 +23,11 @@ describe('VideoWrapper', () => {
         });
 
         it('google-drive', () => {
-            expect(VideoWrapper.create('https://drive.google.com/file/d/5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc/view').providerName).toBe('google-drive');
+            expect(VideoWrapper.create('https://drive.google.com/file/d/5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc/view').providerName).toBe('google-drive')
+        });
+
+        it('imgur', () => {
+            expect(VideoWrapper.create('https://imgur.com/VT1vCoz').providerName).toBe('imgur')
         });
 
         it('onedrive', () => {

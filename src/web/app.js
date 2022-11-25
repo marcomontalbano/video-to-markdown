@@ -17,6 +17,7 @@ const videoIcons = {
     'dailymotion': require('../images/providers/dailymotion.png'),
     'facebook': require('../images/providers/facebook.png'),
     'google-drive': require('../images/providers/google-drive.png'),
+    'imgur': require('../images/providers/imgur.png'),
     'loom': require('../images/providers/loom.png'),
     'onedrive': require('../images/providers/onedrive.png'),
     'peertube': require('../images/providers/peertube.png'),

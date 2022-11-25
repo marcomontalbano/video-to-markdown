@@ -6,6 +6,7 @@ export default class VideoWrapper {
             require('./Providers/Dailymotion'),
             require('./Providers/Facebook'),
             require('./Providers/GoogleDrive'),
+            require('./Providers/Imgur'),
             require('./Providers/Loom'),
             require('./Providers/OneDrive'),
             require('./Providers/PeerTube'),
