@@ -9,7 +9,7 @@ const search = (providerName, videoId) => cloudinary.search
     .max_results(30)
     .execute();
 
-const useHighQuality = () => USE_HIGH_QUALITY == 'true';
+const useHighQuality = () => USE_HIGH_QUALITY === 'true';
 
 const create = (source, video, options = {}) => new Promise((resolve, reject) => {
 

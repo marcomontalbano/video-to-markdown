@@ -1,7 +1,8 @@
 import ClipboardJS from 'clipboard';
 
 const update = (markdownElement) => {
-    let videoUrl_memo, imageUrl_memo;
+    let videoUrl_memo;
+    let imageUrl_memo;
 
     return (title, videoUrl = videoUrl_memo, imageUrl = imageUrl_memo) => {
 

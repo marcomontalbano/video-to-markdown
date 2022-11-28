@@ -41,12 +41,12 @@ const domElements = {
 const loadImage = (src, success = () => { }, error = () => { }) => {
     const img = new Image();
 
-    const loadHandler = function() {
-        success.apply(this, arguments);
+    const loadHandler = function(...args) {
+        success.apply(this, args);
     }
 
-    const errorHandler = function() {
-        error.apply(this, arguments);
+    const errorHandler = function(...args) {
+        error.apply(this, args);
     }
 
     img.addEventListener('load', loadHandler, { once: true });
