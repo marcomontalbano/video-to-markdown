@@ -1,25 +1,30 @@
+import { test } from 'uvu';
+import { equal } from 'uvu/assert';
+
 import Facebook from './Facebook';
 
-describe('Facebook', () => {
-  it('"regex" must be correct.', () => {
-    expect(Facebook.getVideoId('https://www.facebook.com/backintimetheparty/videos/1588846901182916/')).toBe(
-      '1588846901182916',
-    );
-    expect(
-      Facebook.getVideoId('https://www.facebook.com/backintimetheparty/videos/description/1588846901182916/'),
-    ).toBe('1588846901182916');
-  });
-
-  it('all methods must work.', () => {
-    const url = 'https://www.facebook.com/backintimetheparty/videos/1588846901182916/';
-    const video = new Facebook(url);
-
-    // static methods
-    expect(Facebook.check(url)).toBe(true);
-
-    // instance methods
-    expect(video.getId()).toBe('1588846901182916');
-    expect(video.providerName).toBe('facebook');
-    expect(video.url).toBe(url);
-  });
+test('"regex" must be correct.', () => {
+  equal(
+    Facebook.getVideoId('https://www.facebook.com/backintimetheparty/videos/1588846901182916/'),
+    '1588846901182916',
+  );
+  equal(
+    Facebook.getVideoId('https://www.facebook.com/backintimetheparty/videos/description/1588846901182916/'),
+    '1588846901182916',
+  );
 });
+
+test('all methods must work.', () => {
+  const url = 'https://www.facebook.com/backintimetheparty/videos/1588846901182916/';
+  const video = new Facebook(url);
+
+  // static methods
+  equal(Facebook.check(url), true);
+
+  // instance methods
+  equal(video.getId(), '1588846901182916');
+  equal(video.providerName, 'facebook');
+  equal(video.url, url);
+});
+
+test.run();
