@@ -1,22 +1,26 @@
+import { test } from 'uvu';
+import { equal } from 'uvu/assert';
+
 import OneDrive from './OneDrive';
 
-describe('OneDrive', () => {
-  it('"regex" must be correct.', () => {
-    expect(OneDrive.getVideoId('https://1drv.ms/v/s!An21T-lhvYKSkFpqKTb4YeZpKfzC?e=iXCxja')).toBe(
-      'An21T-lhvYKSkFpqKTb4YeZpKfzC',
-    );
-  });
-
-  it('all methods must work.', () => {
-    const url = 'https://1drv.ms/v/s!An21T-lhvYKSkFpqKTb4YeZpKfzC?e=iXCxja';
-    const video = new OneDrive(url);
-
-    // static methods
-    expect(OneDrive.check(url)).toBe(true);
-
-    // instance methods
-    expect(video.getId()).toBe('An21T-lhvYKSkFpqKTb4YeZpKfzC');
-    expect(video.providerName).toBe('onedrive');
-    expect(video.url).toBe(url);
-  });
+test('"regex" must be correct.', () => {
+  equal(
+    OneDrive.getVideoId('https://1drv.ms/v/s!An21T-lhvYKSkFpqKTb4YeZpKfzC?e=iXCxja'),
+    'An21T-lhvYKSkFpqKTb4YeZpKfzC',
+  );
 });
+
+test('all methods must work.', () => {
+  const url = 'https://1drv.ms/v/s!An21T-lhvYKSkFpqKTb4YeZpKfzC?e=iXCxja';
+  const video = new OneDrive(url);
+
+  // static methods
+  equal(OneDrive.check(url), true);
+
+  // instance methods
+  equal(video.getId(), 'An21T-lhvYKSkFpqKTb4YeZpKfzC');
+  equal(video.providerName, 'onedrive');
+  equal(video.url, url);
+});
+
+test.run();

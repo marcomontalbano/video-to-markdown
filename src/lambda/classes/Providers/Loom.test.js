@@ -1,22 +1,26 @@
+import { test } from 'uvu';
+import { equal } from 'uvu/assert';
+
 import Loom from './Loom';
 
-describe('Loom', () => {
-  it('"regex" must be correct.', () => {
-    expect(Loom.getVideoId('https://www.loom.com/share/3d0b326f650749bbb1fa13895dcd6563')).toBe(
-      '3d0b326f650749bbb1fa13895dcd6563',
-    );
-  });
-
-  it('all methods must work.', () => {
-    const url = 'https://www.loom.com/share/3d0b326f650749bbb1fa13895dcd6563';
-    const video = new Loom(url);
-
-    // static methods
-    expect(Loom.check(url)).toBe(true);
-
-    // instance methods
-    expect(video.getId()).toBe('3d0b326f650749bbb1fa13895dcd6563');
-    expect(video.providerName).toBe('loom');
-    expect(video.url).toBe(url);
-  });
+test('"regex" must be correct.', () => {
+  equal(
+    Loom.getVideoId('https://www.loom.com/share/3d0b326f650749bbb1fa13895dcd6563'),
+    '3d0b326f650749bbb1fa13895dcd6563',
+  );
 });
+
+test('all methods must work.', () => {
+  const url = 'https://www.loom.com/share/3d0b326f650749bbb1fa13895dcd6563';
+  const video = new Loom(url);
+
+  // static methods
+  equal(Loom.check(url), true);
+
+  // instance methods
+  equal(video.getId(), '3d0b326f650749bbb1fa13895dcd6563');
+  equal(video.providerName, 'loom');
+  equal(video.url, url);
+});
+
+test.run();

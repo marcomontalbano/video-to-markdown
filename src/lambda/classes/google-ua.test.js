@@ -1,53 +1,55 @@
 import { sendLambdaEvent } from './google-ua';
 
-describe('google-ua', () => {
-  describe('sendLambdaEvent', () => {
-    it('should send event without a specified referer', () => {
-      const mock = jest.fn();
+import sinon from 'sinon';
+import { test } from 'uvu';
+import { equal } from 'uvu/assert';
 
-      sendLambdaEvent(
-        {
-          path: '/.netlify/functions/image-json',
-        },
-        mock,
-      );
+test('sendLambdaEvent should send event without a specified referer', () => {
+  const mock = sinon.spy();
 
-      expect(mock).toBeCalledWith('Lambda Function - image-json', 'invoke', '');
-    });
+  sendLambdaEvent(
+    {
+      path: '/.netlify/functions/image-json',
+    },
+    mock,
+  );
 
-    it('should send event with a specified referer', () => {
-      const mock = jest.fn();
-
-      sendLambdaEvent(
-        {
-          path: '/.netlify/functions/image-json',
-          headers: {
-            referer: 'https://example.com',
-          },
-          queryStringParameters: {
-            url: 'https://example.com',
-          },
-        },
-        mock,
-      );
-
-      expect(mock).toBeCalledWith('Lambda Function - image-json', 'invoke', 'referer - https://example.com');
-    });
-
-    it('should send event with a specified url', () => {
-      const mock = jest.fn();
-
-      sendLambdaEvent(
-        {
-          path: '/.netlify/functions/image-json',
-          queryStringParameters: {
-            url: 'https://example.com',
-          },
-        },
-        mock,
-      );
-
-      expect(mock).toBeCalledWith('Lambda Function - image-json', 'invoke', 'videoUrl - https://example.com');
-    });
-  });
+  equal(mock.getCall(0).args, ['Lambda Function - image-json', 'invoke', '']);
 });
+
+test('sendLambdaEvent should send event with a specified referer', () => {
+  const mock = sinon.spy();
+
+  sendLambdaEvent(
+    {
+      path: '/.netlify/functions/image-json',
+      headers: {
+        referer: 'https://example.com',
+      },
+      queryStringParameters: {
+        url: 'https://example.com',
+      },
+    },
+    mock,
+  );
+
+  equal(mock.getCall(0).args, ['Lambda Function - image-json', 'invoke', 'referer - https://example.com']);
+});
+
+test('sendLambdaEvent should send event with a specified url', () => {
+  const mock = sinon.spy();
+
+  sendLambdaEvent(
+    {
+      path: '/.netlify/functions/image-json',
+      queryStringParameters: {
+        url: 'https://example.com',
+      },
+    },
+    mock,
+  );
+
+  equal(mock.getCall(0).args, ['Lambda Function - image-json', 'invoke', 'videoUrl - https://example.com']);
+});
+
+test.run();
