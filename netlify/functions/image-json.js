@@ -27,7 +27,7 @@ const getParam = (event, paramName) => {
   return event.httpMethod === 'GET' ? event.queryStringParameters[paramName] : urlSearchParams.get(paramName);
 };
 
-exports.handler = (event, context, callback) => {
+export const handler = (event, context, callback) => {
   sendLambdaEvent(event);
 
   const url = getParam(event, 'url');

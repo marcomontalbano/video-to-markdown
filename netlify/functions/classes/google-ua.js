@@ -1,5 +1,5 @@
-const ua = require('universal-analytics');
-const path = require('path');
+import ua from 'universal-analytics';
+import path from 'path';
 
 const { GA_TRACKING_ID } = process.env;
 const visitor = ua(GA_TRACKING_ID);
@@ -8,7 +8,7 @@ const sendEvent = (...args) => {
   visitor.event(...args).send();
 };
 
-const sendLambdaEvent = (event, send = sendEvent) => {
+export const sendLambdaEvent = (event, send = sendEvent) => {
   const {
     path: functionUrl,
     queryStringParameters: { url } = {},
@@ -23,5 +23,3 @@ const sendLambdaEvent = (event, send = sendEvent) => {
 
   send(category, 'invoke', label);
 };
-
-module.exports = { sendLambdaEvent };

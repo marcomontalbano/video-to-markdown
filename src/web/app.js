@@ -2,7 +2,7 @@ import Prism from 'prismjs';
 import NProgress from 'nprogress';
 
 import { load as loadMarkdown } from './markdown';
-import Video from '../lambda/classes/Providers/Video';
+import Video from '../../netlify/functions/classes/Providers/Video';
 
 import imageNotFound from '../images/not-found.jpg';
 import imageLoading from '../images/loading.jpg';

@@ -11,3 +11,6 @@ yarn-error.log
 /dist
 
 /src/db.json
+
+# Local Netlify folder
+.netlify

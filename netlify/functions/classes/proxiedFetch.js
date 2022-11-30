@@ -1,5 +1,5 @@
-const nodeFetch = require('node-fetch').default;
-const HttpsProxyAgent = require('https-proxy-agent');
+import nodeFetch from 'node-fetch';
+import HttpsProxyAgent from 'https-proxy-agent';
 
 const { HTTP_PROXY, HTTPS_PROXY } = process.env;
 
@@ -11,4 +11,4 @@ const fetch = (url, options = {}) => {
   return nodeFetch(url, options);
 };
 
-module.exports = fetch;
+export default fetch;

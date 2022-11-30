@@ -1,9 +1,16 @@
-require('dotenv').config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
-const fetch = require('../src/lambda/classes/proxiedFetch');
+import fetch from '../netlify/functions/classes/proxiedFetch.js';
+
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 const dbPath = path.resolve(__dirname, '..', 'src', 'db.json');
 
 const { SITE_ID, NETLIFY_ACCESS_TOKEN } = process.env;

@@ -1,7 +1,6 @@
 [build]
-  command = "yarn build"
+  command = "yarn build:client"
   publish = "dist/client"
-  functions = "dist/server"
 
 [template.environment]
   CLOUDINARY_URL = "Cloudinary URL"
@@ -12,3 +11,6 @@
   from = "https://video-to-markdown.netlify.app/*"
   to = "https://video-to-markdown.marcomontalbano.com/:splat"
   force = true
+
+[dev]
+  command = "yarn start:client"
