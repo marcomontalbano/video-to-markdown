@@ -79,7 +79,7 @@
     "build": "netlify build -o",
     "pretest": "yarn build-db",
     "predev": "yarn build-db",
-    "prebuild": "yarn build-db",
+    "prebuild:client": "yarn build-db",
     "prepare": "husky install",
     "test": "uvu -r esm src .test.js",
     "format": "yarn rome format src scripts --write",
