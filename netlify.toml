@@ -1,7 +1,10 @@
 [build]
-  command = "yarn build"
+  command = "yarn build:client"
   publish = "dist/client"
-  functions = "dist/server"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["cloudinary"]
 
 [template.environment]
   CLOUDINARY_URL = "Cloudinary URL"
@@ -12,3 +15,6 @@
   from = "https://video-to-markdown.netlify.app/*"
   to = "https://video-to-markdown.marcomontalbano.com/:splat"
   force = true
+
+[dev]
+  command = "yarn start:client"

@@ -1,8 +1,10 @@
+dist: focal
+
 language: node_js
 
 node_js:
-  - "16.13.0"
-  - "16"
+  - "18.12.1"
+  - "18"
 
 script:
   - yarn test

@@ -4,6 +4,7 @@
   "private": true,
   "description": "How to embed a video in markdown? Here the answer. Add videos to your markdown files easier.",
   "homepage": "https://video-to-markdown.netlify.com/",
+  "type": "module",
   "author": {
     "name": "Marco Montalbano",
     "email": "me@marcomontalbano.com",
@@ -33,42 +34,29 @@
     "netlify"
   ],
   "engines": {
-    "node": ">= 16.13.0"
-  },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ]
+    "node": ">= 18.12.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.2",
-    "@babel/preset-env": "^7.20.2",
     "@parcel/packager-raw-url": "^2.8.0",
     "@parcel/transformer-sass": "^2.8.0",
     "@parcel/transformer-webmanifest": "^2.8.0",
-    "buffer": "^5.5.0",
     "cloudinary": "~1.32.0",
     "crypto-browserify": "^3.12.0",
-    "dotenv": "~16.0.3",
-    "encoding": "~0.1.13",
-    "esm": "^3.2.25",
-    "file-loader": "^6.2.0",
+    "dotenv": "^16.0.3",
+    "events": "^3.3.0",
     "https-proxy-agent": "^5.0.1",
-    "husky": "^8.0.0",
+    "husky": "^8.0.2",
     "lint-staged": "^13.0.4",
-    "netlify-lambda": "^2.0.15",
-    "node-fetch": "^2.6.7",
-    "npm-run-all": "^4.1.5",
+    "netlify-cli": "^12.2.8",
+    "node-fetch": "^3.3.0",
     "parcel": "^2.8.0",
     "posthtml-expressions": "^1.10.0",
     "posthtml-include": "^1.7.4",
+    "rome": "^10.0.1",
     "sass": "~1.56.1",
     "sinon": "^15.0.0",
     "stream-browserify": "^3.0.0",
-    "uvu": "^0.5.6",
-    "webpack": "^5.75.0",
-    "webpack-cli": "^5.0.0",
-    "webpack-dev-server": "^4.11.1"
+    "uvu": "^0.5.6"
   },
   "dependencies": {
     "clipboard": "^2.0.11",
@@ -76,26 +64,18 @@
     "html-miner": "^4.0.0",
     "nprogress": "^0.2.0",
     "prismjs": "^1.29.0",
-    "rome": "^10.0.1",
     "universal-analytics": "~0.5.3"
   },
-  "resolutions": {
-    "@babel/preset-env": "7.13.8"
-  },
   "scripts": {
-    "test": "uvu -r esm src .test.js",
-    "start:parcel": "parcel watch src/index.html --dist-dir dist/client",
-    "start:client": "webpack serve --mode development --hot --config webpack.client.js --host 0.0.0.0 --port 8080",
-    "start:server": "netlify-lambda serve src/lambda -c webpack.server.js --port 8081",
-    "start": "NODE_ENV=development npm-run-all -p start:*",
-    "build:client": "parcel build src/index.html --dist-dir dist/client",
-    "build:server": "netlify-lambda build src/lambda",
-    "build": "npm-run-all test build:*",
     "build-db": "node ./scripts/build-db",
-    "pretest": "yarn build-db",
-    "prestart": "yarn build-db",
-    "prebuild": "yarn build-db",
+    "start:client": "parcel src/index.html --dist-dir dist/client",
+    "build:client": "parcel build src/index.html --dist-dir dist/client",
+    "dev": "netlify dev",
+    "build": "netlify build -o",
+    "predev": "yarn build-db",
+    "prebuild:client": "yarn build-db",
     "prepare": "husky install",
+    "test": "uvu netlify .test.js",
     "format": "yarn rome format src scripts --write",
     "lint": "yarn rome check src scripts"
   },
