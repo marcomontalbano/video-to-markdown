@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
 
-import Wistia from './Wistia';
+import Wistia from './Wistia.js';
 
 test('"regex" must be correct.', () => {
   equal(Wistia.getVideoId('https://home.wistia.com/medias/e4a27b971d'), 'e4a27b971d');

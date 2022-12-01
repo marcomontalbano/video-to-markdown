@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
 
-import Vimeo from './Vimeo';
+import Vimeo from './Vimeo.js';
 
 test('"regex" must be correct.', () => {
   equal(Vimeo.getVideoId('https://vimeo.com/263856289'), '263856289');

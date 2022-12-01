@@ -34,7 +34,7 @@
     "netlify"
   ],
   "engines": {
-    "node": ">= 16.13.0"
+    "node": ">= 18.12.1"
   },
   "devDependencies": {
     "@parcel/packager-raw-url": "^2.8.0",
@@ -81,7 +81,7 @@
     "predev": "yarn build-db",
     "prebuild:client": "yarn build-db",
     "prepare": "husky install",
-    "test": "uvu -r esm src .test.js",
+    "test": "uvu netlify .test.js",
     "format": "yarn rome format src scripts --write",
     "lint": "yarn rome check src scripts"
   },

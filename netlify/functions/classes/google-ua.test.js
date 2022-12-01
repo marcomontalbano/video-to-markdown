@@ -1,4 +1,6 @@
-import { sendLambdaEvent } from './google-ua';
+// @ts-check
+
+import { sendLambdaEvent } from './google-ua.js';
 
 import sinon from 'sinon';
 import { test } from 'uvu';

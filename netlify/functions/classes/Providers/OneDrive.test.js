@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
 
-import OneDrive from './OneDrive';
+import OneDrive from './OneDrive.js';
 
 test('"regex" must be correct.', () => {
   equal(

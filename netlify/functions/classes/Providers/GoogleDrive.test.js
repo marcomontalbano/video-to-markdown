@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
 
-import GoogleDrive from './GoogleDrive';
+import GoogleDrive from './GoogleDrive.js';
 
 test('"regex" must be correct.', () => {
   equal(

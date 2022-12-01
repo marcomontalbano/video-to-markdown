@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
 
-import Loom from './Loom';
+import Loom from './Loom.js';
 
 test('"regex" must be correct.', () => {
   equal(

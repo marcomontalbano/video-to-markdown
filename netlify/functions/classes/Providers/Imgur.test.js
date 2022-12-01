@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
 
-import Imgur from './Imgur';
+import Imgur from './Imgur.js';
 
 test('"regex" must be correct.', () => {
   equal(Imgur.getVideoId('https://imgur.com/VT1vCoz'), 'VT1vCoz');

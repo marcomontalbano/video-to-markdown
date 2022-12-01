@@ -1,5 +1,5 @@
-import VideoProvider from '../VideoProvider';
-import fetch from '../proxiedFetch';
+import VideoProvider from '../VideoProvider.js';
+import fetch from '../proxiedFetch.js';
 import htmlMiner from 'html-miner';
 
 // https://cleanshot.com/

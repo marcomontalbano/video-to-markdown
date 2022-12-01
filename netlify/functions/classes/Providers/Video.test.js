@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
 
-import Video from './Video';
+import Video from './Video.js';
 
 test('"regex" must be correct.', () => {
   equal(Video.getVideoId('https://i.imgur.com/vhjwXMB.mp4'), 'f48ef897bfabed6334368c76e716f871');

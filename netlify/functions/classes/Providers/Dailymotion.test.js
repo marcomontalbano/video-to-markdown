@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
 
-import Dailymotion from './Dailymotion';
+import Dailymotion from './Dailymotion.js';
 
 test('"regex" must be correct.', () => {
   equal(Dailymotion.getVideoId('https://www.dailymotion.com/video/x3ke49'), 'x3ke49');

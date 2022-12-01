@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
 
-import PeerTube from './PeerTube';
+import PeerTube from './PeerTube.js';
 
 test('"regex" must be correct.', () => {
   equal(PeerTube.getVideoId('https://framatube.org/w/kkGMgK9ZtnKfYAgnEtQxbv?start=1s'), 'kkGMgK9ZtnKfYAgnEtQxbv');

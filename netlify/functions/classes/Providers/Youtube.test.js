@@ -1,7 +1,7 @@
-import Youtube from './Youtube';
-
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
+
+import Youtube from './Youtube.js';
 
 test('"regex" must be correct.', () => {
   equal(Youtube.getVideoId('https://www.youtube.com/watch?v=oRdzL2DX0yU'), 'oRdzL2DX0yU');

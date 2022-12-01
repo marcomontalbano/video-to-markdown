@@ -2,6 +2,10 @@
   command = "yarn build:client"
   publish = "dist/client"
 
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = ["cloudinary"]
+
 [template.environment]
   CLOUDINARY_URL = "Cloudinary URL"
   USE_HIGH_QUALITY = "Use High Quality (boolean)"

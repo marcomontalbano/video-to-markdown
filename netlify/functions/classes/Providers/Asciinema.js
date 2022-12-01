@@ -1,4 +1,4 @@
-import VideoProvider from '../VideoProvider';
+import VideoProvider from '../VideoProvider.js';
 
 // https://asciinema.org/
 

@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
 
-import Asciinema from './Asciinema';
+import Asciinema from './Asciinema.js';
 
 test('"regex" must be correct.', () => {
   equal(Asciinema.getVideoId('https://asciinema.org/a/335480'), '335480');

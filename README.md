@@ -70,7 +70,7 @@ To run the project locally, here’s what you’ll need:
 ### Requirements
 
 * [Cloudinary] account
-* [Node.js](https://nodejs.org/) 16 or greater
+* [Node.js](https://nodejs.org/) 18 or greater
 
 ### Setup
 
@@ -93,14 +93,10 @@ cp .env.sample .env
 * `USE_HIGH_QUALITY` ( _optional_ ) - this is a boolean flag. If `true`, the generated images will be stored in Contenful with hi-res quality (default to `false`)
 
 ```sh
-yarn start
+yarn dev
+
+# http://localhost:8888
 ```
-
-This will start the client server on http://localhost:8080, and the netlify-lambda server on http://localhost:8081.
-
-[netlify-lambda](https://github.com/netlify/netlify-lambda) isn’t required to deploy Lambda functions to Netlify, but it offers some handy features out of the box that make it quicker to get started, like the local dev server and nice defaults for transpiling and bundling functions in production.
-
-The client server is configured to proxy `/.netlify` requests to the Lambda server (see [webpack.client.js](webpack.client.js)). This is the same behavior the site has when it’s deployed to Netlify.
 
 ## Privacy
 

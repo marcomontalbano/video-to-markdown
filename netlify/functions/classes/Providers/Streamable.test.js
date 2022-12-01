@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
 
-import Streamable from './Streamable';
+import Streamable from './Streamable.js';
 
 test('"regex" must be correct.', () => {
   equal(Streamable.getVideoId('https://streamable.com/1nvj5i'), '1nvj5i');

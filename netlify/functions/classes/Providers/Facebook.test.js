@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
 
-import Facebook from './Facebook';
+import Facebook from './Facebook.js';
 
 test('"regex" must be correct.', () => {
   equal(

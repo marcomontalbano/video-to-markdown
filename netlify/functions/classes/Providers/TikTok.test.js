@@ -1,7 +1,7 @@
 import { test } from 'uvu';
 import { equal } from 'uvu/assert';
 
-import TikTok from './TikTok';
+import TikTok from './TikTok.js';
 
 test('"regex" must be correct.', () => {
   equal(
