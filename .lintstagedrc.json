@@ -1,7 +1,7 @@
 {
   "*.{js,jsx,ts,tsx}": [
-    "yarn lint",
-    "yarn test",
-    "yarn format"
+    "pnpm lint",
+    "pnpm test",
+    "pnpm format"
   ]
 }

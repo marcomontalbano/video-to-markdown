@@ -1,4 +1,5 @@
 version: "3.7"
+
 services:
 
   nginx:
@@ -12,11 +13,11 @@ services:
       - lambda_functions
 
   lambda_functions:
-    image: node:alpine
+    build:
+      context: .
+      dockerfile: Dockerfile.server
     environment: 
       NODE_ENV: production
     working_dir: /home/app
     restart: always
-    volumes:
-      - ./:/home/app
-    command: ["yarn", "start:server"]
+    command: ["./node_modules/.bin/netlify", "functions:serve", "-p", "8081"]

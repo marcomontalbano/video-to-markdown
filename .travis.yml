@@ -7,4 +7,4 @@ node_js:
   - "18"
 
 script:
-  - yarn test
+  - pnpm test

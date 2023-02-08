@@ -1,5 +1,5 @@
 [build]
-  command = "yarn build:client"
+  command = "pnpm build:client"
   publish = "dist/client"
 
 [functions]
@@ -17,4 +17,4 @@
   force = true
 
 [dev]
-  command = "yarn start:client"
+  command = "pnpm start:client"

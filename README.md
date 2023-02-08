@@ -74,11 +74,11 @@ To run the project locally, here’s what you’ll need:
 
 ### Setup
 
-`cd` into your local copy of the repository and run `yarn install`
+`cd` into your local copy of the repository and run `pnpm install`
 
 ```sh
 cd video-to-markdown
-yarn install
+pnpm install
 ```
 
 ```sh
@@ -93,7 +93,7 @@ cp .env.sample .env
 * `USE_HIGH_QUALITY` ( _optional_ ) - this is a boolean flag. If `true`, the generated images will be stored in Contenful with hi-res quality (default to `false`)
 
 ```sh
-yarn dev
+pnpm dev
 
 # http://localhost:8888
 ```
