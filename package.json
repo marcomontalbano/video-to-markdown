@@ -40,6 +40,7 @@
     "@parcel/packager-raw-url": "^2.8.3",
     "@parcel/transformer-sass": "^2.8.3",
     "@parcel/transformer-webmanifest": "^2.8.3",
+    "buffer": "^6.0.3",
     "cloudinary": "~1.33.0",
     "crypto-browserify": "^3.12.0",
     "dotenv": "^16.0.3",
@@ -70,8 +71,8 @@
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "build-db": "node ./scripts/build-db",
-    "start:client": "parcel src/index.html --dist-dir dist/client",
-    "build:client": "parcel build src/index.html --dist-dir dist/client",
+    "start:client": "parcel --no-autoinstall src/index.html --dist-dir dist/client",
+    "build:client": "parcel build --no-autoinstall src/index.html --dist-dir dist/client",
     "dev": "netlify dev",
     "build": "netlify build -o",
     "local:build": "env $(awk 'NF > 0 && !/^#/ { print $0 }' .env | xargs) pnpm build",

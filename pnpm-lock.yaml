@@ -4,6 +4,7 @@ specifiers:
   '@parcel/packager-raw-url': ^2.8.3
   '@parcel/transformer-sass': ^2.8.3
   '@parcel/transformer-webmanifest': ^2.8.3
+  buffer: ^6.0.3
   clipboard: ^2.0.11
   cloudinary: ~1.33.0
   crypto-browserify: ^3.12.0
@@ -41,6 +42,7 @@ devDependencies:
   '@parcel/packager-raw-url': 2.8.3_@parcel+core@2.8.3
   '@parcel/transformer-sass': 2.8.3_@parcel+core@2.8.3
   '@parcel/transformer-webmanifest': 2.8.3_@parcel+core@2.8.3
+  buffer: 6.0.3
   cloudinary: 1.33.0
   crypto-browserify: 3.12.0
   dotenv: 16.0.3
