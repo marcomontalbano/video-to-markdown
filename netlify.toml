@@ -1,5 +1,5 @@
 [build]
-  command = "pnpm build:client"
+  command = "pnpm --enable-pre-post-scripts build:client"
   publish = "dist/client"
 
 [functions]
