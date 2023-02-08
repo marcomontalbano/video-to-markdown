@@ -1,6 +1,6 @@
 import VideoProvider from '../VideoProvider.js';
 
-import crypto from 'crypto';
+import CryptoJS from 'crypto-js';
 
 export default class Video extends VideoProvider {
   get providerName() {
@@ -15,7 +15,7 @@ export default class Video extends VideoProvider {
   }
 
   static getVideoId(url = '') {
-    return super.getVideoId(url) ? crypto.createHash('md5').update(url).digest('hex') : undefined;
+    return super.getVideoId(url) ? CryptoJS.MD5(url).toString(CryptoJS.enc.Hex) : undefined;
   }
 
   getThumbnail_asVideoUrl() {
