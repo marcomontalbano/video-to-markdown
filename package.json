@@ -34,18 +34,18 @@
     "netlify"
   ],
   "engines": {
-    "node": ">= 18.12.1"
+    "node": ">= 18.14.0"
   },
   "devDependencies": {
-    "@parcel/packager-raw-url": "^2.8.3",
-    "@parcel/transformer-sass": "^2.8.3",
-    "@parcel/transformer-webmanifest": "^2.8.3",
+    "@parcel/packager-raw-url": "^2.12.0",
+    "@parcel/transformer-sass": "^2.12.0",
+    "@parcel/transformer-webmanifest": "^2.12.0",
     "dotenv": "^16.0.3",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.1",
-    "netlify-cli": "^12.10.0",
-    "parcel": "^2.8.3",
-    "posthtml-expressions": "^1.11.0",
+    "netlify-cli": "^17.23.2",
+    "parcel": "^2.12.0",
+    "posthtml-expressions": "^1.11.3",
     "posthtml-include": "^1.7.4",
     "rome": "^11.0.0",
     "sass": "~1.58.0",
