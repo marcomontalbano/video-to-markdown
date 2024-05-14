@@ -70,7 +70,7 @@ To run the project locally, here’s what you’ll need:
 ### Requirements
 
 * [Cloudinary] account
-* [Node.js](https://nodejs.org/) 18 or greater
+* [Node.js](https://nodejs.org/) 18.14 or greater
 
 ### Setup
 

@@ -14,19 +14,19 @@ jobs:
 
     strategy:
       matrix:
-        node: [18.12.1, 18.x]
+        node: [18.14.0, 18.x]
 
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: pnpm 🧰
-        uses: pnpm/action-setup@v2.2.4
+        uses: pnpm/action-setup@v4
         with:
-          version: 7
+          version: 9
 
       - name: Node 🧰
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
           cache: 'pnpm'

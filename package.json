@@ -79,8 +79,9 @@
     "test": "uvu netlify .test.js",
     "format": "pnpm rome format src scripts --write",
     "lint": "pnpm rome check src scripts",
-    "dep:upgrade:major": "npx npm-check-updates -u",
-    "dep:upgrade:minor": "npm run dep:upgrade:major -- --target minor"
+    "dep:major": "pnpm dlx npm-check-updates --packageFile '**/package.json' -u",
+    "dep:minor": "pnpm dep:major -t minor",
+    "ls-engines": "pnpm dlx ls-engines"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead"
 }
