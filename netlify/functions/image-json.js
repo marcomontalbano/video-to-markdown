@@ -53,6 +53,7 @@ export const handler = async (event, context, callback) => {
 
   video.log('httpMethod', event.httpMethod);
   video.log('url', url);
+  video.log('id', video.getId());
   video.log('highQuality', cloudinary.useHighQuality() ? 'true' : 'false');
 
   return video

@@ -8,12 +8,18 @@ export default class VideoProvider {
   }
 
   static getVideoId(url = '') {
-    return this.regex
+    const id = this.regex
       .map((rx) => {
         let [, id] = url.match(rx) || [];
         return id;
       })
       .filter((id) => id)[0];
+
+    if (typeof id === 'string') {
+      return id.replaceAll('/', '--');
+    }
+
+    return id;
   }
 
   needsCloudinary() {

@@ -2,7 +2,7 @@ Video to Markdown
 =================
 
 [![Test](https://github.com/marcomontalbano/video-to-markdown/actions/workflows/test.yaml/badge.svg)](https://github.com/marcomontalbano/video-to-markdown/actions/workflows/test.yaml)
-[![Cloudinary](https://shields.io/badge/-Cloudinary-3448c5)](https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/nfvt85kdqleszdah0hxq)
+[![Cloudinary](https://shields.io/badge/-Cloudinary-3448c5)](https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/nfvt85kdqleszdah0hxq?t=default)
 [![PayPal.me](https://img.shields.io/badge/paypal-donate-119fde.svg)](https://www.paypal.me/marcomontalbano)
 [![Sponsor](https://img.shields.io/badge/-Sponsor-fafbfc?logo=GitHub%20Sponsors)](https://github.com/sponsors/marcomontalbano)
 
@@ -110,4 +110,4 @@ In this way the generated images are cached so we can avoid to call Netlify func
 
 By clicking on `convert to markdown` or consuming api you accept this terms & condition; no additional data is sent to the server.
 
-[Cloudinary]: https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/nfvt85kdqleszdah0hxq
+[Cloudinary]: https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/nfvt85kdqleszdah0hxq?t=default
