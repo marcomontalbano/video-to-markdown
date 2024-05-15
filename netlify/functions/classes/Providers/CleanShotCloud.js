@@ -1,5 +1,5 @@
+import { parse } from 'node-html-parser';
 import VideoProvider from '../VideoProvider.js';
-import htmlMiner from 'html-miner';
 
 // https://cleanshot.com/
 
@@ -22,13 +22,15 @@ export default class CleanShotCloud extends VideoProvider {
   getThumbnail_asVideoUrl() {
     return fetch(this.url)
       .then((response) => response.text())
-      .then((html) => htmlMiner(html, (arg) => arg.$('[property="og:image"]').attr('content')))
+      .then((html) => {
+        return parse(html).querySelector('[property="og:image"]').getAttribute('content');
+      })
       .then((image) => {
         if (this.options.showPlayIcon) {
           return image;
         }
 
-        return image.replace(/\/draw\(image\(.*\),position:center\)/, '');
+        return image.replace(/\/draw\(image\(.*\),position:center\)/, '').replace(/&?play=1/, '');
       });
   }
 }

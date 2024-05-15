@@ -58,7 +58,7 @@
     "clipboard": "^2.0.11",
     "cloudinary": "~1.33.0",
     "hint.css": "^2.7.0",
-    "html-miner": "^4.0.0",
+    "node-html-parser": "^6.1.13",
     "nprogress": "^0.2.0",
     "prismjs": "^1.29.0",
     "process": "^0.11.10",

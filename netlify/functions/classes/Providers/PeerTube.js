@@ -1,5 +1,5 @@
+import { parse } from 'node-html-parser';
 import VideoProvider from '../VideoProvider.js';
-import htmlMiner from 'html-miner';
 
 // https://joinpeertube.org/
 
@@ -27,6 +27,8 @@ export default class PeerTube extends VideoProvider {
 
         return html;
       })
-      .then((html) => htmlMiner(html, (arg) => arg.$('[property="og:image"]').attr('content')));
+      .then((html) => {
+        return parse(html).querySelector('[property="og:image"]').getAttribute('content');
+      });
   }
 }
