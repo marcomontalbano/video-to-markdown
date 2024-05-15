@@ -1,5 +1,4 @@
 import VideoProvider from '../VideoProvider.js';
-import fetch from '../proxiedFetch.js';
 
 // https://developer.dailymotion.com/api
 

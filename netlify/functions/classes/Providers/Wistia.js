@@ -1,5 +1,4 @@
 import VideoProvider from '../VideoProvider.js';
-import fetch from '../proxiedFetch.js';
 
 // https://wistia.com/support/developers/oembed#an-example
 

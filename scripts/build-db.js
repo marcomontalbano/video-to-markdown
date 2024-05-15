@@ -4,8 +4,6 @@ dotenv.config();
 import fs from 'fs';
 import path from 'path';
 
-import fetch from '../netlify/functions/classes/proxiedFetch.js';
-
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 

@@ -1,5 +1,4 @@
 import VideoProvider from '../VideoProvider.js';
-import fetch from '../proxiedFetch.js';
 import htmlMiner from 'html-miner';
 
 // https://joinpeertube.org/

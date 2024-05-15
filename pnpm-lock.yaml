@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@types/node':
+        specifier: ^20.12.12
+        version: 20.12.12
       clipboard:
         specifier: ^2.0.11
         version: 2.0.11
@@ -23,12 +26,6 @@ importers:
       html-miner:
         specifier: ^4.0.0
         version: 4.0.0
-      https-proxy-agent:
-        specifier: ^5.0.1
-        version: 5.0.1(supports-color@9.4.0)
-      node-fetch:
-        specifier: ^3.3.0
-        version: 3.3.2
       nprogress:
         specifier: ^0.2.0
         version: 0.2.0
@@ -62,7 +59,7 @@ importers:
         version: 13.3.0
       netlify-cli:
         specifier: ^17.23.2
-        version: 17.23.2(@swc/core@1.5.5(@swc/helpers@0.5.11))(@types/node@20.12.11)(picomatch@2.3.1)
+        version: 17.23.2(@swc/core@1.5.5(@swc/helpers@0.5.11))(@types/node@20.12.12)(picomatch@2.3.1)
       parcel:
         specifier: ^2.12.0
         version: 2.12.0(@swc/helpers@0.5.11)(postcss@8.4.38)(srcset@4.0.0)(typescript@5.4.5)
@@ -1371,8 +1368,8 @@ packages:
   '@types/istanbul-reports@3.0.4':
     resolution: {integrity: sha512-pk2B1NWalF9toCRu6gjBzR69syFjP4Od8WRAX+0mmf9lAjCRicLOWc+ZrxZHx/0XRjotgkF9t6iaMJ+aXcOdZQ==}
 
-  '@types/node@20.12.11':
-    resolution: {integrity: sha512-vDg9PZ/zi+Nqp6boSOT7plNuthRugEKixDv5sFTIpkE89MmNtEArAShI4mxuX2+UrLEe9pxC1vm2cjm9YlWbJw==}
+  '@types/node@20.12.12':
+    resolution: {integrity: sha512-eWLDGF/FOSPtAvEqeRAQ4C8LSA7M1I7i0ky1I8U7kD1J5ITyW3AsRhQrKVoWf5pFKZ2kILsEGJhsI9r93PYnOw==}
 
   '@types/normalize-package-data@2.4.4':
     resolution: {integrity: sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==}
@@ -5965,7 +5962,7 @@ snapshots:
     dependencies:
       '@types/istanbul-lib-coverage': 2.0.6
       '@types/istanbul-reports': 3.0.4
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       '@types/yargs': 16.0.9
       chalk: 4.1.2
 
@@ -6059,7 +6056,7 @@ snapshots:
       yaml: 2.4.2
       yargs: 17.7.2
 
-  '@netlify/build@29.41.2(@opentelemetry/api@1.8.0)(@swc/core@1.5.5(@swc/helpers@0.5.11))(@types/node@20.12.11)(picomatch@2.3.1)':
+  '@netlify/build@29.41.2(@opentelemetry/api@1.8.0)(@swc/core@1.5.5(@swc/helpers@0.5.11))(@types/node@20.12.12)(picomatch@2.3.1)':
     dependencies:
       '@bugsnag/js': 7.22.7
       '@netlify/blobs': 7.3.0
@@ -6116,7 +6113,7 @@ snapshots:
       strip-ansi: 7.1.0
       supports-color: 9.4.0
       terminal-link: 3.0.0
-      ts-node: 10.9.2(@swc/core@1.5.5(@swc/helpers@0.5.11))(@types/node@20.12.11)(typescript@5.4.5)
+      ts-node: 10.9.2(@swc/core@1.5.5(@swc/helpers@0.5.11))(@types/node@20.12.12)(typescript@5.4.5)
       typescript: 5.4.5
       uuid: 9.0.1
       yargs: 17.7.2
@@ -7348,7 +7345,7 @@ snapshots:
 
   '@types/http-proxy@1.17.14':
     dependencies:
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
 
   '@types/istanbul-lib-coverage@2.0.6': {}
 
@@ -7360,7 +7357,7 @@ snapshots:
     dependencies:
       '@types/istanbul-lib-report': 3.0.3
 
-  '@types/node@20.12.11':
+  '@types/node@20.12.12':
     dependencies:
       undici-types: 5.26.5
 
@@ -7378,7 +7375,7 @@ snapshots:
 
   '@types/yauzl@2.10.3':
     dependencies:
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
     optional: true
 
   '@typescript-eslint/types@5.62.0': {}
@@ -10279,12 +10276,12 @@ snapshots:
 
   nested-error-stacks@2.1.1: {}
 
-  netlify-cli@17.23.2(@swc/core@1.5.5(@swc/helpers@0.5.11))(@types/node@20.12.11)(picomatch@2.3.1):
+  netlify-cli@17.23.2(@swc/core@1.5.5(@swc/helpers@0.5.11))(@types/node@20.12.12)(picomatch@2.3.1):
     dependencies:
       '@bugsnag/js': 7.22.7
       '@fastify/static': 6.12.0
       '@netlify/blobs': 7.3.0
-      '@netlify/build': 29.41.2(@opentelemetry/api@1.8.0)(@swc/core@1.5.5(@swc/helpers@0.5.11))(@types/node@20.12.11)(picomatch@2.3.1)
+      '@netlify/build': 29.41.2(@opentelemetry/api@1.8.0)(@swc/core@1.5.5(@swc/helpers@0.5.11))(@types/node@20.12.12)(picomatch@2.3.1)
       '@netlify/build-info': 7.13.2
       '@netlify/config': 20.12.3
       '@netlify/edge-bundler': 12.0.0(supports-color@9.4.0)
@@ -11797,14 +11794,14 @@ snapshots:
 
   triple-beam@1.4.1: {}
 
-  ts-node@10.9.2(@swc/core@1.5.5(@swc/helpers@0.5.11))(@types/node@20.12.11)(typescript@5.4.5):
+  ts-node@10.9.2(@swc/core@1.5.5(@swc/helpers@0.5.11))(@types/node@20.12.12)(typescript@5.4.5):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
       '@tsconfig/node10': 1.0.11
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.12.11
+      '@types/node': 20.12.12
       acorn: 8.11.3
       acorn-walk: 8.3.2
       arg: 4.1.3
