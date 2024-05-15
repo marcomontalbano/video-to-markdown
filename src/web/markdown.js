@@ -6,8 +6,8 @@ const update = (markdownElement) => {
 
   return (title, videoUrl = videoUrl_memo, imageUrl = imageUrl_memo) => {
     if (title === undefined) {
-      videoUrl_memo = videoUrl = undefined;
-      imageUrl_memo = imageUrl = undefined;
+      videoUrl_memo = undefined;
+      imageUrl_memo = undefined;
     }
 
     videoUrl_memo = videoUrl ? videoUrl : videoUrl_memo;
