@@ -1,5 +1,5 @@
 import { v2 as cloudinary } from 'cloudinary';
-import crypto from 'crypto';
+import crypto from 'node:crypto';
 
 const { USE_HIGH_QUALITY = false } = process.env;
 

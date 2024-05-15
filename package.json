@@ -54,7 +54,6 @@
   },
   "dependencies": {
     "@types/node": "^20.12.12",
-    "crypto-js": "^4.1.1",
     "clipboard": "^2.0.11",
     "cloudinary": "~1.33.0",
     "hint.css": "^2.7.0",

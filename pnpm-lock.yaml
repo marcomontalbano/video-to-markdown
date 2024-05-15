@@ -17,9 +17,6 @@ importers:
       cloudinary:
         specifier: ~1.33.0
         version: 1.33.0
-      crypto-js:
-        specifier: ^4.1.1
-        version: 4.2.0
       hint.css:
         specifier: ^2.7.0
         version: 2.7.0
@@ -2140,9 +2137,6 @@ packages:
     peerDependenciesMeta:
       uWebSockets.js:
         optional: true
-
-  crypto-js@4.2.0:
-    resolution: {integrity: sha512-KALDyEYgpY+Rlob/iriUtjV6d5Eq+Y191A5g4UqLAi8CyGP9N1+FdVbkc1SxKc2r4YAYqG8JzO2KGL+AizD70Q==}
 
   crypto-random-string@4.0.0:
     resolution: {integrity: sha512-x8dy3RnvYdlUcPOjkEHqozhiwzKNSq7GcPuXFbnyMOCHxX8V3OgIg/pYuabl2sbUPfIJaeAQB7PMOK8DFIdoRA==}
@@ -8187,8 +8181,6 @@ snapshots:
       which: 2.0.2
 
   crossws@0.2.4: {}
-
-  crypto-js@4.2.0: {}
 
   crypto-random-string@4.0.0:
     dependencies:

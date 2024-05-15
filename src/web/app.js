@@ -2,7 +2,7 @@ import Prism from 'prismjs';
 import NProgress from 'nprogress';
 
 import { load as loadMarkdown } from './markdown';
-import Video from '../../netlify/functions/classes/Providers/Video';
+import VideoRegEx from '../../netlify/functions/classes/Providers/VideoRegEx';
 
 import imageNotFound from '../images/not-found.jpg';
 import imageLoading from '../images/loading.jpg';
@@ -180,7 +180,7 @@ export const load = () => {
 
     memoFormSubmit = newMemoFormSubmit;
 
-    if (Video.check(domElements.url)) {
+    if (VideoRegEx.check(domElements.url)) {
       videoConverter(domElements.title, domElements.url, domElements.showPlayIcon);
     } else {
       imageJsonConverter(domElements.title, domElements.url, domElements.showPlayIcon);
