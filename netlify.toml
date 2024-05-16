@@ -9,7 +9,6 @@
 [template.environment]
   CLOUDINARY_URL = "Cloudinary URL"
   USE_HIGH_QUALITY = "Use High Quality (boolean)"
-  GA_TRACKING_ID = "Google Analytics Tracking ID"
 
 [[redirects]]
   from = "https://video-to-markdown.netlify.app/*"

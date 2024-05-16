@@ -60,8 +60,7 @@
     "node-html-parser": "^6.1.13",
     "nprogress": "^0.2.0",
     "prismjs": "^1.29.0",
-    "process": "^0.11.10",
-    "universal-analytics": "^0.5.3"
+    "process": "^0.11.10"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",

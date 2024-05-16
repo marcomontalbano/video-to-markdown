@@ -162,12 +162,9 @@ export const load = () => {
 
     NProgress.start();
 
-    typeof ga !== 'undefined' &&
-      ga('send', 'event', {
-        eventCategory: 'V2M',
-        eventAction: 'convert',
-        eventLabel: domElements.url,
-      });
+    if (typeof sa_event !== 'undefined') {
+      sa_event('click_convert', { url: domElements.url });
+    }
 
     const newMemoFormSubmit = `${domElements.url}|${domElements.showPlayIcon}`;
     if (memoFormSubmit === newMemoFormSubmit) {

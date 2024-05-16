@@ -3,8 +3,6 @@
 import VideoWrapper from './classes/VideoWrapper.js';
 import cloudinary from './classes/cloudinary.js';
 
-import { sendLambdaEvent } from './classes/google-ua.js';
-
 const isProduction = process.env.NODE_ENV === 'production';
 
 const throwException = (statusCode, message) => {
@@ -26,8 +24,6 @@ const getParam = (event, paramName) => {
 };
 
 export const handler = async (event, context, callback) => {
-  sendLambdaEvent(event);
-
   const url = getParam(event, 'url');
 
   if (url === undefined || url === null) {

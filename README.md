@@ -87,7 +87,6 @@ cp .env.sample .env
 ```
 
 * `CLOUDINARY_URL` ( **required** ) - this is the `API Environment variable` that you can get from your Cloudinary dashboard inside the **Account Details** section.
-* `GA_TRACKING_ID` ( _optional_ ) - this is a Google Analytics Tracking ID. Can be used if you need to track page views and events.
 * `NETLIFY_ACCESS_TOKEN` ( _optional_ ) - this a Netlify Access Token. In combination with the `SITE_ID` can be used to display the **API Usage** in the website.
 * `SITE_ID` ( _optional_ ) - this the Netlify Site ID. In combination with the `NETLIFY_ACCESS_TOKEN` can be used to display the **API Usage** in the website.
 * `USE_HIGH_QUALITY` ( _optional_ ) - this is a boolean flag. If `true`, the generated images will be stored in Contenful with hi-res quality (default to `false`)
@@ -99,11 +98,6 @@ pnpm dev
 ```
 
 ## Privacy
-
-Google Analytics is used to record the following:
-
-* [Basic visit data](https://support.google.com/analytics/answer/6004245?ref_topic=2919631).
-* `referer` or `video url` to track api usage.
 
 All images are generated via [Cloudinary] and stored in it.
 In this way the generated images are cached so we can avoid to call Netlify functions again thus reducing the quota consumption.
