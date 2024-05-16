@@ -29,9 +29,6 @@ importers:
       prismjs:
         specifier: ^1.29.0
         version: 1.29.0
-      process:
-        specifier: ^0.11.10
-        version: 0.11.10
     devDependencies:
       '@parcel/packager-raw-url':
         specifier: ^2.12.0

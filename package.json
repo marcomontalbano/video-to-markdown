@@ -59,8 +59,7 @@
     "hint.css": "^3.0.0",
     "node-html-parser": "^6.1.13",
     "nprogress": "^0.2.0",
-    "prismjs": "^1.29.0",
-    "process": "^0.11.10"
+    "prismjs": "^1.29.0"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
