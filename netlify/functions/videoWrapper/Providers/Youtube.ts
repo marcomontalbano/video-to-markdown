@@ -29,6 +29,9 @@ export default class Youtube extends VideoProvider {
 
       // - //music.youtube.com/watch?v=i3MKTm-49uI&feature=share
       /https?\:\/\/music\.youtube\.com\/watch\?v\=([a-zA-Z0-9\_\-]+)/,
+
+      // - //www.youtube.com/shorts/q3i4jtp-byQ
+      /https?\:\/\/www\.youtube\.com\/shorts\/([a-zA-Z0-9\_\-]+)/,
     ];
   }
 

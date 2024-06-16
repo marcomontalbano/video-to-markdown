@@ -51,4 +51,10 @@ createTest(Youtube, 'https://music.youtube.com/watch?v=i3MKTm-49uI&feature=share
   providerName: 'youtube',
 });
 
+createTest(Youtube, 'https://www.youtube.com/shorts/iVxCy5lXLaA?feature=share', {
+  isValid: true,
+  id: 'iVxCy5lXLaA',
+  providerName: 'youtube',
+});
+
 test.run();
