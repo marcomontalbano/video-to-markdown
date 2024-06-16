@@ -9,7 +9,7 @@ export default class Facebook extends VideoProvider {
     return 'facebook';
   }
 
-  static get regex() {
+  get regex() {
     return [
       // - //www.facebook.com/backintimetheparty/videos/1588846901182916/
       /https?\:\/\/www\.facebook\.com\/[\w]+\/videos\/([0-9]+)/,

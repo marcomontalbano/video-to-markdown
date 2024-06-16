@@ -1,30 +1,18 @@
 import { test } from 'uvu';
-import { equal } from 'uvu/assert';
 
 import Facebook from './Facebook.js';
+import { createTest } from './test.helpers.js';
 
-test('"regex" must be correct.', () => {
-  equal(
-    Facebook.getVideoId('https://www.facebook.com/backintimetheparty/videos/1588846901182916/'),
-    '1588846901182916',
-  );
-  equal(
-    Facebook.getVideoId('https://www.facebook.com/backintimetheparty/videos/description/1588846901182916/'),
-    '1588846901182916',
-  );
+createTest(Facebook, 'https://www.facebook.com/backintimetheparty/videos/1588846901182916/', {
+  isValid: true,
+  id: '1588846901182916',
+  providerName: 'facebook',
 });
 
-test('all methods must work.', () => {
-  const url = 'https://www.facebook.com/backintimetheparty/videos/1588846901182916/';
-  const video = new Facebook(url);
-
-  // static methods
-  equal(Facebook.check(url), true);
-
-  // instance methods
-  equal(video.getId(), '1588846901182916');
-  equal(video.providerName, 'facebook');
-  equal(video.url, url);
+createTest(Facebook, 'https://www.facebook.com/backintimetheparty/videos/description/1588846901182916/', {
+  isValid: true,
+  id: '1588846901182916',
+  providerName: 'facebook',
 });
 
 test.run();

@@ -7,7 +7,7 @@ export default class Wistia extends VideoProvider {
     return 'wistia';
   }
 
-  static get regex() {
+  get regex() {
     return [
       // - //home.wistia.com/medias/e4a27b971d
       /https?:\/\/(?:[^.]+\.)?(?:wistia\.com|wi\.st)\/medias\/([a-zA-Z0-9\_\-]+)/,

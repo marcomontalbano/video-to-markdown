@@ -1,23 +1,12 @@
 import { test } from 'uvu';
-import { equal } from 'uvu/assert';
 
 import PeerTube from './PeerTube.js';
+import { createTest } from './test.helpers.js';
 
-test('"regex" must be correct.', () => {
-  equal(PeerTube.getVideoId('https://framatube.org/w/kkGMgK9ZtnKfYAgnEtQxbv?start=1s'), 'kkGMgK9ZtnKfYAgnEtQxbv');
-});
-
-test('all methods must work.', () => {
-  const url = 'https://framatube.org/w/kkGMgK9ZtnKfYAgnEtQxbv?start=1s';
-  const video = new PeerTube(url);
-
-  // static methods
-  equal(PeerTube.check(url), true);
-
-  // instance methods
-  equal(video.getId(), 'kkGMgK9ZtnKfYAgnEtQxbv');
-  equal(video.providerName, 'peertube');
-  equal(video.url, url);
+createTest(PeerTube, 'https://framatube.org/w/kkGMgK9ZtnKfYAgnEtQxbv?start=1s', {
+  isValid: true,
+  id: 'kkGMgK9ZtnKfYAgnEtQxbv',
+  providerName: 'peertube',
 });
 
 test.run();

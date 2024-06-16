@@ -1,23 +1,12 @@
 import { test } from 'uvu';
-import { equal } from 'uvu/assert';
 
 import Imgur from './Imgur.js';
+import { createTest } from './test.helpers.js';
 
-test('"regex" must be correct.', () => {
-  equal(Imgur.getVideoId('https://imgur.com/VT1vCoz'), 'VT1vCoz');
-});
-
-test('all methods must work.', () => {
-  const url = 'https://imgur.com/VT1vCoz';
-  const video = new Imgur(url);
-
-  // static methods
-  equal(Imgur.check(url), true);
-
-  // instance methods
-  equal(video.getId(), 'VT1vCoz');
-  equal(video.providerName, 'imgur');
-  equal(video.url, url);
+createTest(Imgur, 'https://imgur.com/VT1vCoz', {
+  isValid: true,
+  id: 'VT1vCoz',
+  providerName: 'imgur',
 });
 
 test.run();

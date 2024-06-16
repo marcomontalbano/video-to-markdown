@@ -8,7 +8,7 @@ export default class CleanShotCloud extends VideoProvider {
     return 'cleanshot-cloud';
   }
 
-  static get regex() {
+  get regex() {
     return [
       // - //cln.sh/YRePNX
       /https?\:\/\/cln\.sh\/([a-zA-Z0-9]+)/,

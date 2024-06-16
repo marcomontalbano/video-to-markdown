@@ -1,3 +1,4 @@
+import type { create } from './videoWrapper';
 import type VideoProvider from './videoWrapper/VideoProvider';
 
 export type ImageService = {

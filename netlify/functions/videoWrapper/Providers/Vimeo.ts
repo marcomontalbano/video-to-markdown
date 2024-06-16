@@ -7,7 +7,7 @@ export default class Vimeo extends VideoProvider {
     return 'vimeo';
   }
 
-  static get regex() {
+  get regex() {
     return [
       // - //vimeo.com/263856289
       /https?\:\/\/vimeo\.com\/([0-9]+)/,

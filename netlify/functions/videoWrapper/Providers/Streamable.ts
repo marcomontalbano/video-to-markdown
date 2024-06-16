@@ -7,7 +7,7 @@ export default class Streamable extends VideoProvider {
     return 'streamable';
   }
 
-  static get regex() {
+  get regex() {
     return [
       // - //streamable.com/1nvj5i
       /https?\:\/\/streamable\.com\/([a-z0-9]+)/,

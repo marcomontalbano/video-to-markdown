@@ -4,7 +4,7 @@ export default class VideoProvider {
   url: string;
   options: Options;
 
-  static get regex(): RegExp[] {
+  get regex(): RegExp[] {
     return [];
   }
 
@@ -12,23 +12,24 @@ export default class VideoProvider {
     return undefined;
   }
 
-  static check(url) {
-    return !!this.getVideoId(url);
+  check() {
+    return !!this.getVideoId();
   }
 
-  static getVideoId(url = ''): string | undefined {
+  getVideoId(): string | null {
     const id = this.regex
       .map((rx) => {
-        const [, id] = url.match(rx) || [];
+        const [, id] = this.url.match(rx) || [];
         return id;
       })
       .filter((id) => id)[0];
 
     if (typeof id === 'string') {
+      // @ts-expect-error TODO: need to fix this
       return id.replaceAll('/', '--');
     }
 
-    return id;
+    return id ?? null;
   }
 
   needsCloudinary() {
@@ -40,7 +41,7 @@ export default class VideoProvider {
   }
 
   getId() {
-    return this.constructor.getVideoId(this.url);
+    return this.getVideoId();
   }
 
   getThumbnail_asVideoUrl(): Promise<string | null> {
@@ -66,9 +67,9 @@ export default class VideoProvider {
   }
 
   constructor(url: string, options: Options = {}) {
-    if (!this.constructor.check(url)) {
-      throw new Error(`Invalid url for ${this.providerName} provider.`);
-    }
+    // if (!this.check()) {
+    //   throw new Error(`Invalid url for ${this.providerName} provider.`);
+    // }
 
     this.url = url;
     this.options = options;

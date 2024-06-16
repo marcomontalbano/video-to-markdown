@@ -1,24 +1,24 @@
 import { test } from 'uvu';
-import { equal } from 'uvu/assert';
 
 import Dailymotion from './Dailymotion.js';
+import { createTest } from './test.helpers.js';
 
-test('"regex" must be correct.', () => {
-  equal(Dailymotion.getVideoId('https://www.dailymotion.com/video/x3ke49'), 'x3ke49');
-  equal(Dailymotion.getVideoId('https://dai.ly/xxl8su'), 'xxl8su');
+createTest(Dailymotion, 'https://www.dailymotion.com/video/x3ke49', {
+  isValid: true,
+  id: 'x3ke49',
+  providerName: 'dailymotion',
 });
 
-test('all methods must work.', () => {
-  const url = 'https://www.dailymotion.com/video/x3ke49';
-  const video = new Dailymotion(url);
+createTest(Dailymotion, 'https://dai.ly/xxl8su', {
+  isValid: true,
+  id: 'xxl8su',
+  providerName: 'dailymotion',
+});
 
-  // static methods
-  equal(Dailymotion.check(url), true);
-
-  // instance methods
-  equal(video.getId(), 'x3ke49');
-  equal(video.providerName, 'dailymotion');
-  equal(video.url, url);
+createTest(Dailymotion, 'https://example.com/1234', {
+  isValid: false,
+  id: null,
+  providerName: 'dailymotion',
 });
 
 test.run();

@@ -5,7 +5,7 @@ export default class GoogleDrive extends VideoProvider {
     return 'google-drive';
   }
 
-  static get regex() {
+  get regex() {
     return [
       // - //drive.google.com/open?id=1eC4FKIvGeFQX93VBy5Sil2UkbmLiGXky
       /https?\:\/\/drive\.google\.com\/open\?id=([a-zA-Z0-9\_\-]+)/,

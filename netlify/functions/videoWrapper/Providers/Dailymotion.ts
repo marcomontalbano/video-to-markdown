@@ -7,7 +7,7 @@ export default class Dailymotion extends VideoProvider {
     return 'dailymotion';
   }
 
-  static get regex() {
+  get regex() {
     return [
       // - //www.dailymotion.com/video/x3ke49
       /https?\:\/\/www\.dailymotion\.com\/video\/([a-zA-Z0-9\_\-]+)/,

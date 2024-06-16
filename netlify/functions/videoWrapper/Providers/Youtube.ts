@@ -7,7 +7,7 @@ export default class Youtube extends VideoProvider {
     return 'youtube';
   }
 
-  static get regex() {
+  get regex() {
     return [
       // - //www.youtube.com/watch?v=oRdzL2DX0yU
       /https?\:\/\/www\.youtube\.com\/watch\?v\=([a-zA-Z0-9\_\-]+)/,

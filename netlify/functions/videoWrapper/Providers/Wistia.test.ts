@@ -1,34 +1,54 @@
 import { test } from 'uvu';
-import { equal } from 'uvu/assert';
 
 import Wistia from './Wistia.js';
+import { createTest } from './test.helpers.js';
 
-test('"regex" must be correct.', () => {
-  equal(Wistia.getVideoId('https://home.wistia.com/medias/e4a27b971d'), 'e4a27b971d');
-  equal(Wistia.getVideoId('https://wistia.com/medias/e4a27b971d'), 'e4a27b971d');
-  equal(Wistia.getVideoId('https://home.wistia.com/embed/iframe/e4a27b971d'), 'e4a27b971d');
-  equal(Wistia.getVideoId('https://john.wistia.com/embed/iframe/e4a27b971d'), 'e4a27b971d');
-  equal(Wistia.getVideoId('https://john.wistia.com/embed/playlists/e4a27b971d'), 'e4a27b971d');
-  equal(Wistia.getVideoId('https://john.wi.st/embed/playlists/e4a27b971d'), 'e4a27b971d');
-  equal(Wistia.getVideoId('https://home.wi.st/medias/e4a27b971d'), 'e4a27b971d');
-  equal(Wistia.getVideoId('https://home.wi.st/medias/e4a27b971d'), 'e4a27b971d');
-  equal(
-    Wistia.getVideoId('https://wistia.com/series/one-ten-one-hundred?wchannelid=z2vptfjlxk&wvideoid=donagpxtdr'),
-    'donagpxtdr',
-  );
+createTest(Wistia, 'https://home.wistia.com/medias/e4a27b971d', {
+  isValid: true,
+  id: 'e4a27b971d',
+  providerName: 'wistia',
 });
 
-test('all methods must work.', () => {
-  const url = 'https://home.wistia.com/medias/e4a27b971d';
-  const video = new Wistia(url);
+createTest(Wistia, 'https://wistia.com/medias/e4a27b971d', {
+  isValid: true,
+  id: 'e4a27b971d',
+  providerName: 'wistia',
+});
 
-  // static methods
-  equal(Wistia.check(url), true);
+createTest(Wistia, 'https://home.wistia.com/embed/iframe/e4a27b971d', {
+  isValid: true,
+  id: 'e4a27b971d',
+  providerName: 'wistia',
+});
 
-  // instance methods
-  equal(video.getId(), 'e4a27b971d');
-  equal(video.providerName, 'wistia');
-  equal(video.url, url);
+createTest(Wistia, 'https://john.wistia.com/embed/iframe/e4a27b971d', {
+  isValid: true,
+  id: 'e4a27b971d',
+  providerName: 'wistia',
+});
+
+createTest(Wistia, 'https://john.wistia.com/embed/playlists/e4a27b971d', {
+  isValid: true,
+  id: 'e4a27b971d',
+  providerName: 'wistia',
+});
+
+createTest(Wistia, 'https://john.wi.st/embed/playlists/e4a27b971d', {
+  isValid: true,
+  id: 'e4a27b971d',
+  providerName: 'wistia',
+});
+
+createTest(Wistia, 'https://home.wi.st/medias/e4a27b971d', {
+  isValid: true,
+  id: 'e4a27b971d',
+  providerName: 'wistia',
+});
+
+createTest(Wistia, 'https://wistia.com/series/one-ten-one-hundred?wchannelid=z2vptfjlxk&wvideoid=donagpxtdr', {
+  isValid: true,
+  id: 'donagpxtdr',
+  providerName: 'wistia',
 });
 
 test.run();

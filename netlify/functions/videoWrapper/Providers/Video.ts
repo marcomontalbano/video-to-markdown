@@ -8,12 +8,12 @@ export default class Video extends VideoProvider {
     return 'video';
   }
 
-  static get regex() {
+  get regex() {
     return videoRegEx;
   }
 
-  static getVideoId(url = '') {
-    return super.getVideoId(url) ? crypto.createHash('md5').update(url).digest('hex') : undefined;
+  getVideoId() {
+    return super.getVideoId() ? crypto.createHash('md5').update(this.url).digest('hex') : null;
   }
 
   getThumbnail_asVideoUrl() {

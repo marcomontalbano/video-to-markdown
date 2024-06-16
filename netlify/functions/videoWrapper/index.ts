@@ -23,7 +23,7 @@ function getVideoProviders() {
 export async function create(url: string, options?: Options) {
   const videoProviders = await getVideoProviders();
   const videoProvider = videoProviders.filter((vp) => {
-    return vp.default.check(url);
+    return new vp.default(url).check();
   });
 
   if (videoProvider.length === 0) {

@@ -7,7 +7,7 @@ export default class TikTok extends VideoProvider {
     return 'tiktok';
   }
 
-  static get regex() {
+  get regex() {
     return [
       // - //www.tiktok.com/@tiktok/video/6584647400055377158?is_copy_url=1&is_from_webapp=v1
       /https?\:\/\/www\.tiktok\.com\/@[\w\W]+\/video\/([a-z0-9]+)/,

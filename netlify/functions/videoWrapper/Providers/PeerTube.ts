@@ -8,7 +8,7 @@ export default class PeerTube extends VideoProvider {
     return 'peertube';
   }
 
-  static get regex() {
+  get regex() {
     return [
       // //framatube.org/w/kkGMgK9ZtnKfYAgnEtQxbv?start=1s
       /\/w\/([a-zA-Z0-9]+)/, // not so strong :(

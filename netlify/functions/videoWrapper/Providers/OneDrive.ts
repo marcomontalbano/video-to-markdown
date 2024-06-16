@@ -7,7 +7,7 @@ export default class OneDrive extends VideoProvider {
     return 'onedrive';
   }
 
-  static get regex() {
+  get regex() {
     return [
       // - //1drv.ms/v/s!An21T-lhvYKSkFpqKTb4YeZpKfzC?e=iXCxja
       /https?\:\/\/1drv\.ms\/[\w]{1}\/s!([a-zA-Z0-9-]+)/,

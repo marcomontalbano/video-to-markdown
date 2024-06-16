@@ -1,34 +1,24 @@
 import { test } from 'uvu';
-import { equal } from 'uvu/assert';
 
 import GoogleDrive from './GoogleDrive.js';
+import { createTest } from './test.helpers.js';
 
-test('"regex" must be correct.', () => {
-  equal(
-    GoogleDrive.getVideoId('https://drive.google.com/file/d/5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc/view'),
-    '5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc',
-  );
-  equal(
-    GoogleDrive.getVideoId('https://drive.google.com/open?id=5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc'),
-    '5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc',
-  );
-  equal(
-    GoogleDrive.getVideoId('https://docs.google.com/presentation/d/5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc/edit?usp=sharing'),
-    '5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc',
-  );
+createTest(GoogleDrive, 'https://drive.google.com/file/d/5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc/view', {
+  isValid: true,
+  id: '5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc',
+  providerName: 'google-drive',
 });
 
-test('all methods must work.', () => {
-  const url = 'https://drive.google.com/file/d/5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc/view';
-  const video = new GoogleDrive(url);
+createTest(GoogleDrive, 'https://drive.google.com/open?id=5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc', {
+  isValid: true,
+  id: '5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc',
+  providerName: 'google-drive',
+});
 
-  // static methods
-  equal(GoogleDrive.check(url), true);
-
-  // instance methods
-  equal(video.getId(), '5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc');
-  equal(video.providerName, 'google-drive');
-  equal(video.url, url);
+createTest(GoogleDrive, 'https://docs.google.com/presentation/d/5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc/edit?usp=sharing', {
+  isValid: true,
+  id: '5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc',
+  providerName: 'google-drive',
 });
 
 test.run();
