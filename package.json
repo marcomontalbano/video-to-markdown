@@ -64,7 +64,7 @@
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "build-db": "node ./scripts/build-db",
+    "build-db": "tsm ./scripts/build-db.ts",
     "start:client": "parcel serve --no-autoinstall src/index.html --dist-dir dist/client",
     "build:client": "parcel build --no-autoinstall src/index.html --dist-dir dist/client",
     "dev": "netlify dev",

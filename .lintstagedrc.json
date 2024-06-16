@@ -1,6 +1,6 @@
 {
   "*.{js,jsx,ts,tsx}": [
-    "pnpm lint -- --fix",
+    "pnpm lint --fix",
     "pnpm test",
     "pnpm format"
   ]
