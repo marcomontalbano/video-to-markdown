@@ -19,6 +19,6 @@ export default class Asciinema extends VideoProvider {
   }
 
   getThumbnail_asVideoUrl() {
-    return new Promise((resolve) => resolve(`${this.url}.svg`));
+    return Promise.resolve(`${this.url}.svg`);
   }
 }

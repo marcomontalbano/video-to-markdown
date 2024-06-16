@@ -1,5 +1,3 @@
-// @ts-check
-
 import { suite } from 'uvu';
 import { equal } from 'uvu/assert';
 

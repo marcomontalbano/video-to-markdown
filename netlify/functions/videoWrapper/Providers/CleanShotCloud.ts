@@ -23,14 +23,15 @@ export default class CleanShotCloud extends VideoProvider {
     return fetch(this.url)
       .then((response) => response.text())
       .then((html) => {
-        return parse(html).querySelector('[property="og:image"]').getAttribute('content');
+        return parse(html)?.querySelector('[property="og:image"]')?.getAttribute('content');
       })
       .then((image) => {
         if (this.options.showPlayIcon) {
           return image;
         }
 
-        return image.replace(/\/draw\(image\(.*\),position:center\)/, '').replace(/&?play=1/, '');
-      });
+        return image?.replace(/\/draw\(image\(.*\),position:center\)/, '').replace(/&?play=1/, '');
+      })
+      .then((image) => image ?? null);
   }
 }

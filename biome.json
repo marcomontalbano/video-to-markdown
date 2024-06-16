@@ -15,7 +15,7 @@
     "rules": {
       "recommended": true,
       "complexity": {
-        "noThisInStatic": "warn"
+        "noThisInStatic": "off"
       }
     }
   }

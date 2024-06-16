@@ -15,6 +15,6 @@ export default class Imgur extends VideoProvider {
   }
 
   getThumbnail_asVideoUrl() {
-    return new Promise((resolve) => resolve(`${this.url}.jpg`));
+    return Promise.resolve(`${this.url}.jpg`);
   }
 }

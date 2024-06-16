@@ -50,6 +50,7 @@
     "@biomejs/biome": "^1.8.1",
     "sass": "^1.77.1",
     "sinon": "^18.0.0",
+    "tsm": "^2.3.0",
     "uvu": "^0.5.6"
   },
   "dependencies": {
@@ -72,7 +73,7 @@
     "predev": "pnpm build-db",
     "prebuild:client": "pnpm build-db",
     "prepare": "husky install",
-    "test": "uvu netlify .test.js",
+    "test": "uvu -r tsm netlify .test.*s",
     "format": "pnpm biome format src scripts netlify --write",
     "lint": "pnpm biome check src scripts netlify",
     "dep:major": "pnpm dlx npm-check-updates --packageFile '**/package.json' -u",

@@ -1,4 +1,4 @@
-// @ts-check
+import type { Options } from '../types.js';
 
 function getVideoProviders() {
   return Promise.all([
@@ -20,7 +20,7 @@ function getVideoProviders() {
   ]);
 }
 
-export async function create(url, options) {
+export async function create(url: string, options?: Options) {
   const videoProviders = await getVideoProviders();
   const videoProvider = videoProviders.filter((vp) => {
     return vp.default.check(url);

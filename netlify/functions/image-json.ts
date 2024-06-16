@@ -1,5 +1,3 @@
-// @ts-check
-
 import cloudinary from './cloudinary/index.js';
 import { create } from './videoWrapper/index.js';
 
@@ -30,7 +28,8 @@ export const handler = async (event, context, callback) => {
     return throwException(422, 'param URL is mandatory.');
   }
 
-  let video;
+  let video: Awaited<ReturnType<typeof create>>;
+
   try {
     video = await create(url, {
       showPlayIcon: getParam(event, 'showPlayIcon') === 'true',

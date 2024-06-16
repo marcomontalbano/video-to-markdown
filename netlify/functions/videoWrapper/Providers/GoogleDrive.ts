@@ -19,8 +19,6 @@ export default class GoogleDrive extends VideoProvider {
   }
 
   getThumbnail_asVideoUrl() {
-    return new Promise((resolve) =>
-      resolve(`https://drive.google.com/thumbnail?authuser=0&sz=w1280&id=${this.getId()}`),
-    );
+    return Promise.resolve(`https://drive.google.com/thumbnail?authuser=0&sz=w1280&id=${this.getId()}`);
   }
 }

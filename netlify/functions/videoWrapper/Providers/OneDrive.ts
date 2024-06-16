@@ -50,7 +50,7 @@ export default class OneDrive extends VideoProvider {
 
         if (redeem != null) {
           this.log('auth', 'authentication required');
-          const [, appId] = text.match(/"clientId":"([\w-]+)"/);
+          const [, appId] = text.match(/"clientId":"([\w-]+)"/) ?? [];
           this.log('appId', appId);
           const auth = await fetch('https://api-badgerp.svc.ms/v1.0/token', {
             headers: {
@@ -109,7 +109,13 @@ export default class OneDrive extends VideoProvider {
           });
         }
       })
-      .then((res) => res.json())
+      .then((res) => {
+        if (res == null) {
+          throw new Error('Cannot elaborate the request.');
+        }
+
+        return res.json();
+      })
       .then((json) => {
         const [firstThumbnail] = json.value;
 
