@@ -1,11 +1,11 @@
-import Prism from 'prismjs';
 import NProgress from 'nprogress';
+import Prism from 'prismjs';
 
+import { videoRegEx } from '../../netlify/functions/videoWrapper/videoRegEx';
 import { load as loadMarkdown } from './markdown';
-import VideoRegEx from '../../netlify/functions/classes/Providers/VideoRegEx';
 
-import imageNotFound from '../images/not-found.jpg';
 import imageLoading from '../images/loading.jpg';
+import imageNotFound from '../images/not-found.jpg';
 
 const updateMarkdown = loadMarkdown();
 
@@ -122,7 +122,7 @@ const videoConverter = (title, videoUrl, showPlayIcon) => {
   const canvas = document.createElement('canvas');
 
   const loadRandomFrame = () => {
-    if (!isNaN(video.duration)) {
+    if (!Number.isNaN(video.duration)) {
       const rand = Math.round(Math.random() * video.duration * 1000) + 1;
       video.currentTime = rand / 1000;
     }
@@ -157,7 +157,7 @@ export const load = () => {
   });
 
   let memoFormSubmit;
-  document.querySelector('form').addEventListener('submit', function (e) {
+  document.querySelector('form').addEventListener('submit', (e) => {
     e.preventDefault();
 
     NProgress.start();
@@ -180,7 +180,7 @@ export const load = () => {
 
     memoFormSubmit = newMemoFormSubmit;
 
-    if (VideoRegEx.check(domElements.url)) {
+    if (videoRegEx.every((rx) => rx.test(domElements.url))) {
       videoConverter(domElements.title, domElements.url, domElements.showPlayIcon);
     } else {
       imageJsonConverter(domElements.title, domElements.url, domElements.showPlayIcon);

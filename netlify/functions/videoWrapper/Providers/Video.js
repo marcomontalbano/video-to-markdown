@@ -1,10 +1,15 @@
-import VideoRegEx from './VideoRegEx.js';
+import VideoProvider from '../VideoProvider.js';
+import { videoRegEx } from '../videoRegEx.js';
 
 import crypto from 'node:crypto';
 
-export default class Video extends VideoRegEx {
+export default class Video extends VideoProvider {
   get providerName() {
     return 'video';
+  }
+
+  static get regex() {
+    return videoRegEx;
   }
 
   static getVideoId(url = '') {

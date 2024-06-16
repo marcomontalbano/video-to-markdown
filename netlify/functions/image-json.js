@@ -1,7 +1,7 @@
 // @ts-check
 
-import VideoWrapper from './classes/VideoWrapper.js';
-import cloudinary from './classes/cloudinary.js';
+import cloudinary from './cloudinary/index.js';
+import { create } from './videoWrapper/index.js';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -32,7 +32,7 @@ export const handler = async (event, context, callback) => {
 
   let video;
   try {
-    video = await VideoWrapper.create(url, {
+    video = await create(url, {
       showPlayIcon: getParam(event, 'showPlayIcon') === 'true',
       image: getParam(event, 'image'),
       ImageService: cloudinary,

@@ -1,16 +1,20 @@
 export default class VideoProvider {
-  static get regex() {}
+  static get regex() {
+    return [];
+  }
 
-  get providerName() {}
+  get providerName() {
+    return undefined;
+  }
 
   static check(url) {
-    return this.getVideoId(url) ? true : false;
+    return !!this.getVideoId(url);
   }
 
   static getVideoId(url = '') {
     const id = this.regex
       .map((rx) => {
-        let [, id] = url.match(rx) || [];
+        const [, id] = url.match(rx) || [];
         return id;
       })
       .filter((id) => id)[0];
