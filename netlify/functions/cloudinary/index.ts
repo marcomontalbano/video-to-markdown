@@ -14,9 +14,19 @@ const { USE_HIGH_QUALITY = false } = process.env;
 
 const useHighQuality = () => USE_HIGH_QUALITY === 'true';
 
+const QUALITY = {
+  NTSC: 240,
+  NHD: 360,
+  SD: 480,
+  HD: 720,
+  FHD: 1080,
+  QHD: 1440,
+  UHD4K: 2160,
+};
+
 async function create(source: string, video: VideoProvider, options?: Options) {
-  const highQualitySize = 720;
-  const lowQualitySize = 500;
+  const highQualitySize = QUALITY.HD;
+  const lowQualitySize = QUALITY.SD;
 
   // https://cloudinary.com/documentation/image_transformations#adjusting_image_quality
   const highQuality = [{ height: highQualitySize }];
