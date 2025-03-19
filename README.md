@@ -39,6 +39,7 @@ You just need to paste the video url in the field above and you will get the mar
 List of supported video providers:
 
 - [x] Asciinema
+- [x] Bilibili
 - [x] CleanShot Cloud
 - [x] Dailymotion
 - [x] Facebook (low-quality)
