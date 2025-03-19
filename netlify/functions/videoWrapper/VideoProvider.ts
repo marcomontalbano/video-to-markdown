@@ -25,7 +25,6 @@ export default class VideoProvider {
       .filter((id) => id)[0];
 
     if (typeof id === 'string') {
-      // @ts-expect-error TODO: need to fix this
       return id.replaceAll('/', '--');
     }
 

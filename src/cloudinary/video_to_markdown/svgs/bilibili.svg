@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="120px" height="120px" viewBox="0 0 120 120" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>icon_96px_pause</title>
+    <defs>
+        <path d="M60,12 C86.509668,12 108,33.490332 108,60 C108,86.509668 86.509668,108 60,108 C33.490332,108 12,86.509668 12,60 C12,33.490332 33.490332,12 60,12 Z M60.5,16 C35.9233286,16 16,35.9233286 16,60.5 C16,85.0766714 35.9233286,105 60.5,105 C85.0766714,105 105,85.0766714 105,60.5 C105,35.9233286 85.0766714,16 60.5,16 Z M50,39.5031331 C51.0947503,39.5031331 52.168637,39.8026513 53.105357,40.3692497 L74.2421492,53.1543642 C78.0226365,55.4410859 79.2335727,60.3595306 76.9468509,64.1400179 C76.2772502,65.247025 75.3491563,66.1751189 74.2421492,66.8447197 L53.105357,79.6298341 C50.2699915,81.3448754 46.581158,80.4366732 44.8661167,77.6013078 C44.2995183,76.6645878 44,75.590701 44,74.4959508 L44,45.5031331 C44,42.1894246 46.6862915,39.5031331 50,39.5031331 Z" id="path-1"></path>
+        <filter x="-21.9%" y="-21.9%" width="143.8%" height="143.8%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="0" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="6" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="icon_96px_pause" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon_96px_web_play">
+            <rect id="play96pxbg" x="0" y="0" width="120" height="120"></rect>
+            <g id="形状结合">
+                <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+            </g>
+        </g>
+    </g>
+</svg>

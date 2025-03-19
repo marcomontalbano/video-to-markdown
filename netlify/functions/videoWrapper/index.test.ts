@@ -28,6 +28,10 @@ test('asciinema', async () => {
   equal((await create('https://asciinema.org/a/335480')).providerName, 'asciinema');
 });
 
+test('bilibili', async () => {
+  equal((await create('https://www.bilibili.tv/en/video/2048949558')).providerName, 'bilibili');
+});
+
 test('google-drive', async () => {
   equal(
     (await create('https://drive.google.com/file/d/5p_qEW432qT5_EWQjwTo-Q5FaEjjsWUvc/view')).providerName,

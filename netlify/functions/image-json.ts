@@ -7,6 +7,9 @@ const isProduction = process.env.NODE_ENV === 'production';
 const throwException = (statusCode, message) => {
   return {
     statusCode: statusCode,
+    headers: {
+      'Content-Type': 'application/json',
+    },
     body: JSON.stringify({
       error: true,
       message,
@@ -48,6 +51,9 @@ export const handler: Handler = async (event) => {
     .then((imageUrl) => {
       return {
         statusCode: 200,
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify({
           provider: video.providerName,
           url: video.url,

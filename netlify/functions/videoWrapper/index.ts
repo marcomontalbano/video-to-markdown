@@ -3,6 +3,7 @@ import type { Options } from '../types.js';
 function getVideoProviders() {
   return Promise.all([
     import('./Providers/Asciinema.js'),
+    import('./Providers/Bilibili.js'),
     import('./Providers/CleanShotCloud.js'),
     import('./Providers/Dailymotion.js'),
     import('./Providers/Facebook.js'),

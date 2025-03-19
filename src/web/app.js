@@ -14,6 +14,7 @@ const lambdaUrl = `${location.protocol}//${location.host}/.netlify/functions`;
 
 const videoIcons = {
   asciinema: new URL('../images/providers/asciinema.png?as=webp', import.meta.url),
+  bilibili: new URL('../images/providers/bilibili.png?as=webp', import.meta.url),
   'cleanshot-cloud': new URL('../images/providers/cleanshot-cloud.png?as=webp', import.meta.url),
   dailymotion: new URL('../images/providers/dailymotion.png?as=webp', import.meta.url),
   facebook: new URL('../images/providers/facebook.png?as=webp', import.meta.url),
