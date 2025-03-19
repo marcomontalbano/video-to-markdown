@@ -1,13 +1,14 @@
 name: New video provider 📺
 description: Suggest a video provider.
 labels:
+  - needs triage
   - provider
 body:
   - type: textarea
     id: describe
     attributes:
-      label: Name and description
-      description: The name and a description of the video provider you are suggesting. Url to the provider's website is a plus.
+      label: Description
+      description: The description of the video provider you are suggesting. Url to the provider's website is a plus.
     validations:
       required: true
   - type: textarea

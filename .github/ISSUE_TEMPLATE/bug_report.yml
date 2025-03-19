@@ -3,6 +3,7 @@ description: |
   Something is broken and you have a reliable reproduction? Let us know here.
   For questions, please use the "Question" template.
 labels:
+  - needs triage
   - bug
 body:
   - type: markdown
