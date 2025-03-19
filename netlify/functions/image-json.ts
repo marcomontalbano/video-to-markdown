@@ -38,7 +38,7 @@ export const handler: Handler = async (event) => {
       ImageService: cloudinary,
     });
   } catch (error) {
-    return throwException(422, error.message);
+    return throwException(422, error.cause ?? error.message);
   }
 
   video.log('httpMethod', event.httpMethod);
@@ -62,6 +62,6 @@ export const handler: Handler = async (event) => {
       };
     })
     .catch((error) => {
-      return throwException(422, isProduction ? undefined : error.message);
+      return throwException(422, isProduction ? undefined : (error.cause ?? error).message);
     });
 };

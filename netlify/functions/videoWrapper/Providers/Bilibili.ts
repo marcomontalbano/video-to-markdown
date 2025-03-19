@@ -20,14 +20,24 @@ export default class Bilibili extends VideoProvider {
   }
 
   getThumbnail_asVideoUrl() {
-    return fetch(this.url)
+    const a = fetch(this.url, { mode: 'no-cors', referrer: 'https://bilibili.tv/' }).then((response) =>
+      response.headers.entries(),
+    );
+    a.then((b) => {
+      this.log('headers', Array.from(b));
+    });
+
+    return fetch(this.url, { mode: 'no-cors', referrer: 'https://bilibili.tv/' })
       .then((response) => response.text())
       .then((html) => {
+        this.log('html', html);
         const text = parse(html)?.querySelector('script[type="application/ld+json"]')?.innerHTML;
 
         if (text != null) {
           return JSON.parse(text);
         }
+
+        return [];
       })
       .then((ldJson) => {
         return ldJson.find((item) => item['@type'] === 'VideoObject')?.thumbnailUrl;
