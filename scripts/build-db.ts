@@ -28,7 +28,7 @@ fetch(`https://api.netlify.com/api/v1/sites/${SITE_ID}?access_token=${NETLIFY_AC
         },
         undefined,
         2,
-      ),
+      ).concat('\n'),
     );
   })
   .catch((error) => {

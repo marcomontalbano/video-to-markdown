@@ -1,3 +1,4 @@
+import type { Handler } from '@netlify/functions';
 import cloudinary from './cloudinary/index.js';
 import { create } from './videoWrapper/index.js';
 
@@ -7,11 +8,8 @@ const throwException = (statusCode, message) => {
   return {
     statusCode: statusCode,
     body: JSON.stringify({
-      errors: [
-        {
-          message: message,
-        },
-      ],
+      error: true,
+      message,
     }),
   };
 };
@@ -21,7 +19,7 @@ const getParam = (event, paramName) => {
   return event.httpMethod === 'GET' ? event.queryStringParameters[paramName] : urlSearchParams.get(paramName);
 };
 
-export const handler = async (event, context, callback) => {
+export const handler: Handler = async (event) => {
   const url = getParam(event, 'url');
 
   if (url === undefined || url === null) {
@@ -37,13 +35,7 @@ export const handler = async (event, context, callback) => {
       ImageService: cloudinary,
     });
   } catch (error) {
-    return callback(null, {
-      statusCode: 422,
-      body: JSON.stringify({
-        error: true,
-        message: error.message,
-      }),
-    });
+    return throwException(422, error.message);
   }
 
   video.log('httpMethod', event.httpMethod);
@@ -64,12 +56,6 @@ export const handler = async (event, context, callback) => {
       };
     })
     .catch((error) => {
-      return {
-        statusCode: 422,
-        body: JSON.stringify({
-          error: true,
-          message: isProduction ? undefined : error.message,
-        }),
-      };
+      return throwException(422, isProduction ? undefined : error.message);
     });
 };

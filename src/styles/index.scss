@@ -1,14 +1,13 @@
-@import "../../node_modules/nprogress/nprogress.css";
-@import "../../node_modules/hint.css/hint.min.css";
+@use "../../node_modules/nprogress/nprogress.css";
+@use "../../node_modules/hint.css/hint.min.css";
 
 //
-@import "variables";
-@import "normalize";
-@import "global";
-@import "grid";
-@import "button";
-@import "code";
-@import "progress";
-@import "providers";
+@use "normalize";
+@use "global";
+@use "grid";
+@use "button";
+@use "code";
+@use "progress";
+@use "providers";
 
-@import "homepage";
+@use "homepage";

@@ -1,3 +1,5 @@
+@use "variables";
+
 html {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
@@ -20,7 +22,7 @@ body {
 a,
 button {
   color: inherit;
-  transition: $transition-duration;
+  transition: variables.$transition-duration;
 }
 
 a {

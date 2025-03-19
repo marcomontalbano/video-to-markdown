@@ -1,3 +1,5 @@
+@use "variables";
+
 .button,
 .input {
   border-radius: 0.25rem;
@@ -18,7 +20,7 @@
   padding: 0.6rem 2rem;
   letter-spacing: 1px;
   box-shadow: 0px 0px 0px 0px transparent;
-  transition: $transition-duration box-shadow;
+  transition: variables.$transition-duration box-shadow;
 
   text-align: center;
   background-color: #00000020; 

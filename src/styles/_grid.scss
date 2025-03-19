@@ -1,18 +1,23 @@
+@use "variables";
+
+@use "sass:map";
+
 .row {
   display: flex;
   flex: 1 0 auto;
   flex-wrap: wrap;
   padding: 2em 0;
 
-  @media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
+  @media screen and (min-width: (map.get(variables.$breakpoints, "large") + "px")) {
     margin: 0 -15px;
   }
 
   > * {
-    @media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
+    width: 100%;
+
+    @media screen and (min-width: (map.get(variables.$breakpoints, "large") + "px")) {
       padding: 0 15px;
     }
-    width: 100%;
   }
 }
 
@@ -26,15 +31,15 @@
   position: relative;
   @include container-padding;
 
-  @media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
+  @media screen and (min-width: (map.get(variables.$breakpoints, "large") + "px")) {
     @include container-padding(960px);
   }
   
-  @media screen and (min-width: (map-get($breakpoints, "xlarge") + "px")) {
+  @media screen and (min-width: (map.get(variables.$breakpoints, "xlarge") + "px")) {
     @include container-padding(1152px);
   }
   
-  @media screen and (min-width: (map-get($breakpoints, "xxlarge") + "px")) {
+  @media screen and (min-width: (map.get(variables.$breakpoints, "xxlarge") + "px")) {
     @include container-padding(1344px);
   }
 
@@ -45,7 +50,7 @@
     }
     border-top: 1px solid #dcdcdc;
     opacity: 1;
-    transition: opacity $transition-duration;
+    transition: opacity variables.$transition-duration;
 
     &:first-child {
       border-top: none;

@@ -1,13 +1,15 @@
+@use "variables";
+
 html {
   font-family: "Montserrat", sans-serif;
-  background: $background-color;
-  color: $color-text-dark;
+  background: variables.$background-color;
+  color: variables.$color-text-dark;
   scroll-behavior: smooth;
 }
 
 .dark-bg {
-  color: $color-white;
-  background-color: $header-background-color;
+  color: variables.$color-white;
+  background-color: variables.$header-background-color;
 }
 
 header {
@@ -17,7 +19,7 @@ header {
     letter-spacing: 1px;
 
     a {
-      color: $color-white;
+      color: variables.$color-white;
     }
 
     strong {

@@ -5,8 +5,8 @@ module.exports = {
         }),
         require('posthtml-expressions')({
             locals: {
-                NODE_ENV: process.env.NODE_ENV,
-                GA_TRACKING_ID: process.env.GA_TRACKING_ID,
+                NODE_ENV: process.env.NODE_ENV ?? 'undefined',
+                GA_TRACKING_ID: process.env.GA_TRACKING_ID ?? 'undefined',
             }
         })
     ]
