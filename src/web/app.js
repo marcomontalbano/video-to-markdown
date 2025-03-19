@@ -103,7 +103,7 @@ const imageJsonConverter = (title, videoUrl, showPlayIcon, image = '') => {
   })
     .then((response) => response.json())
     .then((data) => {
-      if (data.error) {
+      if (data.error || data.image == null) {
         return loadErrorImage();
       }
 
