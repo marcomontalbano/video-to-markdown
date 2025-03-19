@@ -8,7 +8,9 @@ body:
     id: describe
     attributes:
       label: Description
-      description: The description of the video provider you are suggesting. Url to the provider's website is a plus.
+      description: |
+        The description of the video provider you are suggesting. Url to the provider's website is a plus.
+        Any other information that you think is relevant.
     validations:
       required: true
   - type: textarea
