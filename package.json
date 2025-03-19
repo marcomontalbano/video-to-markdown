@@ -72,7 +72,7 @@
     "local:build": "env $(awk 'NF > 0 && !/^#/ { print $0 }' .env | xargs) pnpm build",
     "predev": "pnpm build-db",
     "prebuild:client": "pnpm build-db",
-    "prepare": "husky install",
+    "prepare": "husky",
     "test": "uvu -r tsm netlify .test.*s",
     "format": "pnpm biome format src scripts netlify --write",
     "lint": "pnpm biome check src scripts netlify",
