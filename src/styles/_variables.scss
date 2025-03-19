@@ -1,8 +1,10 @@
+@use "sass:color";
+
 // colors
 $background-color: #f5f5f5;
 
 $color-black: #000;
-$color-black-transparent: transparentize($color-black, 0.65);
+$color-black-transparent: color.scale($color-black, $alpha: -25%);
 
 $color-white: #fff;
 

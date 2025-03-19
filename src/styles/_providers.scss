@@ -1,16 +1,10 @@
+@use "variables";
+
 @use "sass:math";
+@use "sass:map";
 
 .providers {
   .provider {
-    @media screen and (min-width: (map-get($breakpoints, "small") + "px")) {
-      width: math.div(100%, 2);
-    }
-    @media screen and (min-width: (map-get($breakpoints, "large") + "px")) {
-      width: math.div(100%, 3);
-    }
-    @media screen and (min-width: (map-get($breakpoints, "xlarge") + "px")) {
-      width: math.div(100%, 4);
-    }
     cursor: default;
     display: block;
     .fa-check {
@@ -24,6 +18,18 @@
     }
     a:link {
       text-decoration: underline;
+    }
+
+    @media screen and (min-width: (map.get(variables.$breakpoints, "small") + "px")) {
+      width: math.div(100%, 2);
+    }
+
+    @media screen and (min-width: (map.get(variables.$breakpoints, "large") + "px")) {
+      width: math.div(100%, 3);
+    }
+
+    @media screen and (min-width: (map.get(variables.$breakpoints, "xlarge") + "px")) {
+      width: math.div(100%, 4);
     }
   }
 }

@@ -1,6 +1,6 @@
 export const load = () => {
-  document.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', function (e) {
+  for (const anchorElement of document.querySelectorAll('a')) {
+    anchorElement.addEventListener('click', (e) => {
       typeof ga !== 'undefined' &&
         ga('send', 'event', {
           eventCategory: 'Outbound Link',
@@ -8,5 +8,5 @@ export const load = () => {
           eventLabel: e.target.href,
         });
     });
-  });
+  }
 };

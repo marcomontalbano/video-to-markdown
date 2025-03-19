@@ -1,32 +1,33 @@
-import Prism from 'prismjs';
 import NProgress from 'nprogress';
+import Prism from 'prismjs';
 
+import { videoRegEx } from '../../netlify/functions/videoWrapper/videoRegEx';
 import { load as loadMarkdown } from './markdown';
-import VideoRegEx from '../../netlify/functions/classes/Providers/VideoRegEx';
 
-import imageNotFound from '../images/not-found.jpg';
-import imageLoading from '../images/loading.jpg';
+const imageLoading = new URL('../images/loading.jpg', import.meta.url);
+
+const imageNotFound = new URL('../images/not-found.jpg', import.meta.url);
 
 const updateMarkdown = loadMarkdown();
 
 const lambdaUrl = `${location.protocol}//${location.host}/.netlify/functions`;
 
 const videoIcons = {
-  asciinema: require('../images/providers/asciinema.png'),
-  'cleanshot-cloud': require('../images/providers/cleanshot-cloud.png'),
-  dailymotion: require('../images/providers/dailymotion.png'),
-  facebook: require('../images/providers/facebook.png'),
-  'google-drive': require('../images/providers/google-drive.png'),
-  imgur: require('../images/providers/imgur.png'),
-  loom: require('../images/providers/loom.png'),
-  onedrive: require('../images/providers/onedrive.png'),
-  peertube: require('../images/providers/peertube.png'),
-  streamable: require('../images/providers/streamable.png'),
-  tiktok: require('../images/providers/tiktok.png'),
-  video: require('../images/providers/video.png'),
-  vimeo: require('../images/providers/vimeo.png'),
-  wistia: require('../images/providers/wistia.png'),
-  youtube: require('../images/providers/youtube.png'),
+  asciinema: new URL('../images/providers/asciinema.png?as=webp', import.meta.url),
+  'cleanshot-cloud': new URL('../images/providers/cleanshot-cloud.png?as=webp', import.meta.url),
+  dailymotion: new URL('../images/providers/dailymotion.png?as=webp', import.meta.url),
+  facebook: new URL('../images/providers/facebook.png?as=webp', import.meta.url),
+  'google-drive': new URL('../images/providers/google-drive.png?as=webp', import.meta.url),
+  imgur: new URL('../images/providers/imgur.png?as=webp', import.meta.url),
+  loom: new URL('../images/providers/loom.png?as=webp', import.meta.url),
+  onedrive: new URL('../images/providers/onedrive.png?as=webp', import.meta.url),
+  peertube: new URL('../images/providers/peertube.png?as=webp', import.meta.url),
+  streamable: new URL('../images/providers/streamable.png?as=webp', import.meta.url),
+  tiktok: new URL('../images/providers/tiktok.png?as=webp', import.meta.url),
+  video: new URL('../images/providers/video.png?as=webp', import.meta.url),
+  vimeo: new URL('../images/providers/vimeo.png?as=webp', import.meta.url),
+  wistia: new URL('../images/providers/wistia.png?as=webp', import.meta.url),
+  youtube: new URL('../images/providers/youtube.png?as=webp', import.meta.url),
 };
 
 const domElements = {
@@ -99,7 +100,7 @@ const imageJsonConverter = (title, videoUrl, showPlayIcon, image = '') => {
       ['showPlayIcon', showPlayIcon],
     ]),
   })
-    .then((r) => r.json())
+    .then((response) => response.json())
     .then((data) => {
       if (data.error) {
         return loadErrorImage();
@@ -122,7 +123,7 @@ const videoConverter = (title, videoUrl, showPlayIcon) => {
   const canvas = document.createElement('canvas');
 
   const loadRandomFrame = () => {
-    if (!isNaN(video.duration)) {
+    if (!Number.isNaN(video.duration)) {
       const rand = Math.round(Math.random() * video.duration * 1000) + 1;
       video.currentTime = rand / 1000;
     }
@@ -157,7 +158,7 @@ export const load = () => {
   });
 
   let memoFormSubmit;
-  document.querySelector('form').addEventListener('submit', function (e) {
+  document.querySelector('form').addEventListener('submit', (e) => {
     e.preventDefault();
 
     NProgress.start();
@@ -180,10 +181,14 @@ export const load = () => {
 
     memoFormSubmit = newMemoFormSubmit;
 
-    if (VideoRegEx.check(domElements.url)) {
+    if (videoRegEx.every((rx) => rx.test(domElements.url))) {
       videoConverter(domElements.title, domElements.url, domElements.showPlayIcon);
     } else {
-      imageJsonConverter(domElements.title, domElements.url, domElements.showPlayIcon);
+      try {
+        imageJsonConverter(domElements.title, domElements.url, domElements.showPlayIcon);
+      } catch (e) {
+        loadErrorImage();
+      }
     }
   });
 };
