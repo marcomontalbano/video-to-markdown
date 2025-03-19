@@ -1,0 +1,22 @@
+name: New video provider 📺
+description: Suggest a video provider.
+labels:
+  - provider
+body:
+  - type: textarea
+    id: describe
+    attributes:
+      label: Name and description
+      description: The name and a description of the video provider you are suggesting. Url to the provider's website is a plus.
+    validations:
+      required: true
+  - type: textarea
+    id: links
+    attributes:
+      label: Links
+      description: Please provide one (or better yet, more) link as an example. The URL must be public. Without a valid link, we can't add the provider, and the request will be closed.
+      placeholder: |
+        - https://youtu.be/aqz-KE-bpKQ
+        - https://www.youtube.com/watch?v=aqz-KE-bpKQ
+    validations:
+      required: true
