@@ -34,33 +34,33 @@
     "netlify"
   ],
   "engines": {
-    "node": ">= 18.14.0"
+    "node": ">= 22.14.0"
   },
   "devDependencies": {
-    "@parcel/packager-raw-url": "^2.12.0",
-    "@parcel/transformer-sass": "^2.12.0",
-    "@parcel/transformer-webmanifest": "^2.12.0",
-    "dotenv": "^16.4.5",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
-    "netlify-cli": "^17.23.5",
-    "parcel": "^2.12.0",
-    "posthtml-expressions": "^1.11.3",
+    "@parcel/packager-raw-url": "^2.14.1",
+    "@parcel/transformer-sass": "^2.14.1",
+    "@parcel/transformer-webmanifest": "^2.14.1",
+    "dotenv": "^16.4.7",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.0",
+    "netlify-cli": "^19.0.2",
+    "parcel": "^2.14.1",
+    "posthtml-expressions": "^1.11.4",
     "posthtml-include": "^2.0.1",
-    "@biomejs/biome": "^1.8.1",
-    "sass": "^1.77.1",
-    "sinon": "^18.0.0",
+    "@biomejs/biome": "^1.9.4",
+    "sass": "^1.86.0",
+    "sinon": "^19.0.2",
     "tsm": "^2.3.0",
     "uvu": "^0.5.6"
   },
   "dependencies": {
-    "@types/node": "^20.12.12",
+    "@types/node": "^22.13.10",
     "clipboard": "^2.0.11",
-    "cloudinary": "^2.2.0",
+    "cloudinary": "^2.6.0",
     "hint.css": "^3.0.0",
-    "node-html-parser": "^6.1.13",
+    "node-html-parser": "^7.0.1",
     "nprogress": "^0.2.0",
-    "prismjs": "^1.29.0"
+    "prismjs": "^1.30.0"
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
