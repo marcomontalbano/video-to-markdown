@@ -1,7 +1,7 @@
 import VideoProvider from '../VideoProvider.js';
 import { videoRegEx } from '../videoRegEx.js';
 
-import crypto from 'node:crypto';
+import CryptoJS from 'crypto-js';
 
 export default class Video extends VideoProvider {
   get providerName() {
@@ -13,7 +13,7 @@ export default class Video extends VideoProvider {
   }
 
   getVideoId() {
-    return super.getVideoId() ? crypto.createHash('md5').update(this.url).digest('hex') : null;
+    return super.getVideoId() ? CryptoJS.MD5(this.url).toString(CryptoJS.enc.Hex) : null;
   }
 
   getThumbnail_asVideoUrl() {

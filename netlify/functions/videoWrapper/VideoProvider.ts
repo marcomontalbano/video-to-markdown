@@ -25,7 +25,7 @@ export default class VideoProvider {
       .filter((id) => id)[0];
 
     if (typeof id === 'string') {
-      return id.replaceAll('/', '--');
+      return id.replace(/\//g, '--');
     }
 
     return id ?? null;
@@ -35,7 +35,7 @@ export default class VideoProvider {
     return this.options.showPlayIcon;
   }
 
-  log(key, value) {
+  log(key: string, value: unknown) {
     console.log(`${this.providerName}: [${key}] ${value}`);
   }
 

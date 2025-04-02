@@ -1,5 +1,5 @@
-import crypto from 'node:crypto';
 import { v2 as cloudinary } from 'cloudinary';
+import CryptoJS from 'crypto-js';
 import type { Options } from '../types';
 import type VideoProvider from '../videoWrapper/VideoProvider';
 
@@ -49,7 +49,7 @@ async function create(source: string, video: VideoProvider, options?: Options) {
         gravity: 'center',
       }
     : {};
-  const hash = crypto.createHash('md5').update(JSON.stringify(options)).digest('hex');
+  const hash = CryptoJS.MD5(JSON.stringify(options)).toString(CryptoJS.enc.Hex);
   const cloudinaryOptions = {
     folder: 'video_to_markdown/images',
     public_id: `${video.providerName}--${video.getId()}-${hash}`,
