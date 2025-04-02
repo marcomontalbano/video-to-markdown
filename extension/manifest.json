@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Video to markdown!",
+  "version": "1.0",
+  "description": "How to embed a video in markdown? Here the answer.",
+  "homepage_url": "https://video-to-markdown.marcomontalbano.com",
+
+  "icons": {
+    "16": "images/icon-16-inactive.png",
+    "32": "images/icon-32-inactive.png",
+    "48": "images/icon-48-inactive.png",
+    "128": "images/icon-128-inactive.png"
+  },
+
+  "host_permissions": ["<all_urls>"],
+  "permissions": ["background", "tabs", "scripting", "storage"],
+
+  "background": {
+    "service_worker": "dist/background.global.js",
+    "scripts": ["dist/background.global.js"],
+    "persistent": true
+  },
+
+  "content_scripts": [
+    {
+      "js": ["dist/content.global.js"],
+      "world": "ISOLATED",
+      "run_at": "document_idle",
+      "matches": ["<all_urls>"]
+    }
+  ],
+
+  "action": {
+    "default_popup": "src/popup/popup.html"
+  }
+}

@@ -69,6 +69,7 @@
   },
   "scripts": {
     "preinstall": "npx only-allow pnpm",
+    "build:extension": "pnpm -C extension build",
     "build-db": "tsm ./scripts/build-db.ts",
     "start:client": "parcel serve --no-autoinstall src/index.html --dist-dir dist/client",
     "build:client": "parcel build --no-autoinstall src/index.html --dist-dir dist/client",

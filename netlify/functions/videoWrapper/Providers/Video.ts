@@ -19,6 +19,21 @@ export default class Video extends VideoProvider {
   getThumbnail_asVideoUrl() {
     return Promise.resolve(this.options.image ?? image404);
   }
+
+  // const time = 15;
+  // const scale = 1;
+  // const video = document.querySelector('video');
+
+  // if (!video) {
+  //   return Promise.resolve(image404);
+  // }
+
+  // const canvas = document.createElement('canvas');
+  // canvas.width = video.videoWidth * scale;
+  // canvas.height = video.videoHeight * scale;
+  // canvas.getContext('2d')?.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+  // return Promise.resolve(canvas.toDataURL());
 }
 
 const image404 =

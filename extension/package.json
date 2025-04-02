@@ -1,0 +1,28 @@
+{
+  "name": "browser-extension",
+  "private": true,
+  "description": "The official browser extension for Video to markdown!",
+  "main": "dist/index.js",
+  "files": [
+    "dist",
+    "images",
+    "manifest.json",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "build2": "tsup --entry.content src/content/index.ts --entry.background src/background/index.ts --entry.popup src/popup/index.ts --minify --format iife --out-dir dist"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Marco Montalbano",
+    "email": "me@marcomontalbano.com",
+    "url": "https://marcomontalbano.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "chrome-types": "^0.1.345",
+    "tsup": "^8.4.0",
+    "typescript": "^5.8.2"
+  }
+}
