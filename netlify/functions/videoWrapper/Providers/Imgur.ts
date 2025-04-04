@@ -9,12 +9,16 @@ export default class Imgur extends VideoProvider {
 
   get regex() {
     return [
-      // - //imgur.com/VT1vCoz
+      // - https://imgur.com/VT1vCoz
       /https?\:\/\/imgur\.com\/([0-9A-Za-z]+)/,
     ];
   }
 
-  getThumbnail_asVideoUrl() {
-    return Promise.resolve(`${this.url}.jpg`);
+  async getThumbnailUrl_legacy() {
+    return `${this.url}.jpg`;
+  }
+
+  async getThumbnailUrl() {
+    return `${this.url}.jpg`;
   }
 }

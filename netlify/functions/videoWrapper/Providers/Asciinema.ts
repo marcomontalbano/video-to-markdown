@@ -9,7 +9,7 @@ export default class Asciinema extends VideoProvider {
 
   get regex() {
     return [
-      // - //asciinema.org/a/335480
+      // - https://asciinema.org/a/335480
       /https?\:\/\/asciinema\.org\/a\/([0-9]+)/,
     ];
   }
@@ -18,7 +18,11 @@ export default class Asciinema extends VideoProvider {
     return false;
   }
 
-  getThumbnail_asVideoUrl() {
-    return Promise.resolve(`${this.url}.svg`);
+  async getThumbnailUrl_legacy() {
+    return `${this.url}.svg`;
+  }
+
+  async getThumbnailUrl() {
+    return `${this.url}.svg`;
   }
 }

@@ -12,11 +12,11 @@ export default class VideoProvider {
     return undefined;
   }
 
-  check() {
-    return !!this.getVideoId();
+  get valid() {
+    return this.id != null;
   }
 
-  getVideoId(): string | null {
+  get id(): string | null {
     const id = this.regex
       .map((rx) => {
         const [, id] = this.url.match(rx) || [];
@@ -39,37 +39,15 @@ export default class VideoProvider {
     console.log(`${this.providerName}: [${key}] ${value}`);
   }
 
-  getId() {
-    return this.getVideoId();
+  getThumbnailUrl_legacy(): Promise<string | null> {
+    return Promise.resolve(null);
   }
 
-  getThumbnail_asVideoUrl(): Promise<string | null> {
-    return new Promise(() => {});
-  }
-
-  getThumbnail_asUrl(): Promise<string | null> {
-    return this.getThumbnail_asVideoUrl().then((videoUrl) => {
-      if (videoUrl == null) {
-        return null;
-      }
-
-      if (!this.needsCloudinary()) {
-        return videoUrl;
-      }
-
-      return (
-        this.options.ImageService?.create(videoUrl, this, {
-          showPlayIcon: this.options.showPlayIcon,
-        }).then((response) => response.secure_url) ?? null
-      );
-    });
+  getThumbnailUrl(): Promise<string | null> {
+    return Promise.resolve(null);
   }
 
   constructor(url: string, options: Options = {}) {
-    // if (!this.check()) {
-    //   throw new Error(`Invalid url for ${this.providerName} provider.`);
-    // }
-
     this.url = url;
     this.options = options;
   }

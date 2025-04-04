@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json.schemastore.org/chrome-manifest",
+
   "manifest_version": 3,
   "name": "Video to markdown!",
   "version": "1.0",
@@ -13,7 +15,7 @@
   },
 
   "host_permissions": ["<all_urls>"],
-  "permissions": ["background", "tabs", "scripting", "storage"],
+  "permissions": ["background", "tabs", "scripting", "nativeMessaging"],
 
   "background": {
     "service_worker": "dist/background.global.js",

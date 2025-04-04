@@ -43,7 +43,7 @@
     "dotenv": "^16.4.7",
     "husky": "^9.1.7",
     "lint-staged": "^15.5.0",
-    "netlify-cli": "^19.0.2",
+    "netlify-cli": "^19.1.5",
     "parcel": "^2.14.1",
     "posthtml-expressions": "^1.11.4",
     "posthtml-include": "^2.0.1",

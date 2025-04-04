@@ -1,14 +1,10 @@
-import type { create } from './videoWrapper';
-import type VideoProvider from './videoWrapper/VideoProvider';
-
-export type ImageService = {
-  // search: (providerName: string, videoId: string) => Promise<unknown>;
-  create: (source: string, video: VideoProvider, options?: Options) => Promise<{ secure_url: string }>;
-  useHighQuality: () => boolean;
-};
-
 export type Options = {
+  /**
+   * Whether to show the play icon on the image.
+   */
   showPlayIcon?: boolean;
+  /**
+   * The base64 image to use as a thumbnail.
+   */
   image?: string;
-  ImageService?: ImageService;
 };

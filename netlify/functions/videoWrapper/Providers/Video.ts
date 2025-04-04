@@ -12,28 +12,30 @@ export default class Video extends VideoProvider {
     return videoRegEx;
   }
 
-  getVideoId() {
-    return super.getVideoId() ? CryptoJS.MD5(this.url).toString(CryptoJS.enc.Hex) : null;
+  get id() {
+    return super.id ? CryptoJS.MD5(this.url).toString(CryptoJS.enc.Hex) : null;
   }
 
-  getThumbnail_asVideoUrl() {
+  getThumbnailUrl_legacy() {
     return Promise.resolve(this.options.image ?? image404);
   }
 
-  // const time = 15;
-  // const scale = 1;
-  // const video = document.querySelector('video');
+  async getThumbnailUrl() {
+    const time = 15;
+    const scale = 1;
+    const video = document.querySelector('video');
 
-  // if (!video) {
-  //   return Promise.resolve(image404);
-  // }
+    if (!video) {
+      return image404;
+    }
 
-  // const canvas = document.createElement('canvas');
-  // canvas.width = video.videoWidth * scale;
-  // canvas.height = video.videoHeight * scale;
-  // canvas.getContext('2d')?.drawImage(video, 0, 0, canvas.width, canvas.height);
+    const canvas = document.createElement('canvas');
+    canvas.width = video.videoWidth * scale;
+    canvas.height = video.videoHeight * scale;
+    canvas.getContext('2d')?.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-  // return Promise.resolve(canvas.toDataURL());
+    return canvas.toDataURL();
+  }
 }
 
 const image404 =

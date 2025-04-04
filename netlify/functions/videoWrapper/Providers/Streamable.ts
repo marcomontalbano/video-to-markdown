@@ -9,7 +9,7 @@ export default class Streamable extends VideoProvider {
 
   get regex() {
     return [
-      // - //streamable.com/1nvj5i
+      // - https://streamable.com/1nvj5i
       /https?\:\/\/streamable\.com\/([a-z0-9]+)/,
     ];
   }
@@ -18,8 +18,16 @@ export default class Streamable extends VideoProvider {
     return true;
   }
 
-  getThumbnail_asVideoUrl() {
-    const endpoint = `https://api.streamable.com/oembed.json?url=${encodeURIComponent(`https://streamable.com/${this.getId()}`)}`;
+  getThumbnailUrl_legacy() {
+    const endpoint = `https://api.streamable.com/oembed.json?url=${encodeURIComponent(`https://streamable.com/${this.id}`)}`;
+
+    return fetch(endpoint)
+      .then((response) => response.json())
+      .then((json) => json.thumbnail_url);
+  }
+
+  async getThumbnailUrl() {
+    const endpoint = `https://api.streamable.com/oembed.json?url=${encodeURIComponent(`https://streamable.com/${this.id}`)}`;
 
     return fetch(endpoint)
       .then((response) => response.json())

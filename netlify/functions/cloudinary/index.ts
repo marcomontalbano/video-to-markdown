@@ -52,7 +52,7 @@ async function create(source: string, video: VideoProvider, options?: Options) {
   const hash = CryptoJS.MD5(JSON.stringify(options)).toString(CryptoJS.enc.Hex);
   const cloudinaryOptions = {
     folder: 'video_to_markdown/images',
-    public_id: `${video.providerName}--${video.getId()}-${hash}`,
+    public_id: `${video.providerName}--${video.id}-${hash}`,
     context: `url=${video.url}|provider=${video.providerName}`,
     secure: true,
     transformation: [...(useHighQuality() ? highQuality : lowQuality), { ...transformations }],

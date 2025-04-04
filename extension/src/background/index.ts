@@ -1,5 +1,26 @@
 function switchTab(tabId: number) {
-  chrome.tabs.sendMessage(tabId, { action: 'checkPage' });
+  chrome.tabs.sendMessage(tabId, { action: 'checkPage' }).then((response) => {
+    console.info('[background] response', response);
+
+    if (response == null) {
+      console.info('[popup] no response');
+      return;
+    }
+
+    const path = '../../images';
+    const sizes = ['16', '32', '48', '128'];
+    const iconSuffix = response.success === true ? '-active' : '-inactive';
+
+    chrome.action.setIcon({
+      path: sizes.reduce(
+        (acc, size) =>
+          Object.assign(acc, {
+            [size]: `${path}/icon-${size}${iconSuffix}.png`,
+          }),
+        {} as Record<string, string>,
+      ),
+    });
+  });
 }
 
 // When a page loads or is reloaded
@@ -24,24 +45,4 @@ chrome.tabs.onMoved.addListener((tabId, moveInfo) => {
 // When the user switches to another tab
 chrome.tabs.onActivated.addListener((activeInfo) => {
   switchTab(activeInfo.tabId);
-});
-
-chrome.runtime.onMessage.addListener((message) => {
-  const path = '../../images';
-  const sizes = ['16', '32', '48', '128'];
-  const iconSuffix = message.success === true ? '-active' : '-inactive';
-
-  chrome.action.setIcon({
-    path: sizes.reduce(
-      (acc, size) =>
-        Object.assign(acc, {
-          [size]: `${path}/icon-${size}${iconSuffix}.png`,
-        }),
-      {} as Record<string, string>,
-    ),
-  });
-
-  chrome.storage.session.set({ video: message.video });
-
-  return true;
 });

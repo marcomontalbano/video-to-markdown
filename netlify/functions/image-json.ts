@@ -1,10 +1,10 @@
-import type { Handler } from '@netlify/functions';
+import type { Handler, HandlerEvent } from '@netlify/functions';
 import cloudinary from './cloudinary/index.js';
 import { create } from './videoWrapper/index.js';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
-const throwException = (statusCode, message) => {
+const toError = (message: string, statusCode = 500) => {
   return {
     statusCode: statusCode,
     headers: {
@@ -17,16 +17,45 @@ const throwException = (statusCode, message) => {
   };
 };
 
-const getParam = (event, paramName) => {
+const toSuccess = (payload: Record<string, unknown>, statusCode = 200) => {
+  return {
+    statusCode: statusCode,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(payload),
+  };
+};
+
+const getParam = (event: HandlerEvent, paramName: string): string | undefined => {
+  if (event.body == null) {
+    return undefined;
+  }
+
+  if (event.httpMethod === 'GET') {
+    return event.queryStringParameters?.[paramName];
+  }
+
   const urlSearchParams = new URLSearchParams(event.body);
-  return event.httpMethod === 'GET' ? event.queryStringParameters[paramName] : urlSearchParams.get(paramName);
+  return urlSearchParams.get(paramName) ?? undefined;
+};
+
+export const handler2: Handler = async (event) => {
+  return toSuccess({
+    message: 'Hello from image-json.ts',
+    event,
+    queryStringParameters: event.queryStringParameters,
+    body: event.body,
+    httpMethod: event.httpMethod,
+    headers: event.headers,
+  });
 };
 
 export const handler: Handler = async (event) => {
   const url = getParam(event, 'url');
 
   if (url === undefined || url === null) {
-    return throwException(422, 'param URL is mandatory.');
+    return toError('param URL is mandatory.', 422);
   }
 
   let video: Awaited<ReturnType<typeof create>>;
@@ -35,33 +64,47 @@ export const handler: Handler = async (event) => {
     video = await create(url, {
       showPlayIcon: getParam(event, 'showPlayIcon') === 'true',
       image: getParam(event, 'image'),
-      ImageService: cloudinary,
     });
   } catch (error) {
-    return throwException(422, error.message);
+    return toError(error.message, 422);
+  }
+
+  if (video == null) {
+    return toError('Video not found.', 422);
   }
 
   video.log('httpMethod', event.httpMethod);
   video.log('url', url);
-  video.log('id', video.getId());
+  video.log('id', video.id);
   video.log('highQuality', cloudinary.useHighQuality() ? 'true' : 'false');
 
   return video
-    .getThumbnail_asUrl()
+    .getThumbnailUrl_legacy()
+    .then((videoUrl) => {
+      if (videoUrl == null) {
+        return null;
+      }
+
+      if (!video.needsCloudinary()) {
+        return videoUrl;
+      }
+
+      return (
+        cloudinary
+          .create(videoUrl, video, {
+            showPlayIcon: video.options.showPlayIcon,
+          })
+          .then((response) => response.secure_url) ?? null
+      );
+    })
     .then((imageUrl) => {
-      return {
-        statusCode: 200,
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          provider: video.providerName,
-          url: video.url,
-          image: imageUrl,
-        }),
-      };
+      return toSuccess({
+        provider: video.providerName,
+        url: video.url,
+        image: imageUrl,
+      });
     })
     .catch((error) => {
-      return throwException(422, isProduction ? undefined : error.message);
+      return toError(isProduction ? undefined : error.message, 422);
     });
 };

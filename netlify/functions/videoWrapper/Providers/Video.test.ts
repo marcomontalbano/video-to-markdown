@@ -30,7 +30,6 @@ test('node:crypto vs crypto-js', () => {
   const options: Options = {
     showPlayIcon: true,
     image: undefined,
-    ImageService: cloudinary,
   };
 
   equal(

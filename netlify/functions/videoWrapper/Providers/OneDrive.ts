@@ -9,15 +9,15 @@ export default class OneDrive extends VideoProvider {
 
   get regex() {
     return [
-      // - //1drv.ms/v/s!An21T-lhvYKSkFpqKTb4YeZpKfzC?e=iXCxja
+      // - https://1drv.ms/v/s!An21T-lhvYKSkFpqKTb4YeZpKfzC?e=iXCxja
       /https?\:\/\/1drv\.ms\/[\w]{1}\/s!([a-zA-Z0-9-]+)/,
 
-      // - //1drv.ms/v/c/1c827834532d42r1/ETAjK46wOQhKve5q-SzK5kMBvglqiXaAOVnbr7H2Phvve3?e=Qblvee
+      // - https://1drv.ms/v/c/1c827834532d42r1/ETAjK46wOQhKve5q-SzK5kMBvglqiXaAOVnbr7H2Phvve3?e=Qblvee
       /https?\:\/\/1drv\.ms\/[\w]{1}\/[\w]{1}\/([a-zA-Z0-9]+\/[a-zA-Z0-9-]+)/,
     ];
   }
 
-  getThumbnail_asVideoUrl() {
+  getThumbnailUrl_legacy() {
     return fetch(this.url)
       .then(async (response) => ({
         url: response.url,
@@ -137,6 +137,6 @@ export default class OneDrive extends VideoProvider {
   }
 }
 
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+function capitalizeFirstLetter(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }

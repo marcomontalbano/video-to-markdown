@@ -10,7 +10,7 @@ export default class CleanShotCloud extends VideoProvider {
 
   get regex() {
     return [
-      // - //cln.sh/YRePNX
+      // - https://cln.sh/sllTrgqg
       /https?\:\/\/cln\.sh\/([a-zA-Z0-9]+)/,
     ];
   }
@@ -19,7 +19,7 @@ export default class CleanShotCloud extends VideoProvider {
     return false;
   }
 
-  getThumbnail_asVideoUrl() {
+  getThumbnailUrl_legacy() {
     return fetch(this.url)
       .then((response) => response.text())
       .then((html) => {
@@ -33,5 +33,15 @@ export default class CleanShotCloud extends VideoProvider {
         return image?.replace(/\/draw\(image\(.*\),position:center\)/, '').replace(/&?play=1/, '');
       })
       .then((image) => image ?? null);
+  }
+
+  async getThumbnailUrl() {
+    const image = document.querySelector('[property="og:image"]')?.getAttribute('content');
+
+    if (this.options.showPlayIcon) {
+      return image ?? null;
+    }
+
+    return image?.replace(/\/draw\(image\(.*\),position:center\)/, '').replace(/&?play=1/, '') ?? null;
   }
 }

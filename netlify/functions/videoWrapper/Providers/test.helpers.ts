@@ -11,10 +11,10 @@ export function createTest(
     const video = new Video(url);
 
     // static methods
-    equal(video.check(), expectations.isValid, 'Expected "check()" to be deeply equal:');
+    equal(video.valid, expectations.isValid, 'Expected "check()" to be deeply equal:');
 
     // instance methods
-    equal(video.getId(), expectations.id, 'Expected "id" to be deeply equal:');
+    equal(video.id, expectations.id, 'Expected "id" to be deeply equal:');
     equal(video.providerName, expectations.providerName, 'Expected "providerName" to be deeply equal:');
     equal(video.url, url, 'Expected "url" to be deeply equal:');
   });

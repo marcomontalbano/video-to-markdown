@@ -3,9 +3,9 @@ import { test } from 'uvu';
 import CleanShotCloud from './CleanShotCloud.js';
 import { createTest } from './test.helpers.js';
 
-createTest(CleanShotCloud, 'https://cln.sh/YRePNX', {
+createTest(CleanShotCloud, 'https://cln.sh/sllTrgqg', {
   isValid: true,
-  id: 'YRePNX',
+  id: 'sllTrgqg',
   providerName: 'cleanshot-cloud',
 });
 
