@@ -9,4 +9,16 @@ createTest(Asciinema, 'https://asciinema.org/a/335480', {
   providerName: 'asciinema',
 });
 
+createTest(Asciinema, 'https://asciinema.org/a/335480/', {
+  id: '335480',
+  isValid: true,
+  providerName: 'asciinema',
+});
+
+createTest(Asciinema, 'https://asciinema.org/a/569727/iframe?', {
+  id: '569727',
+  isValid: true,
+  providerName: 'asciinema',
+});
+
 test.run();
