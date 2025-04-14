@@ -80,8 +80,8 @@
     "prebuild:client": "pnpm build-db",
     "prepare": "husky",
     "test": "uvu -r tsm netlify .test.*s",
-    "format": "pnpm biome format src scripts netlify --write",
-    "lint": "pnpm biome check src scripts netlify",
+    "format": "pnpm biome format src scripts netlify extension --write",
+    "lint": "pnpm biome check src scripts netlify extension",
     "dep:major": "pnpm dlx npm-check-updates --packageFile '**/package.json' -u",
     "dep:minor": "pnpm dep:major -t minor",
     "ls-engines": "pnpm dlx ls-engines"

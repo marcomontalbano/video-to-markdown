@@ -93,7 +93,7 @@ const loadErrorImage = () => {
 };
 
 const imageJsonConverter = (title, videoUrl, showPlayIcon, image = '') => {
-  fetch(`${lambdaUrl}/image-json`, {
+  fetch(`${lambdaUrl}/image-json-legacy`, {
     method: 'POST',
     body: new URLSearchParams([
       ['image', image],

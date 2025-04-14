@@ -1,4 +1,4 @@
-import type { Event } from '../types';
+import type { Event } from '../types.js';
 
 /**
  * Background script for the extension.
@@ -28,6 +28,9 @@ function switchTab(tabId: number) {
           {} as Record<string, string>,
         ),
       });
+    })
+    .catch((error) => {
+      void error;
     });
 }
 

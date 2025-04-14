@@ -1,4 +1,4 @@
-import type { Event } from '../types';
+import type { Event } from '../types.js';
 
 const imgElement = document.querySelector('img');
 const showPlayIconElement = document.querySelector('#showPlayIcon') as HTMLInputElement;
