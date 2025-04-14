@@ -40,18 +40,76 @@ const getParam = (event: HandlerEvent, paramName: string): string | undefined =>
   return urlSearchParams.get(paramName) ?? undefined;
 };
 
-export const handler2: Handler = async (event) => {
-  return toSuccess({
-    message: 'Hello from image-json.ts',
-    event,
-    queryStringParameters: event.queryStringParameters,
-    body: event.body,
-    httpMethod: event.httpMethod,
-    headers: event.headers,
-  });
+export const handler: Handler = async (event) => {
+  const thumbnailUrl = getParam(event, 'thumbnailUrl');
+  const thumbnailBase64 = getParam(event, 'thumbnailBase64');
+  const id = getParam(event, 'id');
+  const providerName = getParam(event, 'providerName');
+  const url = getParam(event, 'url');
+  const showPlayIcon = getParam(event, 'showPlayIcon');
+
+  if (thumbnailUrl == null || thumbnailBase64 == null || id == null || providerName == null || url == null) {
+    return toError('Missing params.', 422);
+  }
+
+  let video: Awaited<ReturnType<typeof create>>;
+
+  try {
+    video = await create(url, {
+      showPlayIcon: getParam(event, 'showPlayIcon') === 'true',
+      image: getParam(event, 'image'),
+    });
+  } catch (error) {
+    return toError(error.message, 422);
+  }
+
+  if (video == null) {
+    return toError('Video not found.', 422);
+  }
+
+  if (!video.needsCloudinary()) {
+    return toSuccess({
+      providerName,
+      url,
+      generatedThumbnailUrl: thumbnailUrl,
+    });
+  }
+
+  const generatedThumbnailUrl = await cloudinary
+    .create(
+      thumbnailBase64,
+      { id, providerName, url },
+      {
+        showPlayIcon: showPlayIcon === 'true',
+      },
+    )
+    .then((response) => response.secure_url)
+    .catch((error) => {
+      return toError(isProduction ? undefined : error.message, 422);
+    });
+
+  if (typeof generatedThumbnailUrl === 'string') {
+    return toSuccess({
+      providerName,
+      url,
+      generatedThumbnailUrl,
+    });
+  }
+
+  return generatedThumbnailUrl;
+
+  // return toSuccess({
+  //   message: 'Hello from image-json.ts',
+  //   event,
+  //   queryStringParameters: event.queryStringParameters,
+  //   body: event.body,
+  //   httpMethod: event.httpMethod,
+  //   headers: event.headers,
+  //   generatedThumbnailUrl: thumbnailUrl,
+  // });
 };
 
-export const handler: Handler = async (event) => {
+export const handler2: Handler = async (event) => {
   const url = getParam(event, 'url');
 
   if (url === undefined || url === null) {

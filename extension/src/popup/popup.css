@@ -4,7 +4,106 @@ body {
   padding: 0;
 }
 
-img {
-  width: 100%;
-  height: auto;
+.image-container {
+  display: flex;
+
+  img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    border-bottom: 1px solid #c1c1c1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+form {
+  margin: 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  label {
+    display: inline-block;
+    font-size: 14px;
+    margin-bottom: 0.5rem;
+    color: #333;
+  }
+
+  label:has(input[type="checkbox"]) {
+    margin-bottom: 0rem;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #c1c1c1;
+    font-size: 16px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    color: #333;
+    transition: background-color 0.3s ease;
+  }
+
+  input[type="checkbox"] {
+    appearance: none;
+    width: 1.2em;
+    height: 1.2em;
+    border: 1px solid #c1c1c1;
+    border-radius: 0.25em;
+    margin-right: 0.5em;
+    vertical-align: middle;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:checked {
+      background-color: #333;
+      border-color: #333;
+      background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+    }
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(51, 51, 51, 0.25);
+    }
+  }
+}
+
+body.loading {
+  .image-container {
+    position: relative;
+    display: flex;
+
+    .background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      z-index: 1;
+    }
+
+    .spinner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      border: 5px solid #c1c1c1;
+      border-top-color: #333;
+      animation: spin 1s linear infinite;
+      z-index: 2;
+    }
+  }
 }

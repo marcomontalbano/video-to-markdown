@@ -1,26 +1,34 @@
+import type { Event } from '../types';
+
+/**
+ * Background script for the extension.
+ * This script runs in the background and listens for events from the browser.
+ * It handles tab updates, tab creation, and tab activation events.
+ * It sends messages to the content script to check the page and update the icon accordingly.
+ */
+
 function switchTab(tabId: number) {
-  chrome.tabs.sendMessage(tabId, { action: 'checkPage' }).then((response) => {
-    console.info('[background] response', response);
+  chrome.tabs
+    .sendMessage<Event['checkPage']['message'], Event['checkPage']['response']>(tabId, { action: 'checkPage' })
+    .then((response) => {
+      if (response == null) {
+        return;
+      }
 
-    if (response == null) {
-      console.info('[popup] no response');
-      return;
-    }
+      const path = '../../images';
+      const sizes = ['16', '32', '48', '128'];
+      const iconSuffix = response.success === true ? '-active' : '-inactive';
 
-    const path = '../../images';
-    const sizes = ['16', '32', '48', '128'];
-    const iconSuffix = response.success === true ? '-active' : '-inactive';
-
-    chrome.action.setIcon({
-      path: sizes.reduce(
-        (acc, size) =>
-          Object.assign(acc, {
-            [size]: `${path}/icon-${size}${iconSuffix}.png`,
-          }),
-        {} as Record<string, string>,
-      ),
+      chrome.action.setIcon({
+        path: sizes.reduce(
+          (acc, size) =>
+            Object.assign(acc, {
+              [size]: `${path}/icon-${size}${iconSuffix}.png`,
+            }),
+          {} as Record<string, string>,
+        ),
+      });
     });
-  });
 }
 
 // When a page loads or is reloaded

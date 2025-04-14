@@ -24,7 +24,7 @@ const QUALITY = {
   UHD4K: 2160,
 };
 
-async function create(source: string, video: VideoProvider, options?: Options) {
+async function create(source: string, video: Pick<VideoProvider, 'providerName' | 'id' | 'url'>, options?: Options) {
   const highQualitySize = QUALITY.HD;
   const lowQualitySize = QUALITY.SD;
 

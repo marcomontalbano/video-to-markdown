@@ -5,13 +5,26 @@
   <head>
     <title>Popup</title>
     <link rel="stylesheet" type="text/css" href="popup.css">
-    <script src="../../dist/popup.global.js" type="module"></script>
   </head>
-  <body>
-    <div class="container">
-      <img />
-      <h3>Info del Sito</h3>
-      <p id="info">Caricamento...</p>
+  <body class="loading">
+    <div>
+      <div class="image-container">
+        <img alt="Video thumbnail"
+          src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=" />
+        <div class="background"></div>
+        <div class="spinner"></div>
+      </div>
+      <form>
+        <div>
+          <label for="title">Title</label>
+          <input type="text" id="title" name="title" />
+        </div>
+  
+        <div>
+          <label>Show play icon <input type="checkbox" id="showPlayIcon" /></label>
+        </div>
+      </form>
     </div>
+      <script src="../../dist/popup.global.js" type="module"></script>
   </body>
 </html>

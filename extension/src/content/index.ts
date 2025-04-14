@@ -1,41 +1,49 @@
 import { create } from '../../../netlify/functions/videoWrapper/index.js';
+import type { Event } from '../types.js';
 
 // @ts-expect-error TODO: there're no envs in the content script
 globalThis.process ??= { env: {} };
 
-chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
-  if (message.action === 'checkPage') {
-    console.info('[content] checkPage', message);
-
-    const url = location.href;
-    const showPlayIcon = false;
-
-    const video = create(url, {
-      showPlayIcon,
-    });
-
-    console.info('[content] video', video);
-
-    if (video == null) {
-      sendResponse({ success: false });
-      return;
+const eventCallback: (
+  message: Event['checkPage']['message'] | Event['extractPage']['message'],
+  sender: chrome.runtime.MessageSender,
+  sendResponse: (message: Event['checkPage']['response'] | Event['extractPage']['response']) => void,
+) => void = (message, _sender, sendResponse) => {
+  void (async () => {
+    if (message.action === 'checkPage') {
+      const message = await checkUrl(location.href);
+      sendResponse(message);
     }
 
-    void video.getThumbnailUrl().then((thumbnailUrl) => {
-      const message = {
-        success: true,
+    if (message.action === 'extractPage') {
+      const responseMessage = await checkUrl(location.href, message.showPlayIcon);
+
+      if (responseMessage == null || responseMessage.success === false) {
+        sendResponse({
+          success: false,
+        });
+
+        return;
+      }
+
+      const BASE_URL = 'http://localhost:8888';
+      const lambdaUrl = `${BASE_URL}/.netlify/functions`;
+      const response = await fetch(`${lambdaUrl}/image-json`, {
+        method: 'POST',
+        body: toURLSearchParams(responseMessage.video),
+      }).then((response) => response.json());
+
+      sendResponse({
+        ...responseMessage,
         video: {
-          id: video.id,
-          thumbnailUrl,
-          providerName: video.providerName,
-          url: video.url,
+          ...responseMessage.video,
+          ...response,
         },
-      };
+      });
+    }
+  })();
 
-      console.info('[content] sendResponse', message);
-      sendResponse(message);
-    });
-
+  if (message.action === 'extractPage' || message.action === 'checkPage') {
     /**
      * Function to call (at most once) when you have a response.
      * The argument should be any JSON-ifiable object.
@@ -48,4 +56,56 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   }
 
   return undefined;
-});
+};
+
+chrome.runtime.onMessage.addListener(eventCallback);
+
+async function checkUrl(url: string, showPlayIcon = false): Promise<Event['checkPage']['response']> {
+  const video = create(url, {
+    showPlayIcon,
+  });
+
+  if (video == null) {
+    return {
+      success: false,
+    };
+  }
+
+  const thumbnailUrl = await video.getThumbnailUrl();
+
+  const thumbnailBase64 = await video.getThumbnailBase64();
+
+  if (thumbnailBase64 == null || video.id == null) {
+    return {
+      success: false,
+    };
+  }
+
+  return {
+    success: true,
+    video: {
+      id: video.id,
+      thumbnailUrl,
+      thumbnailBase64,
+      providerName: video.providerName,
+      url: video.url,
+      showPlayIcon,
+    },
+  };
+}
+
+/**
+ * Convert a record of params to URLSearchParams
+ * @param params - params to convert
+ */
+function toURLSearchParams(params: Record<string, string | number | boolean | null | undefined>): URLSearchParams {
+  const searchParams = new URLSearchParams();
+
+  for (const [key, value] of Object.entries(params)) {
+    if (value != null) {
+      searchParams.append(key, value.toString());
+    }
+  }
+
+  return searchParams;
+}

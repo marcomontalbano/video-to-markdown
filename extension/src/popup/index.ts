@@ -1,27 +1,41 @@
-document.addEventListener('DOMContentLoaded', () => {
+import type { Event } from '../types';
+
+const imgElement = document.querySelector('img');
+const showPlayIconElement = document.querySelector('#showPlayIcon') as HTMLInputElement;
+
+imgElement?.addEventListener('error', () => {
+  imgElement.src = 'not-found.jpg';
+});
+
+showPlayIconElement.addEventListener('change', () => {
+  sendMessage();
+});
+
+sendMessage();
+
+function sendMessage() {
+  document.body.classList.add('loading');
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const tab = tabs[0];
 
-    console.log('[popup] tab', tab);
-
     if (tab.status === 'complete' && tab.id != null) {
-      console.log('[popup] sendMessage');
-
-      chrome.tabs.sendMessage(tab.id, { action: 'checkPage' }).then((response) => {
-        console.log('[popup] response', response);
-
-        if (response == null) {
+      chrome.tabs
+        .sendMessage<Event['extractPage']['message'], Event['extractPage']['response']>(tab.id, {
+          action: 'extractPage',
+          showPlayIcon: showPlayIconElement.checked,
+        })
+        .then((response) => {
+          if (response?.success === true) {
+            if (imgElement != null) {
+              imgElement.src = response.video.generatedThumbnailUrl;
+              document.body.classList.remove('loading');
+            }
+          }
           return;
-        }
-
-        const imgElement = document.querySelector('img');
-        if (imgElement != null) {
-          imgElement.src = response.video.thumbnailUrl;
-        }
-      });
+        });
     }
   });
-});
+}
 
 // import { create } from '../../../netlify/functions/videoWrapper/index.js';
 // chrome.tabs.query({ active: true, currentWindow: true }, async (tabs) => {

@@ -47,6 +47,26 @@ export default class VideoProvider {
     return Promise.resolve(null);
   }
 
+  async getThumbnailBase64(): Promise<string | null> {
+    const url = await this.getThumbnailUrl();
+
+    if (url == null) {
+      return null;
+    }
+
+    return fetch(url)
+      .then((response) => response.blob())
+      .then(
+        (blob) =>
+          new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onloadend = () => resolve(reader.result?.toString() ?? null);
+            reader.onerror = reject;
+            reader.readAsDataURL(blob);
+          }),
+      );
+  }
+
   constructor(url: string, options: Options = {}) {
     this.url = url;
     this.options = options;

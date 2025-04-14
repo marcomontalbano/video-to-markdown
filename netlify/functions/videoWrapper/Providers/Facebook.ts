@@ -29,7 +29,7 @@ export default class Facebook extends VideoProvider {
         `https://graph.facebook.com/${this.id}?access_token=${FACEBOOK_ACCESS_TOKEN}&fields=title,description,updated_time,id,thumbnails`,
       )
         .then((response) => response.json())
-        .then((json) => json.thumbnails.data.filter((t) => t.is_preferred)[0].uri);
+        .then((json) => json.thumbnails.data.filter((t: { is_preferred: boolean }) => t.is_preferred)[0].uri);
     }
 
     return new Promise((resolve) => resolve(`https://graph.facebook.com/${this.id}/picture`));
