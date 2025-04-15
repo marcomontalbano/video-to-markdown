@@ -16,6 +16,12 @@
   to = "https://video-to-markdown.marcomontalbano.com/:splat"
   force = true
 
+[[redirects]]
+  from = "/api/image-json" # simplify all calls to serverless functions
+  to = "/.netlify/functions/image-json" # all function calls will go to this path
+  status = 200 # ok code
+  headers = { Access-Control-Allow-Origin = "*" }
+
 [dev]
   command = "pnpm start:client"
 

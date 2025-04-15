@@ -31,9 +31,9 @@ const eventCallback: (
         return;
       }
 
+      // const BASE_URL = 'https://video-to-markdown.marcomontalbano.com';
       const BASE_URL = 'http://localhost:8888';
-      const lambdaUrl = `${BASE_URL}/.netlify/functions`;
-      const response = await fetch(`${lambdaUrl}/image-json`, {
+      const response = await fetch(`${BASE_URL}/api/image-json`, {
         method: 'POST',
         body: toURLSearchParams(responseMessage.video),
       }).then((response) => response.json());

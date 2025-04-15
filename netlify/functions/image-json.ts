@@ -41,6 +41,18 @@ const getParam = (event: HandlerEvent, paramName: string): string | undefined =>
 };
 
 export const handler: Handler = async (event) => {
+  if (event.httpMethod === 'OPTIONS') {
+    return {
+      statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Methods': '*',
+      },
+      body: '',
+    };
+  }
+
   const thumbnailUrl = getParam(event, 'thumbnailUrl');
   const thumbnailBase64 = getParam(event, 'thumbnailBase64');
   const id = getParam(event, 'id');
@@ -97,72 +109,4 @@ export const handler: Handler = async (event) => {
   }
 
   return generatedThumbnailUrl;
-
-  // return toSuccess({
-  //   message: 'Hello from image-json.ts',
-  //   event,
-  //   queryStringParameters: event.queryStringParameters,
-  //   body: event.body,
-  //   httpMethod: event.httpMethod,
-  //   headers: event.headers,
-  //   generatedThumbnailUrl: thumbnailUrl,
-  // });
-};
-
-export const handler2: Handler = async (event) => {
-  const url = getParam(event, 'url');
-
-  if (url === undefined || url === null) {
-    return toError('param URL is mandatory.', 422);
-  }
-
-  let video: Awaited<ReturnType<typeof create>>;
-
-  try {
-    video = await create(url, {
-      showPlayIcon: getParam(event, 'showPlayIcon') === 'true',
-      image: getParam(event, 'image'),
-    });
-  } catch (error) {
-    return toError(error.message, 422);
-  }
-
-  if (video == null) {
-    return toError('Video not found.', 422);
-  }
-
-  video.log('httpMethod', event.httpMethod);
-  video.log('url', url);
-  video.log('id', video.id);
-  video.log('highQuality', cloudinary.useHighQuality() ? 'true' : 'false');
-
-  return video
-    .getThumbnailUrl_legacy()
-    .then((videoUrl) => {
-      if (videoUrl == null) {
-        return null;
-      }
-
-      if (!video.needsCloudinary()) {
-        return videoUrl;
-      }
-
-      return (
-        cloudinary
-          .create(videoUrl, video, {
-            showPlayIcon: video.options.showPlayIcon,
-          })
-          .then((response) => response.secure_url) ?? null
-      );
-    })
-    .then((imageUrl) => {
-      return toSuccess({
-        provider: video.providerName,
-        url: video.url,
-        image: imageUrl,
-      });
-    })
-    .catch((error) => {
-      return toError(isProduction ? undefined : error.message, 422);
-    });
 };
