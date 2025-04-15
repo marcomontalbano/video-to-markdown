@@ -14,8 +14,7 @@
     "128": "images/icon-128-inactive.png"
   },
 
-  "host_permissions": ["<all_urls>"],
-  "permissions": ["background", "tabs", "scripting", "nativeMessaging"],
+  "permissions": [],
 
   "background": {
     "service_worker": "dist/background.global.js",
@@ -28,7 +27,7 @@
       "js": ["dist/content.global.js"],
       "world": "ISOLATED",
       "run_at": "document_idle",
-      "matches": ["<all_urls>"]
+      "matches": ["https://*/*"]
     }
   ],
 
