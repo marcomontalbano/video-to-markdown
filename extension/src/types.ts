@@ -8,6 +8,7 @@ export type Event = {
           success: true;
           video: {
             id: string;
+            title: string;
             thumbnailUrl: string;
             thumbnailBase64: string;
             providerName: string;

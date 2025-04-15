@@ -51,4 +51,10 @@ createTest(Wistia, 'https://wistia.com/series/one-ten-one-hundred?wchannelid=z2v
   providerName: 'wistia',
 });
 
+createTest(Wistia, 'https://fast.wistia.net/embed/iframe/fmc4zgisqx', {
+  isValid: true,
+  id: 'fmc4zgisqx',
+  providerName: 'wistia',
+});
+
 test.run();

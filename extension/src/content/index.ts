@@ -85,6 +85,7 @@ async function checkUrl(url: string, showPlayIcon = false): Promise<Event['check
     success: true,
     video: {
       id: video.id,
+      title: document.title,
       thumbnailUrl,
       thumbnailBase64,
       providerName: video.providerName,
