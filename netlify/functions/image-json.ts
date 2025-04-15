@@ -9,6 +9,9 @@ const toError = (message: string, statusCode = 500) => {
     statusCode: statusCode,
     headers: {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': '*',
     },
     body: JSON.stringify({
       error: true,
@@ -22,6 +25,9 @@ const toSuccess = (payload: Record<string, unknown>, statusCode = 200) => {
     statusCode: statusCode,
     headers: {
       'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Methods': '*',
     },
     body: JSON.stringify(payload),
   };
@@ -49,7 +55,6 @@ export const handler: Handler = async (event) => {
         'Access-Control-Allow-Headers': '*',
         'Access-Control-Allow-Methods': '*',
       },
-      body: '',
     };
   }
 

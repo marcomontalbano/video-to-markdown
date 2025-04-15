@@ -31,8 +31,8 @@ const eventCallback: (
         return;
       }
 
-      // const BASE_URL = 'https://video-to-markdown.marcomontalbano.com';
-      const BASE_URL = 'http://localhost:8888';
+      const BASE_URL = 'https://video-to-markdown.marcomontalbano.com';
+      // const BASE_URL = 'http://localhost:8888';
       const response = await fetch(`${BASE_URL}/api/image-json`, {
         method: 'POST',
         body: toURLSearchParams(responseMessage.video),
