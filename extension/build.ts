@@ -1,4 +1,5 @@
-import { cpSync, writeFileSync } from 'node:fs';
+import { exec } from 'node:child_process';
+import { cpSync, rmSync, writeFileSync } from 'node:fs';
 import { build } from 'tsup';
 import manifest from './manifest.json' with { type: 'json' };
 
@@ -18,6 +19,10 @@ import manifest from './manifest.json' with { type: 'json' };
     clean: true,
   }).catch(() => process.exit(1));
 
+  /** Clean-up dist folders */
+  rmSync('dist-chrome', { recursive: true, force: true });
+  rmSync('dist-firefox', { recursive: true, force: true });
+
   /** Clone the extension to different directories */
   cloneExtension('dist-chrome');
   cloneExtension('dist-firefox');
@@ -25,6 +30,19 @@ import manifest from './manifest.json' with { type: 'json' };
   /** Write the manifest file */
   fixChromeManifest();
   fixFirefoxManifest();
+
+  /** Zip */
+  exec('zip -r dist-chrome.zip dist-chrome && zip -r dist-firefox.zip dist-firefox', (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error.message}`);
+      return;
+    }
+    if (stderr) {
+      console.error(`stderr: ${stderr}`);
+      return;
+    }
+    // console.info(`stdout: ${stdout}`);
+  });
 })();
 
 function fixChromeManifest() {

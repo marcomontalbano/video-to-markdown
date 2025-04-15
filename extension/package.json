@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "files": ["dist", "images", "manifest.json", "README.md"],
   "scripts": {
-    "build": "pnpx tsx build.ts && zip -r dist-chrome.zip dist-chrome && zip -r dist-firefox.zip dist-firefox",
+    "build": "pnpx tsx build.ts",
     "build2": "tsup"
   },
   "keywords": [],
