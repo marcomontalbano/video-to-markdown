@@ -21,6 +21,11 @@ const eventCallback: (
       if (responseMessage == null || responseMessage.success === false) {
         sendResponse({
           success: false,
+          video: {
+            title: document.title,
+            url: location.href,
+            showPlayIcon: message.showPlayIcon,
+          },
         });
 
         return;
@@ -68,6 +73,11 @@ async function checkUrl(url: string, showPlayIcon = false): Promise<Event['check
   if (video == null) {
     return {
       success: false,
+      video: {
+        title: document.title,
+        url,
+        showPlayIcon,
+      },
     };
   }
 
@@ -78,6 +88,11 @@ async function checkUrl(url: string, showPlayIcon = false): Promise<Event['check
   if (thumbnailBase64 == null || video.id == null) {
     return {
       success: false,
+      video: {
+        title: document.title,
+        url,
+        showPlayIcon,
+      },
     };
   }
 

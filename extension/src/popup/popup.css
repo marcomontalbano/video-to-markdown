@@ -5,6 +5,10 @@ body {
   font-family: Verdana, Geneva, Tahoma, system-ui, sans-serif;
 }
 
+.hidden {
+  display: none !important;
+}
+
 .image-container {
   display: flex;
 
@@ -15,6 +19,15 @@ body {
     aspect-ratio: 16 / 9;
     border-bottom: 1px solid #c1c1c1;
   }
+}
+
+.video-not-found-disclaimer {
+  margin: 1rem 1rem;
+  line-height: 1.2rem;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  background-color: #fff3e0;
+  border: 1px solid #ffb74d;
 }
 
 @keyframes spin {

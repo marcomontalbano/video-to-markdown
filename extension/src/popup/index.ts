@@ -5,6 +5,9 @@ const showPlayIconElement = document.querySelector('#showPlayIcon') as HTMLInput
 const titleElement = document.querySelector('#title') as HTMLInputElement;
 const markdownElement = document.querySelector('#markdown') as HTMLDivElement;
 const copyElement = document.querySelector('#copy') as HTMLDivElement;
+const codeContainerElement = document.querySelector('.code-container') as HTMLDivElement;
+const formElement = document.querySelector('form') as HTMLFormElement;
+const videoNotFoundDisclaimerElement = document.querySelector('.video-not-found-disclaimer') as HTMLDivElement;
 
 let latestResponse: Event['extractPage']['response'] | null = null;
 
@@ -58,6 +61,18 @@ function sendMessage() {
           if (response?.success === true) {
             titleElement.value = response.video.title ?? '';
             imgElement.src = response.video.generatedThumbnailUrl;
+          } else {
+            titleElement.value = '';
+            imgElement.src = 'not-found.jpg';
+            videoNotFoundDisclaimerElement.classList.remove('hidden');
+            formElement.classList.add('hidden');
+            codeContainerElement.classList.add('hidden');
+
+            const url = new URL(response?.video.url ?? '');
+
+            // biome-ignore lint/style/noNonNullAssertion: `a` tag is always present
+            videoNotFoundDisclaimerElement.querySelector('a')!.href =
+              `https://github.com/marcomontalbano/video-to-markdown/issues/new?template=new_video_provider.yml&title=Add video from ${url.hostname}&links=-%20${encodeURIComponent(response?.video.url ?? '')}`;
           }
           return;
         });

@@ -16,7 +16,7 @@ export type Event = {
             showPlayIcon: boolean;
           };
         }
-      | { success: false };
+      | { success: false; video: { title: string; url: string; showPlayIcon: boolean } };
   };
   extractPage: {
     message: {
