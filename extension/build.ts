@@ -18,6 +18,9 @@ import manifest from './manifest.json' with { type: 'json' };
     minify: false, // Disattiva la minificazione
     splitting: false,
     clean: true,
+    env: {
+      BASE_URL: process.env.BASE_URL ?? 'https://video-to-markdown.marcomontalbano.com',
+    },
   }).catch(() => process.exit(1));
 
   /** Clean-up dist folders */
