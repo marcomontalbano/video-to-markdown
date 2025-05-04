@@ -1,6 +1,7 @@
 import { exec } from 'node:child_process';
 import { cpSync, rmSync, writeFileSync } from 'node:fs';
 import { build } from 'tsup';
+import packageJson from '../package.json' with { type: 'json' };
 import manifest from './manifest.json' with { type: 'json' };
 
 (async () => {
@@ -48,6 +49,8 @@ import manifest from './manifest.json' with { type: 'json' };
 function fixChromeManifest() {
   const chromeManifest = structuredClone(manifest);
 
+  chromeManifest.version = packageJson.version;
+
   // @ts-expect-error I want to remove the property
   // biome-ignore lint/performance/noDelete: <explanation>
   delete chromeManifest.background.scripts;
@@ -61,6 +64,8 @@ function fixChromeManifest() {
 
 function fixFirefoxManifest() {
   const firefoxManifest = structuredClone(manifest);
+
+  firefoxManifest.version = packageJson.version;
 
   // @ts-expect-error I want to remove the property
   // biome-ignore lint/performance/noDelete: <explanation>
