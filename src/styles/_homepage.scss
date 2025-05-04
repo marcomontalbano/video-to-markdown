@@ -116,8 +116,10 @@ form {
 }
 
 .donations {
-  background: #f6f3f4;
-  border-bottom: 1px solid #EF9A9A;
+  &.container {
+    background: #f6f3f4;
+    border-bottom: 1px solid #EF9A9A;
+  }
   > div {
     position: relative;
     z-index: 1;
