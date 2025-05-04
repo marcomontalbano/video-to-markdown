@@ -29,6 +29,7 @@ import manifest from './manifest.json' with { type: 'json' };
   cloneExtension('dist-firefox');
 
   /** Write the manifest file */
+  updateManifestVersion();
   fixChromeManifest();
   fixFirefoxManifest();
 
@@ -45,6 +46,13 @@ import manifest from './manifest.json' with { type: 'json' };
     // console.info(`stdout: ${stdout}`);
   });
 })();
+
+function updateManifestVersion() {
+  const manifestWithVersion = structuredClone(manifest);
+  manifestWithVersion.version = packageJson.version;
+
+  writeFileSync('manifest.json', JSON.stringify(manifestWithVersion, null, 2), 'utf-8');
+}
 
 function fixChromeManifest() {
   const chromeManifest = structuredClone(manifest);

@@ -1,36 +1,36 @@
 {
   "$schema": "https://json.schemastore.org/chrome-manifest",
-
   "manifest_version": 3,
   "name": "Video to markdown!",
-  "version": "0",
+  "version": "2.1.0",
   "description": "How to embed a video in markdown? Here the answer.",
   "homepage_url": "https://video-to-markdown.marcomontalbano.com",
-
   "icons": {
     "16": "images/icon-16-inactive.png",
     "32": "images/icon-32-inactive.png",
     "48": "images/icon-48-inactive.png",
     "128": "images/icon-128-inactive.png"
   },
-
   "permissions": [],
-
   "background": {
     "service_worker": "dist/background.global.js",
-    "scripts": ["dist/background.global.js"],
+    "scripts": [
+      "dist/background.global.js"
+    ],
     "persistent": true
   },
-
   "content_scripts": [
     {
-      "js": ["dist/content.global.js"],
+      "js": [
+        "dist/content.global.js"
+      ],
       "world": "ISOLATED",
       "run_at": "document_idle",
-      "matches": ["https://*/*"]
+      "matches": [
+        "https://*/*"
+      ]
     }
   ],
-
   "action": {
     "default_popup": "src/popup/popup.html"
   }

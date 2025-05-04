@@ -84,7 +84,8 @@
     "lint": "pnpm biome check src scripts netlify extension",
     "dep:major": "pnpm dlx npm-check-updates --packageFile '**/package.json' -u",
     "dep:minor": "pnpm dep:major -t minor",
-    "ls-engines": "pnpm dlx ls-engines"
+    "ls-engines": "pnpm dlx ls-engines",
+    "version": "pnpm build:extension && git add -A extension"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead"
 }
