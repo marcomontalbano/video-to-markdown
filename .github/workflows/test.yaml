@@ -23,7 +23,7 @@ jobs:
       - name: pnpm 🧰
         uses: pnpm/action-setup@v4
         with:
-          version: 9
+          version: 10
 
       - name: Node 🧰
         uses: actions/setup-node@v4
