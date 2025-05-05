@@ -35,7 +35,7 @@ jobs:
       - name: Build 🛠
         run: pnpm build:extension
 
-      - name: Create a draft GitHub release 🎁
+      - name: Create a GitHub release 🎁
         uses: softprops/action-gh-release@v2
         with:
           draft: false
