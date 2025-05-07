@@ -178,6 +178,10 @@ button:focus {
   box-shadow: 0 0 0 2px #5e9ed6;
 }
 
+.opacity-0 {
+  opacity: 0;
+}
+
 body.loading {
   .image-container {
     position: relative;

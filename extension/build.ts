@@ -1,4 +1,4 @@
-import { exec } from 'node:child_process';
+import { spawn } from 'node:child_process';
 import { cpSync, rmSync, writeFileSync } from 'node:fs';
 import { build } from 'tsup';
 import packageJson from '../package.json' with { type: 'json' };
@@ -36,17 +36,21 @@ import manifest from './manifest.json' with { type: 'json' };
   fixChromeManifest();
   fixFirefoxManifest();
 
-  /** Zip */
-  exec('zip -r dist-chrome.zip dist-chrome && zip -r dist-firefox.zip dist-firefox', (error, stdout, stderr) => {
+  /** Lint Firefox extension */
+  spawn('pnpm', ['web-ext', 'lint', '-s', 'dist-firefox'], { stdio: 'inherit' }).on('exit', (error) => {
     if (error) {
-      console.error(`Error: ${error.message}`);
-      return;
+      console.error(`Error: ${error}`);
+      process.exit(1);
+    } else {
+      /** Zip Firefox */
+      spawn('pnpm', ['web-ext', 'build', '-s', 'dist-firefox', '-a', '.', '-n', 'dist-firefox.zip', '-o'], {
+        stdio: 'inherit',
+      });
+      /** Zip Chrome */
+      spawn('pnpm', ['web-ext', 'build', '-s', 'dist-chrome', '-a', '.', '-n', 'dist-chrome.zip', '-o'], {
+        stdio: 'inherit',
+      });
     }
-    if (stderr) {
-      console.error(`stderr: ${stderr}`);
-      return;
-    }
-    // console.info(`stdout: ${stdout}`);
   });
 })();
 
@@ -69,6 +73,10 @@ function fixChromeManifest() {
   // @ts-expect-error I want to remove the property
   // biome-ignore lint/performance/noDelete: <explanation>
   delete chromeManifest.background.persistent;
+
+  // @ts-expect-error I want to remove the property
+  // biome-ignore lint/performance/noDelete: <explanation>
+  delete chromeManifest.browser_specific_settings;
 
   writeFileSync('dist-chrome/manifest.json', JSON.stringify(chromeManifest, null, 2), 'utf-8');
 }
