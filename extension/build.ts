@@ -66,13 +66,13 @@ function fixChromeManifest() {
 
   chromeManifest.version = packageJson.version;
 
-  // @ts-expect-error I want to remove the property
-  // biome-ignore lint/performance/noDelete: <explanation>
-  delete chromeManifest.background.scripts;
+  // // @ts-expect-error I want to remove the property
+  // // biome-ignore lint/performance/noDelete: <explanation>
+  // delete chromeManifest.background.scripts;
 
-  // @ts-expect-error I want to remove the property
-  // biome-ignore lint/performance/noDelete: <explanation>
-  delete chromeManifest.background.persistent;
+  // // @ts-expect-error I want to remove the property
+  // // biome-ignore lint/performance/noDelete: <explanation>
+  // delete chromeManifest.background.persistent;
 
   // @ts-expect-error I want to remove the property
   // biome-ignore lint/performance/noDelete: <explanation>
@@ -90,13 +90,13 @@ function fixFirefoxManifest() {
   // biome-ignore lint/performance/noDelete: <explanation>
   delete firefoxManifest.$schema;
 
-  // @ts-expect-error I want to remove the property
-  // biome-ignore lint/performance/noDelete: <explanation>
-  delete firefoxManifest.background.persistent;
+  // // @ts-expect-error I want to remove the property
+  // // biome-ignore lint/performance/noDelete: <explanation>
+  // delete firefoxManifest.background.persistent;
 
-  // @ts-expect-error I want to remove the property
-  // biome-ignore lint/performance/noDelete: <explanation>
-  delete firefoxManifest.background.service_worker;
+  // // @ts-expect-error I want to remove the property
+  // // biome-ignore lint/performance/noDelete: <explanation>
+  // delete firefoxManifest.background.service_worker;
 
   firefoxManifest.permissions = firefoxManifest.permissions.filter((permission) => permission !== 'background');
 
