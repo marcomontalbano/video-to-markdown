@@ -6,8 +6,7 @@
   "main": "dist/index.js",
   "files": ["dist", "images", "manifest.json", "README.md"],
   "scripts": {
-    "build": "pnpx tsx build.ts",
-    "build2": "tsup"
+    "build": "pnpx tsx build.ts"
   },
   "keywords": [],
   "author": {
@@ -20,5 +19,8 @@
     "@types/chrome": "^0.0.313",
     "tsup": "^8.4.0",
     "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "web-ext": "^8.6.0"
   }
 }

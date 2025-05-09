@@ -81,11 +81,38 @@ function sendMessage() {
 }
 
 function updateFromLatestResponse(): void {
+  let title = '';
+  let videoUrl = '';
+  let thumbnailUrl = '';
+
   if (latestResponse?.success === true) {
-    const title = titleElement.value;
-    const markdown = `[![<span>${title}</span>](<span>${latestResponse.video.generatedThumbnailUrl}</span>)](<span>${latestResponse.video.url}</span>&nbsp;"<span>${title}</span>")`;
-    markdownElement.innerHTML = markdown;
+    title = titleElement.value;
+    videoUrl = latestResponse.video.url;
+    thumbnailUrl = latestResponse.video.generatedThumbnailUrl;
+  }
+
+  // biome-ignore lint/complexity/noForEach: <explanation>
+  markdownElement.querySelectorAll('[data-title]').forEach((element) => {
+    element.textContent = title;
+  });
+
+  // biome-ignore lint/complexity/noForEach: <explanation>
+  markdownElement.querySelectorAll('[data-video-url]').forEach((element) => {
+    if (latestResponse?.success === true) {
+      element.textContent = videoUrl;
+    }
+  });
+
+  // biome-ignore lint/complexity/noForEach: <explanation>
+  markdownElement.querySelectorAll('[data-thumbnail-url]').forEach((element) => {
+    if (latestResponse?.success === true) {
+      element.textContent = thumbnailUrl;
+    }
+  });
+
+  if (latestResponse?.success === true) {
+    markdownElement.classList.remove('opacity-0');
   } else {
-    markdownElement.innerHTML = '';
+    markdownElement.classList.add('opacity-0');
   }
 }
