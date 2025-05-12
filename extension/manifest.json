@@ -11,25 +11,9 @@
     "48": "images/icon-48-inactive.png",
     "128": "images/icon-128-inactive.png"
   },
-  "permissions": [],
-  "background": {
-    "service_worker": "dist/background.global.js",
-    "scripts": [
-      "dist/background.global.js"
-    ],
-    "persistent": true
-  },
-  "content_scripts": [
-    {
-      "js": [
-        "dist/content.global.js"
-      ],
-      "world": "ISOLATED",
-      "run_at": "document_idle",
-      "matches": [
-        "https://*/*"
-      ]
-    }
+  "permissions": [
+    "activeTab",
+    "scripting"
   ],
   "action": {
     "default_popup": "src/popup/popup.html"

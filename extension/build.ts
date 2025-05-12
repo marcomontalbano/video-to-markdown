@@ -8,7 +8,6 @@ import manifest from './manifest.json' with { type: 'json' };
   /** Build the extension */
   await build({
     entry: {
-      background: 'src/background/index.ts',
       content: 'src/content/index.ts',
       popup: 'src/popup/index.ts',
     },
@@ -66,13 +65,13 @@ function fixChromeManifest() {
 
   chromeManifest.version = packageJson.version;
 
-  // @ts-expect-error I want to remove the property
-  // biome-ignore lint/performance/noDelete: <explanation>
-  delete chromeManifest.background.scripts;
+  // // @ts-expect-error I want to remove the property
+  // // biome-ignore lint/performance/noDelete: <explanation>
+  // delete chromeManifest.background.scripts;
 
-  // @ts-expect-error I want to remove the property
-  // biome-ignore lint/performance/noDelete: <explanation>
-  delete chromeManifest.background.persistent;
+  // // @ts-expect-error I want to remove the property
+  // // biome-ignore lint/performance/noDelete: <explanation>
+  // delete chromeManifest.background.persistent;
 
   // @ts-expect-error I want to remove the property
   // biome-ignore lint/performance/noDelete: <explanation>
@@ -90,20 +89,20 @@ function fixFirefoxManifest() {
   // biome-ignore lint/performance/noDelete: <explanation>
   delete firefoxManifest.$schema;
 
-  // @ts-expect-error I want to remove the property
-  // biome-ignore lint/performance/noDelete: <explanation>
-  delete firefoxManifest.background.persistent;
+  // // @ts-expect-error I want to remove the property
+  // // biome-ignore lint/performance/noDelete: <explanation>
+  // delete firefoxManifest.background.persistent;
 
-  // @ts-expect-error I want to remove the property
-  // biome-ignore lint/performance/noDelete: <explanation>
-  delete firefoxManifest.background.service_worker;
+  // // @ts-expect-error I want to remove the property
+  // // biome-ignore lint/performance/noDelete: <explanation>
+  // delete firefoxManifest.background.service_worker;
 
   firefoxManifest.permissions = firefoxManifest.permissions.filter((permission) => permission !== 'background');
 
   writeFileSync('dist-firefox/manifest.json', JSON.stringify(firefoxManifest, null, 2), 'utf-8');
 }
 
-async function cloneExtension(destination: string): Promise<void> {
+function cloneExtension(destination: string): void {
   function recursiveCopy(source: string) {
     cpSync(source, `${destination}/${source}`, { recursive: true });
   }

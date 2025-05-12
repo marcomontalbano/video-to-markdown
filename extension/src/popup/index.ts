@@ -18,7 +18,15 @@ imgElement.addEventListener('error', () => {
 
 imgElement.addEventListener('load', () => {
   updateFromLatestResponse();
-  document.body.classList.remove('loading');
+
+  const emptyImage =
+    'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+
+  const isEmptyImage = imgElement.src === emptyImage;
+
+  if (!isEmptyImage) {
+    document.body.classList.remove('loading');
+  }
 });
 
 titleElement.addEventListener('keyup', () => {
@@ -45,39 +53,69 @@ copyElement.addEventListener(
 
 sendMessage();
 
+chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+  if (changeInfo.status === 'complete') {
+    sendMessage();
+  }
+});
+
 function sendMessage() {
   document.body.classList.add('loading');
+
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const tab = tabs[0];
 
     if (tab.status === 'complete' && tab.id != null) {
-      chrome.tabs
-        .sendMessage<Event['extractPage']['message'], Event['extractPage']['response']>(tab.id, {
-          action: 'extractPage',
-          showPlayIcon: showPlayIconElement.checked,
+      chrome.scripting
+        .executeScript({
+          target: { tabId: tab.id },
+          files: ['/dist/content.global.js'],
         })
-        .then((response) => {
-          latestResponse = response;
-          if (response?.success === true) {
-            titleElement.value = response.video.title ?? '';
-            imgElement.src = response.video.generatedThumbnailUrl;
-          } else {
-            titleElement.value = '';
-            imgElement.src = 'not-found.jpg';
-            videoNotFoundDisclaimerElement.classList.remove('hidden');
-            formElement.classList.add('hidden');
-            codeContainerElement.classList.add('hidden');
-
-            const url = new URL(response?.video.url ?? '');
-
-            // biome-ignore lint/style/noNonNullAssertion: `a` tag is always present
-            videoNotFoundDisclaimerElement.querySelector('a')!.href =
-              `https://github.com/marcomontalbano/video-to-markdown/issues/new?template=new_video_provider.yml&title=Add video from ${url.hostname}&links=-%20${encodeURIComponent(response?.video.url ?? '')}`;
+        .then(() => {
+          if (tab.status === 'complete' && tab.id != null) {
+            chrome.tabs
+              .sendMessage<Event['extractPage']['message'], Event['extractPage']['response']>(tab.id, {
+                action: 'extractPage',
+                showPlayIcon: showPlayIconElement.checked,
+              })
+              .then((response) => {
+                latestResponse = response;
+                if (response?.success === true) {
+                  titleElement.value = response.video.title ?? '';
+                  imgElement.src = response.video.generatedThumbnailUrl;
+                } else {
+                  videoNotFound(response);
+                }
+                return;
+              })
+              .catch((error) => {
+                console.info('Error sending message:', error);
+                videoNotFound(null);
+              });
           }
-          return;
+        })
+        .catch((error) => {
+          console.info('Error executing script:', error);
+          videoNotFound(null);
         });
     }
   });
+}
+
+function videoNotFound(response: Event['extractPage']['response'] | null): void {
+  titleElement.value = '';
+  imgElement.src = 'not-found.jpg';
+  videoNotFoundDisclaimerElement.classList.remove('hidden');
+  formElement.classList.add('hidden');
+  codeContainerElement.classList.add('hidden');
+
+  if (response?.video.url != null) {
+    const url = new URL(response.video.url);
+
+    // biome-ignore lint/style/noNonNullAssertion: `a` tag is always present
+    videoNotFoundDisclaimerElement.querySelector('a')!.href =
+      `https://github.com/marcomontalbano/video-to-markdown/issues/new?template=new_video_provider.yml&title=Add video from ${url.hostname}&links=-%20${encodeURIComponent(response.video.url ?? '')}`;
+  }
 }
 
 function updateFromLatestResponse(): void {
