@@ -22,6 +22,7 @@ body {
 }
 
 .video-not-found-disclaimer {
+  font-size: 12px;
   margin: 1rem 1rem;
   line-height: 1.2rem;
   padding: 0.8rem;

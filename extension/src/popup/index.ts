@@ -53,8 +53,15 @@ copyElement.addEventListener(
 
 sendMessage();
 
+chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+  if (changeInfo.status === 'complete') {
+    sendMessage();
+  }
+});
+
 function sendMessage() {
   document.body.classList.add('loading');
+
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const tab = tabs[0];
 
@@ -80,6 +87,10 @@ function sendMessage() {
                   videoNotFound(response);
                 }
                 return;
+              })
+              .catch((error) => {
+                console.info('Error sending message:', error);
+                videoNotFound(null);
               });
           }
         })

@@ -8,7 +8,6 @@ import manifest from './manifest.json' with { type: 'json' };
   /** Build the extension */
   await build({
     entry: {
-      background: 'src/background/index.ts',
       content: 'src/content/index.ts',
       popup: 'src/popup/index.ts',
     },
@@ -103,7 +102,7 @@ function fixFirefoxManifest() {
   writeFileSync('dist-firefox/manifest.json', JSON.stringify(firefoxManifest, null, 2), 'utf-8');
 }
 
-async function cloneExtension(destination: string): Promise<void> {
+function cloneExtension(destination: string): void {
   function recursiveCopy(source: string) {
     cpSync(source, `${destination}/${source}`, { recursive: true });
   }
