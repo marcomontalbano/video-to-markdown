@@ -29,6 +29,18 @@ body {
   border-radius: 0.5rem;
   background-color: #fff3e0;
   border: 1px solid #ffb74d;
+
+  small {
+    display: block;
+    margin-top: .6rem;
+  }
+}
+
+.found-an-issue-disclaimer {
+  font-size: 12px;
+  margin: 1.8rem 1rem 1rem;
+  line-height: 1.2rem;
+  border-radius: 0.5rem;
 }
 
 @keyframes spin {
