@@ -59,6 +59,30 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
   }
 });
 
+async function installScript(tabId: number) {
+  const results = await chrome.scripting.executeScript({
+    target: { tabId },
+    func: () => {
+      // @ts-expect-error This is a workaround to check if the script is already injected
+      const alreadyInjected = !!window.__videoToMarkdownInjected;
+
+      // @ts-expect-error This is a workaround to check if the script is already injected
+      window.__videoToMarkdownInjected = true;
+
+      return alreadyInjected;
+    },
+  });
+
+  const alreadyInjected = results?.[0]?.result ?? false;
+
+  if (!alreadyInjected) {
+    return chrome.scripting.executeScript({
+      target: { tabId },
+      files: ['/dist/content.global.js'],
+    });
+  }
+}
+
 function sendMessage() {
   document.body.classList.add('loading');
 
@@ -66,11 +90,7 @@ function sendMessage() {
     const tab = tabs[0];
 
     if (tab.status === 'complete' && tab.id != null) {
-      chrome.scripting
-        .executeScript({
-          target: { tabId: tab.id },
-          files: ['/dist/content.global.js'],
-        })
+      installScript(tab.id)
         .then(() => {
           if (tab.status === 'complete' && tab.id != null) {
             chrome.tabs
