@@ -17,14 +17,6 @@ export default class Dailymotion extends VideoProvider {
     ];
   }
 
-  getThumbnailUrl_legacy() {
-    const endpoint = `https://api.dailymotion.com/video/${this.id}?fields=title,thumbnail_720_url`;
-
-    return fetch(endpoint)
-      .then((response) => response.json())
-      .then((json) => json.thumbnail_720_url);
-  }
-
   async getThumbnailUrl() {
     const endpoint = `https://api.dailymotion.com/video/${this.id}?fields=title,thumbnail_720_url`;
 

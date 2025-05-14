@@ -14,10 +14,6 @@ export default class Imgur extends VideoProvider {
     ];
   }
 
-  async getThumbnailUrl_legacy() {
-    return `${this.url}.jpg`;
-  }
-
   async getThumbnailUrl() {
     return `${this.url}.jpg`;
   }

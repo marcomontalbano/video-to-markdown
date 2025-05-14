@@ -22,7 +22,7 @@ const eventCallback: (
         sendResponse({
           success: false,
           video: {
-            title: document.title,
+            title: '',
             url: location.href,
             showPlayIcon: message.showPlayIcon,
           },
@@ -72,7 +72,7 @@ async function checkUrl(url: string, showPlayIcon = false): Promise<Event['check
     return {
       success: false,
       video: {
-        title: document.title,
+        title: '',
         url,
         showPlayIcon,
       },
@@ -87,7 +87,7 @@ async function checkUrl(url: string, showPlayIcon = false): Promise<Event['check
     return {
       success: false,
       video: {
-        title: document.title,
+        title: '',
         url,
         showPlayIcon,
       },

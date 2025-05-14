@@ -35,15 +35,6 @@ export default class Youtube extends VideoProvider {
     ];
   }
 
-  async getThumbnailUrl_legacy() {
-    const maxVideoImage = `https://i.ytimg.com/vi/${this.id}/maxresdefault.jpg`;
-    const hqVideoImage = `https://i.ytimg.com/vi/${this.id}/hqdefault.jpg`;
-
-    const response = await fetch(maxVideoImage);
-
-    return response.status === 200 ? response.url : hqVideoImage;
-  }
-
   async getThumbnailUrl() {
     const maxVideoImage = `https://i.ytimg.com/vi/${this.id}/maxresdefault.jpg`;
     const hqVideoImage = `https://i.ytimg.com/vi/${this.id}/hqdefault.jpg`;

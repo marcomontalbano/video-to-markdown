@@ -18,10 +18,6 @@ export default class GoogleDrive extends VideoProvider {
     ];
   }
 
-  async getThumbnailUrl_legacy() {
-    return `https://drive.google.com/thumbnail?authuser=0&sz=w1280&id=${this.id}`;
-  }
-
   async getThumbnailUrl() {
     return `https://drive.google.com/thumbnail?authuser=0&sz=w1280&id=${this.id}`;
   }
