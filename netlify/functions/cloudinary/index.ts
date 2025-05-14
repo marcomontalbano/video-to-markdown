@@ -49,10 +49,13 @@ async function create(source: string, video: Pick<VideoProvider, 'providerName' 
         gravity: 'center',
       }
     : {};
-  const hash = CryptoJS.MD5(JSON.stringify(options)).toString(CryptoJS.enc.Hex);
+
+  const hash = (msg: string) => CryptoJS.MD5(msg).toString(CryptoJS.enc.Hex);
+  const hasIdSpecialChars = !/^[A-Za-z0-9-_]+$/.test(video.id ?? '');
+
   const cloudinaryOptions = {
     folder: 'video_to_markdown/images',
-    public_id: `${video.providerName}--${video.id}-${hash}`,
+    public_id: `${video.providerName}--${hasIdSpecialChars ? hash(video.id ?? '') : video.id}-${hash(JSON.stringify(options))}`,
     context: `url=${video.url}|provider=${video.providerName}`,
     secure: true,
     transformation: [...(useHighQuality() ? highQuality : lowQuality), { ...transformations }],
