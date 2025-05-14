@@ -81,9 +81,9 @@ async function checkUrl(url: string, showPlayIcon = false): Promise<Event['check
 
   const thumbnailUrl = await video.getThumbnailUrl();
 
-  const thumbnailBase64 = await video.getThumbnailBase64();
+  const thumbnailBase64 = await video.getThumbnailBase64().catch(() => null);
 
-  if (thumbnailBase64 == null || video.id == null) {
+  if (thumbnailUrl == null || video.id == null) {
     return {
       success: false,
       video: {

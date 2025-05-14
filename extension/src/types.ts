@@ -10,7 +10,7 @@ export type Event = {
             id: string;
             title: string;
             thumbnailUrl: string;
-            thumbnailBase64: string;
+            thumbnailBase64: string | null;
             providerName: string;
             url: string;
             showPlayIcon: boolean;

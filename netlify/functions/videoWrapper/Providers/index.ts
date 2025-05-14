@@ -8,6 +8,7 @@ export * as Imgur from './Imgur.js';
 export * as Loom from './Loom.js';
 export * as OneDrive from './OneDrive.js';
 export * as PeerTube from './PeerTube.js';
+export * as SharePoint from './SharePoint.js';
 export * as Streamable from './Streamable.js';
 export * as TikTok from './TikTok.js';
 export * as Video from './Video.js';
