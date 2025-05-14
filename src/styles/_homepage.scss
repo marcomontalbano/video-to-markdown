@@ -111,69 +111,6 @@
   }
 }
 
-.site-app {
-
-  &--input {
-    @media screen and (min-width: (map.get(variables.$breakpoints, "large") + "px")) {
-      width: 40%;
-    }
-  }
-  
-  &--output {
-    grid-template-columns: 1fr 5fr;
-
-    @media screen and (min-width: (map.get(variables.$breakpoints, "large") + "px")) {
-      width: 60%;
-    }
-
-    .output-frame {
-      border-radius: 0px 0px 0.3em 0.3em;
-      overflow: hidden;
-
-      // box-shadow: 1px 1px 1px #747474;
-      >div {
-        color: variables.$color-text-dark;
-
-        &.preview {
-          font-size: 0;
-          line-height: 0;
-          position: relative;
-          text-align: center;
-          // background: #fff;
-
-          img {
-            width: auto;
-            max-height: 500px;
-          }
-        }
-
-        &.markdown {
-          background: #fff;
-          margin-top: 2px;
-          display: block;
-
-          >pre {
-            margin: 0;
-
-            >code {
-              border-radius: unset;
-              border: none;
-            }
-          }
-        }
-      }
-    }
-
-    @media screen and (max-width: ((map.get(variables.$breakpoints, "large") - 1) + "px")) {
-      .output-frame {
-        width: 100vw;
-        margin: 0 -1.5em -2.5em;
-        border-radius: unset;
-      }
-    }
-  }
-}
-
 form {
 
   position: relative;

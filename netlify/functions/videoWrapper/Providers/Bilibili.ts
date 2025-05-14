@@ -19,21 +19,6 @@ export default class Bilibili extends VideoProvider {
     return true;
   }
 
-  getThumbnailUrl_legacy() {
-    return fetch(this.url)
-      .then((response) => response.text())
-      .then((html) => {
-        const text = parse(html)?.querySelector('script[type="application/ld+json"]')?.innerHTML;
-
-        if (text != null) {
-          return JSON.parse(text) as unknown as Array<{ '@type': string; thumbnailUrl: string }>;
-        }
-      })
-      .then((ldJson) => {
-        return ldJson?.find((item) => item['@type'] === 'VideoObject')?.thumbnailUrl ?? null;
-      });
-  }
-
   async getThumbnailUrl() {
     const text = document.querySelector('script[type="application/ld+json"]')?.innerHTML;
 

@@ -18,10 +18,6 @@ export default class Asciinema extends VideoProvider {
     return false;
   }
 
-  async getThumbnailUrl_legacy() {
-    return `https://asciinema.org/a/${this.id}.svg`;
-  }
-
   async getThumbnailUrl() {
     return `https://asciinema.org/a/${this.id}.svg`;
   }

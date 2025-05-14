@@ -14,14 +14,6 @@ export default class TikTok extends VideoProvider {
     ];
   }
 
-  getThumbnailUrl_legacy() {
-    const endpoint = `https://www.tiktok.com/oembed?url=${this.url}`;
-
-    return fetch(endpoint)
-      .then((response) => response.json())
-      .then((json) => json.thumbnail_url);
-  }
-
   getThumbnailUrl() {
     const endpoint = `https://www.tiktok.com/oembed?url=${this.url}`;
 

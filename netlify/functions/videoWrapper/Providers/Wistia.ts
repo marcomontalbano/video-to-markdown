@@ -24,22 +24,6 @@ export default class Wistia extends VideoProvider {
     return false;
   }
 
-  getThumbnailUrl_legacy() {
-    const endpoint = `https://fast.wistia.com/oembed?url=http%3A%2F%2Fhome.wistia.com%2Fmedias%2F${this.id}`;
-
-    return fetch(endpoint)
-      .then((response) => response.json())
-      .then<string>((json) => {
-        const { thumbnail_url, player_color = '686560' } = json;
-        const options = [
-          this.options.showPlayIcon && 'image_play_button=1',
-          `image_play_button_color=${player_color}EE`,
-        ];
-
-        return `${thumbnail_url}&${options.filter((elm) => elm).join('&')}`;
-      });
-  }
-
   getThumbnailUrl() {
     const endpoint = `https://fast.wistia.com/oembed?url=http%3A%2F%2Fhome.wistia.com%2Fmedias%2F${this.id}`;
 

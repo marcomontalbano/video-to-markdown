@@ -39,10 +39,6 @@ export default class VideoProvider {
     console.log(`${this.providerName}: [${key}] ${value}`);
   }
 
-  getThumbnailUrl_legacy(): Promise<string | null> {
-    return Promise.resolve(null);
-  }
-
   getThumbnailUrl(): Promise<string | null> {
     return Promise.resolve(null);
   }

@@ -17,14 +17,6 @@ export default class Vimeo extends VideoProvider {
     ];
   }
 
-  getThumbnailUrl_legacy() {
-    const endpoint = `https://vimeo.com/api/v2/video/${this.id}.json`;
-
-    return fetch(endpoint)
-      .then((response) => response.json())
-      .then((json) => json[0].thumbnail_large.replace(/_[0-9]+.jpg/, '_720.jpg'));
-  }
-
   getThumbnailUrl() {
     const endpoint = `https://vimeo.com/api/v2/video/${this.id}.json`;
 
