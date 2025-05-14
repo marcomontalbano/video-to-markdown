@@ -65,7 +65,7 @@ export const handler: Handler = async (event) => {
   const url = getParam(event, 'url');
   const showPlayIcon = getParam(event, 'showPlayIcon');
 
-  if (thumbnailUrl == null || thumbnailBase64 == null || id == null || providerName == null || url == null) {
+  if (thumbnailUrl == null || id == null || providerName == null || url == null) {
     return toError('Missing params.', 422);
   }
 
@@ -94,7 +94,7 @@ export const handler: Handler = async (event) => {
 
   const generatedThumbnailUrl = await cloudinary
     .create(
-      thumbnailBase64,
+      thumbnailBase64 ?? thumbnailUrl,
       { id, providerName, url },
       {
         showPlayIcon: showPlayIcon === 'true',
