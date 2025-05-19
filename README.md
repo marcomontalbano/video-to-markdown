@@ -47,12 +47,33 @@ List of supported video providers:
 - [x] Loom
 - [x] OneDrive
 - [x] PeerTube
+- [x] SharePoint
 - [x] Streamable
 - [x] TikTok
 - [x] Vimeo
 - [x] Wistia
 - [x] Youtube
 
+
+## A browser extension
+
+Originally, this tool started as a simple website where you could paste a video URL and instantly get a nicely formatted
+Markdown snippet with the video thumbnail and title.
+
+But over time, we ran into limitations: many websites restrict access to their content from external services, which made
+it harder to reliably fetch video metadata just from a pasted URL.
+
+That’s why we moved to a browser extension.
+
+By running directly in your browser, the extension can access video information from the page you’re currently viewing,
+with your permission. This makes the tool:
+
+- 🔍 More accurate — it works directly with the content you’re seeing
+- ⚡ Faster — no need to copy and paste URLs
+
+Just click the extension when you’re on a video page, and it will instantly generate the Markdown code for you — thumbnail included.
+
+This change helps the service stay reliable, and super easy to use.
 
 ## Hosting
 
