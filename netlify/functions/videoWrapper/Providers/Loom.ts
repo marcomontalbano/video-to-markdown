@@ -18,14 +18,6 @@ export default class Loom extends VideoProvider {
     return false;
   }
 
-  getThumbnailUrl_legacy() {
-    const playIconSuffix = this.options.showPlayIcon ? 'with-play' : '00001';
-    const gifImage = `https://cdn.loom.com/sessions/thumbnails/${this.id}-${playIconSuffix}.gif`;
-    const jpgImage = `https://cdn.loom.com/sessions/thumbnails/${this.id}-${playIconSuffix}.jpg`;
-
-    return fetch(gifImage).then((response) => (response.status === 200 ? response.url : jpgImage));
-  }
-
   async getThumbnailUrl() {
     const playIconSuffix = this.options.showPlayIcon ? 'with-play' : '00001';
     const gifImage = `https://cdn.loom.com/sessions/thumbnails/${this.id}-${playIconSuffix}.gif`;

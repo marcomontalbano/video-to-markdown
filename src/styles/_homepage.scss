@@ -2,7 +2,69 @@
 
 @use "sass:map";
 
-.site-app {
+.browser-extension {
+
+  padding: 0 0 2rem;
+  align-items: center;
+  text-align: center;
+
+  @media screen and (min-width: (map.get(variables.$breakpoints, "large") + "px")) {
+    text-align: left;
+  }
+
+  .button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background-color: transparent;
+    color: white;
+    font-family: 'Inter', sans-serif;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &-container {
+      gap: 20px;
+      margin-bottom: 20px;
+      padding: 0;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      align-items: center;
+
+      @media screen and (min-width: (map.get(variables.$breakpoints, "large") + "px")) {
+        flex-direction: column;
+      }
+
+      @media screen and (min-width: (map.get(variables.$breakpoints, "xlarge") + "px")) {
+        flex-direction: row;
+      }
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.05);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    img {
+      width: 48px;
+      height: 48px;
+    }
+
+    span {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.3;
+      font-size: 16px;
+
+      strong {
+        font-weight: 600;
+      }
+    }
+  }
 
   &--input {
     @media screen and (min-width: (map.get(variables.$breakpoints, "large") + "px")) {
@@ -34,22 +96,6 @@
 
           img {
             width: auto;
-            max-height: 500px;
-          }
-        }
-
-        &.markdown {
-          background: #fff;
-          margin-top: 2px;
-          display: block;
-
-          >pre {
-            margin: 0;
-
-            >code {
-              border-radius: unset;
-              border: none;
-            }
           }
         }
       }
