@@ -16,9 +16,9 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@types/chrome": "^0.0.313",
-    "tsup": "^8.4.0",
-    "typescript": "^5.8.2"
+    "@types/chrome": "^0.0.323",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
     "web-ext": "^8.6.0"
