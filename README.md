@@ -114,6 +114,16 @@ cp .env.sample .env
 * `USE_HIGH_QUALITY` ( _optional_ ) - this is a boolean flag. If `true`, the generated images will be stored in Contenful with hi-res quality (default to `false`)
 
 ```sh
+# build the extension
+pnpm install -C extension
+pnpm build:extension
+
+# built extensions are available at:
+# `./extension/dist-chrome.zip`
+# `./extension/dist-firefox.zip`
+```
+
+```sh
 pnpm dev
 
 # http://localhost:8888
