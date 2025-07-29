@@ -20,6 +20,16 @@ body:
     validations:
       required: true
   - type: textarea
+    id: links
+    attributes:
+      label: Links
+      description: Please provide one (or better yet, more) link as an example. The URL must be public accessible.
+      placeholder: |
+        - https://youtu.be/aqz-KE-bpKQ
+        - https://www.youtube.com/watch?v=aqz-KE-bpKQ
+    validations:
+      required: true
+  - type: textarea
     id: reproduce
     attributes:
       label: To Reproduce
