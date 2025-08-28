@@ -53,7 +53,7 @@ copyElement.addEventListener(
 
 sendMessage();
 
-chrome.tabs.onUpdated.addListener((tabId, changeInfo) => {
+chrome.tabs.onUpdated.addListener((_tabId, changeInfo) => {
   if (changeInfo.status === 'complete') {
     sendMessage();
   }
@@ -149,19 +149,16 @@ function updateFromLatestResponse(): void {
     thumbnailUrl = latestResponse.video.generatedThumbnailUrl;
   }
 
-  // biome-ignore lint/complexity/noForEach: <explanation>
   markdownElement.querySelectorAll('[data-title]').forEach((element) => {
     element.textContent = title;
   });
 
-  // biome-ignore lint/complexity/noForEach: <explanation>
   markdownElement.querySelectorAll('[data-video-url]').forEach((element) => {
     if (latestResponse?.success === true) {
       element.textContent = videoUrl;
     }
   });
 
-  // biome-ignore lint/complexity/noForEach: <explanation>
   markdownElement.querySelectorAll('[data-thumbnail-url]').forEach((element) => {
     if (latestResponse?.success === true) {
       element.textContent = thumbnailUrl;

@@ -13,10 +13,10 @@ export default class Facebook extends VideoProvider {
   get regex() {
     return [
       // - https://www.facebook.com/backintimetheparty/videos/1588846901182916/
-      /https?\:\/\/www\.facebook\.com\/[\w]+\/videos\/([0-9]+)/,
+      /https?:\/\/www\.facebook\.com\/[\w]+\/videos\/([0-9]+)/,
 
       // - https://www.facebook.com/backintimetheparty/videos/description/1588846901182916/
-      /https?\:\/\/www\.facebook\.com\/[\w]+\/videos[\w/-]+\/([0-9]+)/,
+      /https?:\/\/www\.facebook\.com\/[\w]+\/videos[\w/-]+\/([0-9]+)/,
     ];
   }
 

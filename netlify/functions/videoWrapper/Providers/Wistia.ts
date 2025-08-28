@@ -10,13 +10,13 @@ export default class Wistia extends VideoProvider {
   get regex() {
     return [
       // - https://home.wistia.com/medias/e4a27b971d
-      /https?:\/\/(?:[^.]+\.)?(?:wistia\.com|wi\.st)\/medias\/([a-zA-Z0-9\_\-]+)/,
+      /https?:\/\/(?:[^.]+\.)?(?:wistia\.com|wi\.st)\/medias\/([a-zA-Z0-9_-]+)/,
 
       // - https://home.wistia.com/embed/iframe/e4a27b971d
-      /https?:\/\/(?:[^.]+\.)?(?:wistia\.com|wistia\.net|wi\.st)\/embed\/[^\/]+\/([a-zA-Z0-9\_\-]+)/,
+      /https?:\/\/(?:[^.]+\.)?(?:wistia\.com|wistia\.net|wi\.st)\/embed\/[^/]+\/([a-zA-Z0-9_-]+)/,
 
       // - https://wistia.com/series/one-ten-one-hundred?wchannelid=z2vptfjlxk&wvideoid=donagpxtdr
-      /https?:\/\/(?:[^.]+\.)?(?:wistia\.com|wi\.st)\/.*wvideoid=([a-zA-Z0-9\_\-]+)/,
+      /https?:\/\/(?:[^.]+\.)?(?:wistia\.com|wi\.st)\/.*wvideoid=([a-zA-Z0-9_-]+)/,
     ];
   }
 

@@ -10,7 +10,7 @@ export default class Loom extends VideoProvider {
   get regex() {
     return [
       // - https://www.loom.com/share/3d0b326f650749bbb1fa13895dcd6563
-      /https?\:\/\/www\.loom\.com\/share\/([a-z0-9]+)/,
+      /https?:\/\/www\.loom\.com\/share\/([a-z0-9]+)/,
     ];
   }
 

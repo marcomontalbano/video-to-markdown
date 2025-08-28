@@ -4,7 +4,12 @@
   "description": "The official browser extension for Video to markdown!",
   "type": "module",
   "main": "dist/index.js",
-  "files": ["dist", "images", "manifest.json", "README.md"],
+  "files": [
+    "dist",
+    "images",
+    "manifest.json",
+    "README.md"
+  ],
   "scripts": {
     "build": "pnpx tsx build.ts"
   },
@@ -16,11 +21,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@types/chrome": "^0.0.323",
+    "@types/chrome": "^0.1.4",
     "tsup": "^8.5.0",
-    "typescript": "^5.8.3"
+    "typescript": "^5.9.2"
   },
   "devDependencies": {
-    "web-ext": "^8.6.0"
+    "web-ext": "^8.9.0"
   }
 }

@@ -1,4 +1,3 @@
-import { parse } from 'node-html-parser';
 import VideoProvider from '../VideoProvider.js';
 
 // https://cleanshot.com/
@@ -11,7 +10,7 @@ export default class CleanShotCloud extends VideoProvider {
   get regex() {
     return [
       // - https://cln.sh/sllTrgqg
-      /https?\:\/\/cln\.sh\/([a-zA-Z0-9]+)/,
+      /https?:\/\/cln\.sh\/([a-zA-Z0-9]+)/,
     ];
   }
 

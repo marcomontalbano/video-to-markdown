@@ -1,8 +1,7 @@
-import VideoProvider from '../VideoProvider.js';
-import { extractFrame } from '../utils.js';
-import { videoRegEx } from '../videoRegEx.js';
-
 import CryptoJS from 'crypto-js';
+import { extractFrame } from '../utils.js';
+import VideoProvider from '../VideoProvider.js';
+import { videoRegEx } from '../videoRegEx.js';
 
 export default class Video extends VideoProvider {
   get providerName() {

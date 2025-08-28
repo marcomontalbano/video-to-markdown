@@ -10,7 +10,7 @@ export default class Imgur extends VideoProvider {
   get regex() {
     return [
       // - https://imgur.com/VT1vCoz
-      /https?\:\/\/imgur\.com\/([0-9A-Za-z]+)/,
+      /https?:\/\/imgur\.com\/([0-9A-Za-z]+)/,
     ];
   }
 

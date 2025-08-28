@@ -1,7 +1,6 @@
 import { test } from 'uvu';
-
-import Vimeo from './Vimeo.js';
 import { createTest } from './test.helpers.js';
+import Vimeo from './Vimeo.js';
 
 createTest(Vimeo, 'https://vimeo.com/263856289', {
   isValid: true,

@@ -1,4 +1,3 @@
-import { parse } from 'node-html-parser';
 import VideoProvider from '../VideoProvider.js';
 
 // https://bilibili.tv/
@@ -11,7 +10,7 @@ export default class Bilibili extends VideoProvider {
   get regex() {
     return [
       // - https://www.bilibili.tv/en/video/2048949558
-      /https?\:\/\/www\.bilibili\.tv\/.*\/video\/([a-zA-Z0-9]+)/,
+      /https?:\/\/www\.bilibili\.tv\/.*\/video\/([a-zA-Z0-9]+)/,
     ];
   }
 
@@ -27,7 +26,7 @@ export default class Bilibili extends VideoProvider {
         const ldJson = JSON.parse(text) as unknown as Array<{ '@type': string; thumbnailUrl: string }>;
         const thumbnailUrl = ldJson.find((item) => item['@type'] === 'VideoObject')?.thumbnailUrl;
         return thumbnailUrl ?? null;
-      } catch (error) {
+      } catch (_error) {
         return null;
       }
     }

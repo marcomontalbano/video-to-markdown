@@ -10,28 +10,28 @@ export default class Youtube extends VideoProvider {
   get regex() {
     return [
       // - //www.youtube.com/watch?v=oRdzL2DX0yU
-      /https?\:\/\/www\.youtube\.com\/watch\?v\=([a-zA-Z0-9\_\-]+)/,
+      /https?:\/\/www\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/,
 
       // - //m.youtube.com/watch?v=oRdzL2DX0yU
-      /https?\:\/\/m\.youtube\.com\/watch\?v\=([a-zA-Z0-9\_\-]+)/,
+      /https?:\/\/m\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/,
 
       // - //youtu.be/oRdzL2DX0yU
-      /https?\:\/\/youtu\.be\/([a-zA-Z0-9\_\-]+)/,
+      /https?:\/\/youtu\.be\/([a-zA-Z0-9_-]+)/,
 
       // - //www.youtube.com/embed/oRdzL2DX0yU
-      /https?\:\/\/www\.youtube\.com\/embed\/([a-zA-Z0-9\_\-]+)/,
+      /https?:\/\/www\.youtube\.com\/embed\/([a-zA-Z0-9_-]+)/,
 
       // - //youtube.com/embed/oRdzL2DX0yU
-      /https?\:\/\/youtube\.com\/embed\/([a-zA-Z0-9\_\-]+)/,
+      /https?:\/\/youtube\.com\/embed\/([a-zA-Z0-9_-]+)/,
 
       // - //gaming.youtube.com/watch?v=CLdvw87teRc
-      /https?\:\/\/gaming\.youtube\.com\/watch\?v\=([a-zA-Z0-9\_\-]+)/,
+      /https?:\/\/gaming\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/,
 
       // - //music.youtube.com/watch?v=i3MKTm-49uI&feature=share
-      /https?\:\/\/music\.youtube\.com\/watch\?v\=([a-zA-Z0-9\_\-]+)/,
+      /https?:\/\/music\.youtube\.com\/watch\?v=([a-zA-Z0-9_-]+)/,
 
       // - //www.youtube.com/shorts/q3i4jtp-byQ
-      /https?\:\/\/www\.youtube\.com\/shorts\/([a-zA-Z0-9\_\-]+)/,
+      /https?:\/\/www\.youtube\.com\/shorts\/([a-zA-Z0-9_-]+)/,
     ];
   }
 
