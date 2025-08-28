@@ -1,7 +1,6 @@
 import { test } from 'uvu';
-
-import Wistia from './Wistia.js';
 import { createTest } from './test.helpers.js';
+import Wistia from './Wistia.js';
 
 createTest(Wistia, 'https://home.wistia.com/medias/e4a27b971d', {
   isValid: true,

@@ -1,7 +1,6 @@
 import { test } from 'uvu';
-
-import Youtube from './Youtube.js';
 import { createTest } from './test.helpers.js';
+import Youtube from './Youtube.js';
 
 createTest(Youtube, 'https://www.youtube.com/watch?v=oRdzL2DX0yU', {
   isValid: true,

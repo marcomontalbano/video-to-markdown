@@ -1,14 +1,10 @@
-import { test } from 'uvu';
-import { equal } from 'uvu/assert';
-
-import Video from './Video.js';
-import { createTest } from './test.helpers.js';
-
 import crypto from 'node:crypto';
 import CryptoJS from 'crypto-js';
-
-import cloudinary from '../../cloudinary/index.js';
+import { test } from 'uvu';
+import { equal } from 'uvu/assert';
 import type { Options } from '../../types.js';
+import { createTest } from './test.helpers.js';
+import Video from './Video.js';
 
 createTest(Video, 'https://i.imgur.com/vhjwXMB.mp4', {
   isValid: true,

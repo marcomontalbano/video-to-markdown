@@ -10,10 +10,10 @@ export default class Dailymotion extends VideoProvider {
   get regex() {
     return [
       // - https://www.dailymotion.com/video/x3ke49
-      /https?\:\/\/www\.dailymotion\.com\/video\/([a-zA-Z0-9\_\-]+)/,
+      /https?:\/\/www\.dailymotion\.com\/video\/([a-zA-Z0-9_-]+)/,
 
       // - https://dai.ly/xxl8su
-      /https?\:\/\/dai\.ly\/([a-zA-Z0-9\_\-]+)/,
+      /https?:\/\/dai\.ly\/([a-zA-Z0-9_-]+)/,
     ];
   }
 

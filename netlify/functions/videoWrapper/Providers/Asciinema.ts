@@ -10,7 +10,7 @@ export default class Asciinema extends VideoProvider {
   get regex() {
     return [
       // - https://asciinema.org/a/335480
-      /https?\:\/\/asciinema\.org\/a\/([0-9]+).*/,
+      /https?:\/\/asciinema\.org\/a\/([0-9]+).*/,
     ];
   }
 

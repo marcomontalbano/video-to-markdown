@@ -1,4 +1,3 @@
-import { parse } from 'node-html-parser';
 import VideoProvider from '../VideoProvider.js';
 
 // https://joinpeertube.org/

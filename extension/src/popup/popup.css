@@ -1,3 +1,5 @@
+/** biome-ignore-all lint/style/noDescendingSpecificity: Do not check for descending specificity */
+
 body {
   width: 512px;
   margin: 0;
@@ -6,6 +8,7 @@ body {
 }
 
 .hidden {
+  /* biome-ignore lint/complexity/noImportantStyles: I wanna be sure that `hidden` is applied */
   display: none !important;
 }
 
@@ -32,7 +35,7 @@ body {
 
   small {
     display: block;
-    margin-top: .6rem;
+    margin-top: 0.6rem;
   }
 }
 

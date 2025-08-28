@@ -1,10 +1,9 @@
 import * as dotenv from 'dotenv';
+
 dotenv.config();
 
 import fs from 'node:fs';
-import path from 'node:path';
-
-import { dirname } from 'node:path';
+import path, { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -31,6 +30,6 @@ fetch(`https://api.netlify.com/api/v1/sites/${SITE_ID}?access_token=${NETLIFY_AC
       ).concat('\n'),
     );
   })
-  .catch((error) => {
+  .catch((_error) => {
     fs.writeFileSync(dbPath, '{}');
   });

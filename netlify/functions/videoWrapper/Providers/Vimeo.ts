@@ -10,10 +10,10 @@ export default class Vimeo extends VideoProvider {
   get regex() {
     return [
       // - https://vimeo.com/263856289
-      /https?\:\/\/vimeo\.com\/([0-9]+)/,
+      /https?:\/\/vimeo\.com\/([0-9]+)/,
 
       // - https://vimeo.com/channels/staffpicks/287019927
-      /https?\:\/\/vimeo\.com\/channels\/[\w]+\/([0-9]+)/,
+      /https?:\/\/vimeo\.com\/channels\/[\w]+\/([0-9]+)/,
     ];
   }
 
