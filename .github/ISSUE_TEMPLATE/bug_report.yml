@@ -11,7 +11,7 @@ body:
       value: |
         Thanks for taking the time to fill out this bug report!
 
-        We prioritize issue with more details over those without.
+        We prioritize issues with more details over those without.
   - type: textarea
     id: description
     attributes:
@@ -39,7 +39,7 @@ body:
         Tip: You can attach a video to show the steps required to reproduce this issue.
       placeholder: |
         1. In this environment...
-        2. With this url...
+        2. With this URL...
         3. Go to '...'
         4. Click on '....'
         5. Scroll down to '....'
@@ -52,7 +52,7 @@ body:
       placeholder: |
         examples:
           - Device: PC, iPhone 14
-          - OS: Window 11, Ubuntu 20.04, iOS 16.4
+          - OS: Windows 11, Ubuntu 20.04, iOS 16.4
           - Node: 18.14.0
           - npm: 9.5.1
           - Browser: Chrome 114.0.5735.106
