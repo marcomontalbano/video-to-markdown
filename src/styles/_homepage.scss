@@ -193,6 +193,14 @@ form {
       fill: variables.$color-text-dark
     }
   }
+  span {
+    &.review {
+      color: #4CAF50;
+      svg {
+        fill: #4CAF50;
+      }
+    }
+  }
   a {
     white-space: nowrap;
     color: #0288D1;
@@ -224,6 +232,9 @@ form {
     &.host {
       color: #14bbab;
     }
+  }
+
+  span, a {
     svg {
       vertical-align: text-top;
     }
