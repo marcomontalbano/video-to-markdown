@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: pnpm 🧰
         uses: pnpm/action-setup@v4
@@ -22,7 +22,7 @@ jobs:
           version: 10
 
       - name: Node 🧰
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 22.x
           cache: 'pnpm'

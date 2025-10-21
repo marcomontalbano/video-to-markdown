@@ -21,8 +21,8 @@ importers:
         specifier: ^2.0.11
         version: 2.0.11
       cloudinary:
-        specifier: ^2.7.0
-        version: 2.7.0
+        specifier: ^2.8.0
+        version: 2.8.0
       crypto-js:
         specifier: ^4.2.0
         version: 4.2.0
@@ -1889,8 +1889,8 @@ packages:
     resolution: {integrity: sha512-3Pe/CF1Nn94hyhIYpjtiLhdCoEoz0DqQ+988E9gmeEdQZlojxnOb74wctFyuwWQHzqyf9X7C7MG8juUpqBJT8w==}
     engines: {node: '>=0.8'}
 
-  cloudinary@2.7.0:
-    resolution: {integrity: sha512-qrqDn31+qkMCzKu1GfRpzPNAO86jchcNwEHCUiqvPHNSFqu7FTNF9FuAkBUyvM1CFFgFPu64NT0DyeREwLwK0w==}
+  cloudinary@2.8.0:
+    resolution: {integrity: sha512-s7frvR0HnQXeJsQSIsbLa/I09IMb1lOnVLEDH5b5E53WTiCYgrNNOBGV/i/nLHwrcEOUkqjfSwP1+enXWNYmdw==}
     engines: {node: '>=9'}
 
   color-convert@1.9.3:
@@ -7039,7 +7039,7 @@ snapshots:
 
   clone@2.1.2: {}
 
-  cloudinary@2.7.0:
+  cloudinary@2.8.0:
     dependencies:
       lodash: 4.17.21
       q: 1.5.1
