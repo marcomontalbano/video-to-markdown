@@ -77,7 +77,9 @@ jobs:
           cache: 'pnpm'
 
       - name: Install 📦
-        run: pnpm install -C cloudflare-worker
+        run: |
+          pnpm install
+          pnpm install -C cloudflare-worker
         
       - name: Cloudflare Worker Deploy 🚀
         uses: cloudflare/wrangler-action@v3
