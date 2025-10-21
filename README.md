@@ -1,12 +1,11 @@
 Video to Markdown
 =================
 
-[![Test](https://github.com/marcomontalbano/video-to-markdown/actions/workflows/test.yaml/badge.svg)](https://github.com/marcomontalbano/video-to-markdown/actions/workflows/test.yaml)
-[![Cloudinary](https://shields.io/badge/-Cloudinary-3448c5)](https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/nfvt85kdqleszdah0hxq?t=default)
-[![PayPal.me](https://img.shields.io/badge/paypal-donate-119fde.svg)](https://www.paypal.me/marcomontalbano)
-[![Sponsor](https://img.shields.io/badge/-Sponsor-fafbfc?logo=GitHub%20Sponsors)](https://github.com/sponsors/marcomontalbano)
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/545bbce5-8f34-4834-9e16-685a9990c987/deploy-status)](https://app.netlify.com/sites/video-to-markdown/deploys)
+[![Test](https://img.shields.io/github/actions/workflow/status/marcomontalbano/video-to-markdown/test.yaml?style=for-the-badge)](https://github.com/marcomontalbano/video-to-markdown/actions/workflows/test.yaml)
+[![Cloudinary](https://shields.io/badge/-Cloudinary-3448c5?style=for-the-badge)](https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/nfvt85kdqleszdah0hxq?t=default)
+&nbsp;&nbsp;&nbsp;
+[![PayPal.me](https://img.shields.io/badge/paypal-donate-119fde.svg?style=for-the-badge)](https://www.paypal.me/marcomontalbano)
+[![Sponsor](https://img.shields.io/badge/-Sponsor-fafbfc?logo=GitHub%20Sponsors&style=for-the-badge)](https://github.com/sponsors/marcomontalbano)
 
 Add videos to your markdown files easier [starting from here](https://video-to-markdown.marcomontalbano.com/)!
 
