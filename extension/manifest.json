@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/chrome-manifest",
   "manifest_version": 3,
   "name": "Video to markdown!",
-  "version": "3.0.3",
+  "version": "3.0.4",
   "description": "How to embed a video in markdown? Here the answer.",
   "homepage_url": "https://video-to-markdown.marcomontalbano.com",
   "icons": {
