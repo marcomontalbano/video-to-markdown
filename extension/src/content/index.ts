@@ -31,8 +31,11 @@ const eventCallback: (
         return;
       }
 
-      const response = await fetch(`${process.env.BASE_URL}/api/image-json`, {
+      const response = await fetch(`${process.env.BASE_URL}`, {
         method: 'POST',
+        headers: {
+          'content-type': 'application/x-www-form-urlencoded',
+        },
         body: toURLSearchParams(responseMessage.video),
       }).then((response) => response.json());
 

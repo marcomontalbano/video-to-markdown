@@ -18,7 +18,7 @@ import manifest from './manifest.json' with { type: 'json' };
     splitting: false,
     clean: true,
     env: {
-      BASE_URL: process.env.BASE_URL ?? 'https://video-to-markdown.marcomontalbano.com',
+      BASE_URL: process.env.BASE_URL ?? 'https://video-to-markdown-api.marcomontalbano.workers.dev',
     },
   }).catch(() => process.exit(1));
 
