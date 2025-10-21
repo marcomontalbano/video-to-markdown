@@ -41,7 +41,9 @@ jobs:
           cache: 'pnpm'
 
       - name: Install 📦
-        run: pnpm install
+        run: |
+          pnpm install
+          pnpm install -C cloudflare-worker
 
       - name: Build 🛠
         run: |
