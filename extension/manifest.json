@@ -20,7 +20,12 @@
   },
   "browser_specific_settings": {
     "gecko": {
-      "id": "video-to-markdown@marcomontalbano.com"
+      "id": "video-to-markdown@marcomontalbano.com",
+      "data_collection_permissions": {
+        "required": [
+          "websiteContent"
+        ]
+      }
     }
   }
 }

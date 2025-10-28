@@ -21,11 +21,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@types/chrome": "^0.1.4",
+    "@types/chrome": "^0.1.27",
     "tsup": "^8.5.0",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "web-ext": "^8.9.0"
+    "web-ext": "^9.1.0"
   }
 }

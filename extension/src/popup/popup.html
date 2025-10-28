@@ -6,7 +6,7 @@
     <title>Popup</title>
     <link rel="stylesheet" type="text/css" href="popup.css">
   </head>
-  <body class="loading">
+  <body class="idle">
     <div>
       <div class="image-container">
         <img alt="Video thumbnail"
@@ -41,9 +41,15 @@
           <label for="title">Title</label>
           <input type="text" id="title" name="title" />
         </div>
-  
         <div>
           <label><input type="checkbox" id="showPlayIcon" /> Show play icon</label>
+        </div>
+        <div>
+          <button id="generate" type="submit">Generate</button>
+          <div>By clicking "Generate", the current video thumbnail and URL will be sent to the backend for Cloudinary
+            processing. No
+            other data is collected or transmitted. You can read more on our <a target="_blank"
+              href="https://video-to-markdown.marcomontalbano.com/terms.html#extension">Terms and Privacy Policy</a>.</div>
         </div>
       </form>
       <div class="video-not-found-disclaimer hidden">

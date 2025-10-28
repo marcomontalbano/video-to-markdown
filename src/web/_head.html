@@ -22,13 +22,3 @@
 <meta name="msapplication-TileColor" content="#ffffff">
 <meta name="msapplication-TileImage" content="./images/favicon/ms-icon-144x144.png">
 <meta name="theme-color" content="#ffffff">
-<script>
-  (function () {
-    if ('{{ NODE_ENV }}' === 'production' && '{{GA_TRACKING_ID}}' !== 'undefined') {
-      window.ga = window.ga || function () { (ga.q = ga.q || []).push(arguments) }; ga.l = +new Date
-      ga('create', '{{GA_TRACKING_ID}}', 'auto')
-      ga('send', 'pageview')
-    }
-  })();
-</script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>

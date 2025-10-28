@@ -26,6 +26,7 @@ imgElement.addEventListener('load', () => {
 
   if (!isEmptyImage) {
     document.body.classList.remove('loading');
+    document.body.classList.remove('idle');
   }
 });
 
@@ -33,7 +34,8 @@ titleElement.addEventListener('keyup', () => {
   updateFromLatestResponse();
 });
 
-showPlayIconElement.addEventListener('change', () => {
+formElement.addEventListener('submit', (event) => {
+  event.preventDefault();
   sendMessage();
 });
 
@@ -51,11 +53,17 @@ copyElement.addEventListener(
   true,
 );
 
-sendMessage();
+checkPage();
+
+chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+  const tab = tabs[0];
+  titleElement.value ||= tab.title ?? '';
+});
 
 chrome.tabs.onUpdated.addListener((_tabId, changeInfo) => {
   if (changeInfo.status === 'complete') {
-    sendMessage();
+    titleElement.value ||= changeInfo.title ?? '';
+    checkPage();
   }
 });
 
@@ -83,7 +91,43 @@ async function installScript(tabId: number) {
   }
 }
 
+function checkPage() {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const tab = tabs[0];
+
+    if (tab.status === 'complete' && tab.id != null) {
+      installScript(tab.id)
+        .then(() => {
+          if (tab.status === 'complete' && tab.id != null) {
+            chrome.tabs
+              .sendMessage<Event['checkPage']['message'], Event['checkPage']['response']>(tab.id, {
+                action: 'checkPage',
+              })
+              .then((response) => {
+                if (response?.success === true) {
+                  titleElement.value ||= response.video.title ?? '';
+                  // imgElement.src = response.video.thumbnailUrl;
+                } else {
+                  videoNotFound(response);
+                }
+                return;
+              })
+              .catch((error) => {
+                console.info('Error sending message:', error);
+                videoNotFound(null);
+              });
+          }
+        })
+        .catch((error) => {
+          console.info('Error executing script:', error);
+          videoNotFound(null);
+        });
+    }
+  });
+}
+
 function sendMessage() {
+  document.body.classList.remove('idle');
   document.body.classList.add('loading');
 
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -101,7 +145,7 @@ function sendMessage() {
               .then((response) => {
                 latestResponse = response;
                 if (response?.success === true) {
-                  titleElement.value = response.video.title ?? '';
+                  titleElement.value ||= response.video.title ?? '';
                   imgElement.src = response.video.generatedThumbnailUrl;
                 } else {
                   videoNotFound(response);
