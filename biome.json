@@ -7,7 +7,7 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "includes": ["**", "!**/dist", "!**/dist-*", "!**/manifest.json"]
+    "includes": ["**", "!**/dist", "!**/dist-*", "!**/manifest.json", "!**/*.html"]
   },
   "formatter": {
     "enabled": true,

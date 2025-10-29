@@ -107,7 +107,6 @@ cp .env.sample .env
 ```
 
 * `CLOUDINARY_URL` ( **required** ) - this is the `API Environment variable` that you can get from your Cloudinary dashboard inside the **Account Details** section.
-* `GA_TRACKING_ID` ( _optional_ ) - this is a Google Analytics Tracking ID. Can be used if you need to track page views and events.
 * `NETLIFY_ACCESS_TOKEN` ( _optional_ ) - this a Netlify Access Token. In combination with the `SITE_ID` can be used to display the **API Usage** in the website.
 * `SITE_ID` ( _optional_ ) - this the Netlify Site ID. In combination with the `NETLIFY_ACCESS_TOKEN` can be used to display the **API Usage** in the website.
 * `USE_HIGH_QUALITY` ( _optional_ ) - this is a boolean flag. If `true`, the generated images will be stored in Contenful with hi-res quality (default to `false`)
@@ -128,16 +127,27 @@ pnpm dev
 # http://localhost:8888
 ```
 
-## Privacy
+## About Privacy
 
-Google Analytics is used to record the following:
-
-* [Basic visit data](https://support.google.com/analytics/answer/6004245?ref_topic=2919631).
-* `referer` or `video url` to track api usage.
+We anonymously track the number of visitors with Simple Analytics. No personal data is collected or stored.
+> Simple Analytics is a privacy-friendly analytics tool that does not use cookies or collect personal data. It provides insights into website traffic without compromising user privacy. 
 
 All images are generated via [Cloudinary] and stored in it.
-In this way the generated images are cached so we can avoid to call Netlify functions again thus reducing the quota consumption.
+> Cloudinary is a cloud-based image and video management service that provides a comprehensive solution for managing and delivering images and videos. It offers features such as image and video upload, storage, transformation, optimization, and delivery through a global content delivery network (CDN). 
 
-By clicking on `convert to markdown` or consuming api you accept this terms & condition; no additional data is sent to the server.
+This site and service does not use cookies.
+
+We do not store any other data on our servers.
+
+## Terms of Use
+
+By using this service, you agree to the following terms:
+
+* You are responsible for the content you upload and share.
+* You will not use this service for any illegal or unauthorized purpose.
+* We reserve the right to modify or discontinue the service at any time.
+
+If you do not agree to these terms, please do not use this service.
+
 
 [Cloudinary]: https://cloudinary.com/invites/lpov9zyyucivvxsnalc5/nfvt85kdqleszdah0hxq?t=default

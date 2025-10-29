@@ -1,7 +1,7 @@
 /** biome-ignore-all lint/style/noDescendingSpecificity: Do not check for descending specificity */
 
 body {
-  width: 512px;
+  width: 440px;
   margin: 0;
   padding: 0;
   font-family: Verdana, Geneva, Tahoma, system-ui, sans-serif;
@@ -41,7 +41,7 @@ body {
 
 .found-an-issue-disclaimer {
   font-size: 12px;
-  margin: 1.8rem 1rem 1rem;
+  margin: 0rem 1rem 1rem;
   line-height: 1.2rem;
   border-radius: 0.5rem;
 }
@@ -55,6 +55,7 @@ body {
   }
 }
 
+button#generate,
 input[type="text"],
 .code-container {
   width: 100%;
@@ -67,6 +68,20 @@ input[type="text"],
   color: #333;
   transition: background-color 0.3s ease;
   border-radius: 0.3rem;
+}
+
+button#generate {
+  border: 1px solid #c1c1c1;
+  margin-bottom: 8px;
+}
+
+button#generate:hover {
+  cursor: pointer;
+  background-color: #e0e0e0;
+}
+
+button#generate ~ div {
+  font-size: 12px;
 }
 
 .code-container {
@@ -198,7 +213,8 @@ button:focus {
   opacity: 0;
 }
 
-body.loading {
+body.loading,
+body.idle {
   .image-container {
     position: relative;
     display: flex;
@@ -226,6 +242,14 @@ body.loading {
       border-top-color: #333;
       animation: spin 1s linear infinite;
       z-index: 2;
+    }
+  }
+}
+
+body.idle {
+  .image-container {
+    .spinner {
+      display: none;
     }
   }
 }

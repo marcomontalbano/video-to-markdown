@@ -61,6 +61,10 @@
       max-height: 0;
       padding: 0;
     }
+
+    &.hide {
+      display: none;
+    }
   }
 }
 
