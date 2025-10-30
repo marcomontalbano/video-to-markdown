@@ -1,5 +1,5 @@
-import cloudinary from '../../netlify/functions/cloudinary/index.js';
-import { create } from '../../netlify/functions/videoWrapper/index.js';
+import cloudinary from '../../../netlify/functions/cloudinary/index.js';
+import { create } from '../../../netlify/functions/videoWrapper/index.js';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -88,7 +88,8 @@ export default {
         showPlayIcon: urlSearchParams.get('showPlayIcon') === 'true',
         image: urlSearchParams.get('image') ?? undefined,
       });
-    } catch (error) {
+    } catch (_error) {
+      const error = _error as Error;
       return toError(error?.message, 422);
     }
 

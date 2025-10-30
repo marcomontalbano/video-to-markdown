@@ -77,15 +77,13 @@ jobs:
           cache: 'pnpm'
 
       - name: Install 📦
-        run: |
-          pnpm install
-          pnpm install -C cloudflare-worker
+        run: pnpm install
         
       - name: Cloudflare Worker Deploy 🚀
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          workingDirectory: ./cloudflare-worker
+          workingDirectory: ./packages/service
 
   deploy-pages:
     name: Deploy to GitHub Pages

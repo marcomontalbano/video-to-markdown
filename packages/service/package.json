@@ -1,15 +1,13 @@
 {
-  "name": "cloudflare-worker",
-  "version": "0.0.0",
+  "name": "service",
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
-    "start": "wrangler dev",
-    "test": "vitest",
     "cf-typegen": "wrangler types"
   },
   "devDependencies": {
+    "@types/node": "^22",
     "@cloudflare/vitest-pool-workers": "^0.10.1",
     "typescript": "^5.9.3",
     "vitest": "~3.2.4",

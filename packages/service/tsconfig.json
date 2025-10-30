@@ -37,6 +37,7 @@
     /* Skip type checking all .d.ts files. */
     "skipLibCheck": true,
     "types": [
+      "./node_modules/@types/node",
       "./worker-configuration.d.ts"
     ]
   },
