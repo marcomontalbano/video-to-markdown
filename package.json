@@ -37,7 +37,7 @@
     "node": ">= 22.14.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.1",
+    "@biomejs/biome": "^2.3.2",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6"
   },
@@ -48,8 +48,8 @@
     "test": "pnpm --filter video-crawler test",
     "format": "pnpm biome format packages/video-crawler/src packages/website/src packages/service/src packages/browser-extension --write",
     "lint": "pnpm biome check packages/video-crawler/src packages/website/src packages/service/src packages/browser-extension",
-    "dep:major": "pnpm dlx npm-check-updates --packageFile '**/package.json' -u",
-    "dep:minor": "pnpm dep:major -t minor",
+    "dep:major": "pnpm dlx npm-check-updates",
+    "dep:minor": "pnpm dlx npm-check-updates --target minor",
     "ls-engines": "pnpm dlx ls-engines",
     "version": "pnpm pnpm --filter browser-extension build && git add -A packages/browser-extension"
   }
