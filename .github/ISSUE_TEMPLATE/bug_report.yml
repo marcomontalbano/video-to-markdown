@@ -14,6 +14,17 @@ body:
         We prioritize issues with more details over those without.
 
         If you wanted instead to report a new video provider, please open a [new video provider suggestion](https://github.com/marcomontalbano/video-to-markdown/issues/new?template=new_video_provider.yml).
+  - type: dropdown
+    id: extension
+    attributes:
+      label: Extension
+      description: Which extension is affected by this bug?
+      multiple: true
+      options:
+        - Extension for Chrome
+        - Extension for Firefox
+    validations:
+      required: true
   - type: textarea
     id: description
     attributes:
@@ -29,17 +40,6 @@ body:
       placeholder: |
         - https://youtu.be/aqz-KE-bpKQ
         - https://www.youtube.com/watch?v=aqz-KE-bpKQ
-    validations:
-      required: true
-  - type: dropdown
-    id: extension
-    attributes:
-      label: Extension
-      description: Which extension is affected by this bug?
-      multiple: true
-      options:
-        - Extension for Chrome
-        - Extension for Firefox
     validations:
       required: true
   - type: textarea
