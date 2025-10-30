@@ -36,10 +36,15 @@
 
     /* Skip type checking all .d.ts files. */
     "skipLibCheck": true,
-    "types": [
-      "./node_modules/@types/node",
-      "./worker-configuration.d.ts"
-    ]
+    "types": ["./node_modules/@types/node", "./worker-configuration.d.ts"],
+
+    /* Specify the base directory to resolve non-relative module names. */
+    "baseUrl": "./",
+
+    /* Specify a set of entries that re-map imports to additional lookup locations. */
+    "paths": {
+      "@video-crawler/*": ["../video-crawler/src/*"]
+    }
   },
   "exclude": ["test"],
   "include": ["worker-configuration.d.ts", "src/**/*.ts"]

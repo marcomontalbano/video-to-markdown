@@ -39,25 +39,18 @@
   "devDependencies": {
     "@biomejs/biome": "^2.3.1",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.6",
-    "tsm": "^2.3.0",
-    "uvu": "^0.5.6",
-    "sinon": "^21.0.0"
-  },
-  "dependencies": {
-    "@types/crypto-js": "^4.2.2",
-    "crypto-js": "^4.2.0"
+    "lint-staged": "^16.2.6"
   },
   "scripts": {
     "clean": "rm -rf pnpm-lock.yaml node_modules/ */*/node_modules */*/dist */*/dist-*",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
-    "test": "uvu -r tsm netlify .test.*s",
-    "format": "pnpm biome format netlify packages/website/src packages/service/src packages/browser-extension --write",
-    "lint": "pnpm biome check netlify packages/website/src packages/service/src packages/browser-extension",
+    "test": "pnpm --filter video-crawler test",
+    "format": "pnpm biome format packages/video-crawler/src packages/website/src packages/service/src packages/browser-extension --write",
+    "lint": "pnpm biome check packages/video-crawler/src packages/website/src packages/service/src packages/browser-extension",
     "dep:major": "pnpm dlx npm-check-updates --packageFile '**/package.json' -u",
     "dep:minor": "pnpm dep:major -t minor",
     "ls-engines": "pnpm dlx ls-engines",
-    "version": "pnpm build:extension && git add -A extension"
+    "version": "pnpm pnpm --filter browser-extension build && git add -A packages/browser-extension"
   }
 }

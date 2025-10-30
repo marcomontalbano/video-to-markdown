@@ -1,7 +1,7 @@
+import { md5 } from '@video-crawler/md5';
+import type { Options } from '@video-crawler/types';
+import type VideoProvider from '@video-crawler/VideoProvider';
 import { v2 as cloudinary } from 'cloudinary';
-import CryptoJS from 'crypto-js';
-import type { Options } from '../../../../netlify/functions/types';
-import type VideoProvider from '../../../../netlify/functions/videoWrapper/VideoProvider';
 
 const { USE_HIGH_QUALITY = false } = process.env;
 
@@ -50,7 +50,7 @@ async function create(source: string, video: Pick<VideoProvider, 'providerName' 
       }
     : {};
 
-  const hash = (msg: string) => CryptoJS.MD5(msg).toString(CryptoJS.enc.Hex);
+  const hash = (msg: string) => md5(msg);
   const hasIdSpecialChars = !/^[A-Za-z0-9-_]+$/.test(video.id ?? '');
 
   const cloudinaryOptions = {

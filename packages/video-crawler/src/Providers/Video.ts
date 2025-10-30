@@ -1,7 +1,6 @@
-import CryptoJS from 'crypto-js';
+import { md5 } from '../md5';
 import { extractFrame } from '../utils.js';
 import VideoProvider from '../VideoProvider.js';
-import { videoRegEx } from '../videoRegEx.js';
 
 export default class Video extends VideoProvider {
   get providerName() {
@@ -9,11 +8,14 @@ export default class Video extends VideoProvider {
   }
 
   get regex() {
-    return videoRegEx;
+    return [
+      // - //example.com/video.mp4
+      /^https?:\/\/.*\.(mp4|mov|webm)$/,
+    ];
   }
 
   get id() {
-    return super.id ? CryptoJS.MD5(this.url).toString(CryptoJS.enc.Hex) : null;
+    return super.id ? md5(this.url) : null;
   }
 
   async getThumbnailUrl() {

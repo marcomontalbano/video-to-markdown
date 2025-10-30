@@ -1,4 +1,4 @@
-import type { Options } from '../types.js';
+import type { Options } from './types.js';
 
 // @ts-expect-error TODO: there're no envs in the content script
 globalThis.process ??= { env: {} };

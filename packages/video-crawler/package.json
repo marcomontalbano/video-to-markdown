@@ -1,0 +1,15 @@
+{
+  "name": "video-crawler",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "test": "uvu -r tsm src .test.*s"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "crypto-js": "^4.2.0",
+    "tsm": "^2.3.0",
+    "uvu": "^0.5.6",
+    "sinon": "^21.0.0"
+  }
+}

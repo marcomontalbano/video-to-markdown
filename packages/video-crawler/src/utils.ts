@@ -1,5 +1,5 @@
 export function extractFrame(video: HTMLVideoElement | null, scale = 1): string | null {
-  if (!video || video.src === '') {
+  if (!video) {
     return null;
   }
 
