@@ -12,6 +12,8 @@ body:
         Thanks for taking the time to fill out this bug report!
 
         We prioritize issues with more details over those without.
+
+        If you wanted instead to report a new video provider, please open a [new video provider suggestion](https://github.com/marcomontalbano/video-to-markdown/issues/new?template=new_video_provider.yml).
   - type: textarea
     id: description
     attributes:
@@ -29,6 +31,27 @@ body:
         - https://www.youtube.com/watch?v=aqz-KE-bpKQ
     validations:
       required: true
+  - type: dropdown
+    id: extension
+    attributes:
+      label: Extension
+      description: Which extension is affected by this bug?
+      multiple: true
+      options:
+        - Extension for Chrome
+        - Extension for Firefox
+    validations:
+      required: true
+  - type: textarea
+    id: system
+    attributes:
+      label: System
+      description: Please add system information.
+      placeholder: |
+        examples:
+          - Device: PC, iPhone 14
+          - OS: Windows 11, Ubuntu 20.04, iOS 16.4
+          - Browser: Chrome 114.0.5735.106
   - type: textarea
     id: reproduce
     attributes:
@@ -44,18 +67,6 @@ body:
         4. Click on '....'
         5. Scroll down to '....'
         6. See error...
-  - type: textarea
-    id: system
-    attributes:
-      label: System
-      description: Please add system information.
-      placeholder: |
-        examples:
-          - Device: PC, iPhone 14
-          - OS: Windows 11, Ubuntu 20.04, iOS 16.4
-          - Node: 18.14.0
-          - npm: 9.5.1
-          - Browser: Chrome 114.0.5735.106
   - type: textarea
     id: context
     attributes:
