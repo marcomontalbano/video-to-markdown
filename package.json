@@ -46,7 +46,6 @@
   },
   "dependencies": {
     "@types/crypto-js": "^4.2.2",
-    "cloudinary": "^2.8.0",
     "crypto-js": "^4.2.0"
   },
   "scripts": {

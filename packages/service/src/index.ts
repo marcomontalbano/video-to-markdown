@@ -1,5 +1,5 @@
-import cloudinary from '../../../netlify/functions/cloudinary/index.js';
 import { create } from '../../../netlify/functions/videoWrapper/index.js';
+import cloudinary from './cloudinary/index.js';
 
 const isProduction = process.env.NODE_ENV === 'production';
 

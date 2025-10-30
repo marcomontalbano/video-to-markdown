@@ -1,7 +1,7 @@
 import { v2 as cloudinary } from 'cloudinary';
 import CryptoJS from 'crypto-js';
-import type { Options } from '../types';
-import type VideoProvider from '../videoWrapper/VideoProvider';
+import type { Options } from '../../../../netlify/functions/types';
+import type VideoProvider from '../../../../netlify/functions/videoWrapper/VideoProvider';
 
 const { USE_HIGH_QUALITY = false } = process.env;
 
