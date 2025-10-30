@@ -1,0 +1,22 @@
+{
+  "name": "website",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "sass": "^1.93.2",
+    "esbuild": "^0.25.11"
+  },
+  "dependencies": {
+    "@types/node": "^24.9.1",
+    "clipboard": "^2.0.11",
+    "hint.css": "^3.0.0",
+    "nprogress": "^0.2.0",
+    "prismjs": "^1.30.0"
+  },
+  "scripts": {
+    "dev": "pnpx @11ty/eleventy --serve",
+    "build": "pnpx @11ty/eleventy",
+    "preview": "pnpx serve ./_site"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
+}

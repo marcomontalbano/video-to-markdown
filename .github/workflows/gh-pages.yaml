@@ -44,7 +44,7 @@ jobs:
         run: pnpm install
 
       - name: Build 🛠
-        run: pnpm build:client
+        run: pnpm --filter website build
 
       - name: Setup Pages 🧰
         uses: actions/configure-pages@v5
@@ -52,7 +52,7 @@ jobs:
       - name: Upload artifact 🚀
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./dist/client/
+          path: ./packages/website/dist/
 
   deploy-worker:
     name: Deploy Cloudflare Worker
