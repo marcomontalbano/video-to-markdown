@@ -1,7 +1,9 @@
 .DS_Store
 
+node_modules
+dist
+
 /.env
-/node_modules
 yarn-error.log
 .parcel-cache
 
@@ -9,8 +11,3 @@ yarn-error.log
 
 /.cache
 /dist
-
-/src/db.json
-
-# Local Netlify folder
-.netlify

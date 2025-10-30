@@ -1,0 +1,17 @@
+{
+  "name": "service",
+  "private": true,
+  "scripts": {
+    "deploy": "wrangler deploy",
+    "dev": "wrangler dev",
+    "cf-typegen": "wrangler types"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "@cloudflare/vitest-pool-workers": "^0.10.2",
+    "cloudinary": "^2.8.0",
+    "typescript": "^5.9.3",
+    "vitest": "~3.2.4",
+    "wrangler": "^4.45.2"
+  }
+}

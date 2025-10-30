@@ -74,14 +74,6 @@ Just click the extension when you’re on a video page, and it will instantly ge
 
 This change helps the service stay reliable, and super easy to use.
 
-## Hosting
-
-First of all you need to create a [Cloudinary] account (I'm using this service to generate and host images) so that you can copy your personal `CLOUDINARY_URL` from your dashboard. The url is something similar to `cloudinary://my_key:my_secret@my_cloud_name`.
-
-Now you can easily deploy your own copy on Netlify.
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/marcomontalbano/video-to-markdown)
-
 
 ## Development stuff
 
@@ -102,29 +94,31 @@ pnpm install
 ```
 
 ```sh
-cp .env.sample .env
+cp ./packages/service/.env.sample ./packages/service/.env
 # update the .env with proper values
 ```
 
 * `CLOUDINARY_URL` ( **required** ) - this is the `API Environment variable` that you can get from your Cloudinary dashboard inside the **Account Details** section.
-* `NETLIFY_ACCESS_TOKEN` ( _optional_ ) - this a Netlify Access Token. In combination with the `SITE_ID` can be used to display the **API Usage** in the website.
-* `SITE_ID` ( _optional_ ) - this the Netlify Site ID. In combination with the `NETLIFY_ACCESS_TOKEN` can be used to display the **API Usage** in the website.
-* `USE_HIGH_QUALITY` ( _optional_ ) - this is a boolean flag. If `true`, the generated images will be stored in Contenful with hi-res quality (default to `false`)
 
 ```sh
-# build the extension
-pnpm install -C extension
-pnpm build:extension
-
-# built extensions are available at:
-# `./extension/dist-chrome.zip`
-# `./extension/dist-firefox.zip`
+# run the service
+pnpm --filter service dev
 ```
 
 ```sh
-pnpm dev
+# build the extension
+BASE_URL=http://localhost:8787 pnpm --filter browser-extension build
 
-# http://localhost:8888
+# built extensions are available at:
+# `./packages/browser-extension/dist-chrome.zip`
+# `./packages/browser-extension/dist-firefox.zip`
+```
+
+```sh
+# run the website
+pnpm --filter website dev
+
+# http://localhost:8080
 ```
 
 ## About Privacy

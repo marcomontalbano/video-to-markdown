@@ -44,7 +44,7 @@ jobs:
         run: pnpm install
 
       - name: Build 🛠
-        run: pnpm build:client
+        run: pnpm --filter website build
 
       - name: Setup Pages 🧰
         uses: actions/configure-pages@v5
@@ -52,7 +52,7 @@ jobs:
       - name: Upload artifact 🚀
         uses: actions/upload-pages-artifact@v4
         with:
-          path: ./dist/client/
+          path: ./packages/website/dist/
 
   deploy-worker:
     name: Deploy Cloudflare Worker
@@ -77,15 +77,13 @@ jobs:
           cache: 'pnpm'
 
       - name: Install 📦
-        run: |
-          pnpm install
-          pnpm install -C cloudflare-worker
+        run: pnpm install
         
       - name: Cloudflare Worker Deploy 🚀
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          workingDirectory: ./cloudflare-worker
+          workingDirectory: ./packages/service
 
   deploy-pages:
     name: Deploy to GitHub Pages

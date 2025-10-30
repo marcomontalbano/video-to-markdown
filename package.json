@@ -3,7 +3,7 @@
   "version": "3.1.0",
   "private": true,
   "description": "How to embed a video in markdown? Here the answer. Add videos to your markdown files easier.",
-  "homepage": "https://video-to-markdown.netlify.com/",
+  "homepage": "https://video-to-markdown.marcomontalbano.com/",
   "type": "module",
   "author": {
     "name": "Marco Montalbano",
@@ -31,62 +31,26 @@
     "loom",
     "wistia",
     "streamable",
-    "netlify"
+    "cloudflare"
   ],
   "engines": {
     "node": ">= 22.14.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.1",
-    "@parcel/packager-raw-url": "^2.16.0",
-    "@parcel/transformer-sass": "^2.16.0",
-    "@parcel/transformer-webmanifest": "^2.16.0",
-    "dotenv": "^17.2.3",
+    "@biomejs/biome": "^2.3.2",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.6",
-    "netlify-cli": "^23.9.5",
-    "parcel": "^2.16.0",
-    "posthtml": "^0.16.7",
-    "posthtml-expressions": "^1.11.4",
-    "posthtml-include": "^2.0.1",
-    "sass": "^1.93.2",
-    "sharp": "^0.34.4",
-    "sinon": "^21.0.0",
-    "svgo": "^4.0.0",
-    "tsm": "^2.3.0",
-    "uvu": "^0.5.6"
-  },
-  "dependencies": {
-    "@netlify/functions": "^5.0.1",
-    "@types/crypto-js": "^4.2.2",
-    "@types/node": "^24.9.1",
-    "clipboard": "^2.0.11",
-    "cloudinary": "^2.8.0",
-    "crypto-js": "^4.2.0",
-    "hint.css": "^3.0.0",
-    "nprogress": "^0.2.0",
-    "prismjs": "^1.30.0"
+    "lint-staged": "^16.2.6"
   },
   "scripts": {
-    "clean": "rm -rf pnpm-lock.yaml node_modules/ */*/node_modules */*/dist",
+    "clean": "rm -rf pnpm-lock.yaml node_modules/ */*/node_modules */*/dist */*/dist-*",
     "preinstall": "npx only-allow pnpm",
-    "build:extension": "pnpm -C extension build",
-    "build-db": "tsm ./scripts/build-db.ts",
-    "start:client": "parcel serve --no-autoinstall src/index.html src/terms.html --dist-dir dist/client",
-    "build:client": "parcel build --no-autoinstall src/index.html src/terms.html --dist-dir dist/client",
-    "dev": "netlify dev",
-    "build": "netlify build -o",
-    "local:build": "env $(awk 'NF > 0 && !/^#/ { print $0 }' .env | xargs) pnpm build",
-    "predev": "pnpm build-db",
-    "prebuild:client": "pnpm build-db",
     "prepare": "husky",
-    "test": "uvu -r tsm netlify .test.*s",
-    "format": "pnpm biome format src scripts netlify extension --write",
-    "lint": "pnpm biome check src scripts netlify extension",
-    "dep:major": "pnpm dlx npm-check-updates --packageFile '**/package.json' -u",
-    "dep:minor": "pnpm dep:major -t minor",
+    "test": "pnpm --filter video-crawler test",
+    "format": "pnpm biome format packages/video-crawler/src packages/website/src packages/service/src packages/browser-extension --write",
+    "lint": "pnpm biome check packages/video-crawler/src packages/website/src packages/service/src packages/browser-extension",
+    "dep:major": "pnpm dlx npm-check-updates",
+    "dep:minor": "pnpm dlx npm-check-updates --target minor",
     "ls-engines": "pnpm dlx ls-engines",
-    "version": "pnpm build:extension && git add -A extension"
-  },
-  "browserslist": "> 0.5%, last 2 versions, not dead"
+    "version": "pnpm pnpm --filter browser-extension build && git add -A packages/browser-extension"
+  }
 }

@@ -28,12 +28,10 @@ jobs:
           cache: 'pnpm'
 
       - name: Install 📦
-        run: |
-          pnpm install
-          pnpm install -C extension
+        run: pnpm install
 
       - name: Build 🛠
-        run: pnpm build:extension
+        run: pnpm --filter browser-extension build
 
       - name: Create a GitHub release 🎁
         uses: softprops/action-gh-release@v2
@@ -43,5 +41,5 @@ jobs:
           generate_release_notes: true
           discussion_category_name: Announcements
           files: |
-            extension/dist-chrome.zip
-            extension/dist-firefox.zip
+            ./packages/browser-extension/dist-chrome.zip
+            ./packages/browser-extension/dist-firefox.zip
