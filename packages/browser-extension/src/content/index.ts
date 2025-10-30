@@ -1,4 +1,4 @@
-import { create } from '../../../netlify/functions/videoWrapper/index.js';
+import { create } from '../../../../netlify/functions/videoWrapper/index.js';
 import type { Event } from '../types.js';
 
 // @ts-expect-error TODO: there're no envs in the content script

@@ -50,13 +50,12 @@
     "crypto-js": "^4.2.0"
   },
   "scripts": {
-    "clean": "rm -rf pnpm-lock.yaml node_modules/ */*/node_modules */*/dist",
+    "clean": "rm -rf pnpm-lock.yaml node_modules/ */*/node_modules */*/dist */*/dist-*",
     "preinstall": "npx only-allow pnpm",
-    "build:extension": "pnpm -C extension build",
     "prepare": "husky",
     "test": "uvu -r tsm netlify .test.*s",
-    "format": "pnpm biome format packages/website/src packages/service/src netlify extension --write",
-    "lint": "pnpm biome check packages/website/src packages/service/src netlify extension",
+    "format": "pnpm biome format netlify packages/website/src packages/service/src packages/browser-extension --write",
+    "lint": "pnpm biome check netlify packages/website/src packages/service/src packages/browser-extension",
     "dep:major": "pnpm dlx npm-check-updates --packageFile '**/package.json' -u",
     "dep:minor": "pnpm dep:major -t minor",
     "ls-engines": "pnpm dlx ls-engines",

@@ -1,7 +1,7 @@
 import { spawn } from 'node:child_process';
 import { cpSync, rmSync, writeFileSync } from 'node:fs';
 import { build } from 'tsup';
-import packageJson from '../package.json' with { type: 'json' };
+import packageJson from '../../package.json' with { type: 'json' };
 import manifest from './manifest.json' with { type: 'json' };
 
 (async () => {
