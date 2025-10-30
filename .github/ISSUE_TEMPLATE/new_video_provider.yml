@@ -4,6 +4,14 @@ labels:
   - needs triage
   - provider
 body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this video provider suggestion!
+
+        We prioritize requests with more details over those without.
+
+        If you wanted instead to report a bug with an existing video provider, please open a [bug](https://github.com/marcomontalbano/video-to-markdown/issues/new?template=bug_report.yml).
   - type: textarea
     id: describe
     attributes:
