@@ -7,6 +7,13 @@ Video to Markdown
 [![PayPal.me](https://img.shields.io/badge/paypal-donate-119fde.svg?style=for-the-badge)](https://www.paypal.me/marcomontalbano)
 [![Sponsor](https://img.shields.io/badge/-Sponsor-fafbfc?logo=GitHub%20Sponsors&style=for-the-badge)](https://github.com/sponsors/marcomontalbano)
 
+<!-- [![Chrome Web Store](https://img.shields.io/badge/-Chome%20Web%20Store-white?style=for-the-badge&logo=googlechrome&logoColor=white&color=%234285f4)](https://chromewebstore.google.com/detail/video-to-markdown/opnjdnjnjkhajckagfjchbgdfofflnhn)
+[![Firefox add-on](https://img.shields.io/badge/-Firefox%20add%E2%80%93on-white?style=for-the-badge&logo=firefox&logoColor=white&color=%23ff7139)](https://addons.mozilla.org/firefox/addon/video-to-markdown) -->
+
+[![Chrome Web Store](https://img.shields.io/badge/-Chrome%20Web%20Store-white?style=for-the-badge&logo=googlechrome&color=%23e3f2fd)](https://chromewebstore.google.com/detail/video-to-markdown/opnjdnjnjkhajckagfjchbgdfofflnhn)
+[![Firefox add-on](https://img.shields.io/badge/-Firefox%20add%E2%80%93on-white?style=for-the-badge&logo=firefox&color=%23ffe0b2)](https://addons.mozilla.org/firefox/addon/video-to-markdown)
+
+
 Add videos to your markdown files easier [starting from here](https://video-to-markdown.marcomontalbano.com/)!
 
 
@@ -70,7 +77,7 @@ with your permission. This makes the tool:
 - 🔍 More accurate — it works directly with the content you’re seeing
 - ⚡ Faster — no need to copy and paste URLs
 
-Just click the extension when you’re on a video page, and it will instantly generate the Markdown code for you — thumbnail included.
+Just click the extension's "Generate" button when you’re on a video page, and it will instantly generate the Markdown code for you - thumbnail included.
 
 This change helps the service stay reliable, and super easy to use.
 
@@ -124,19 +131,29 @@ pnpm --filter website dev
 # http://localhost:8080
 ```
 
-## About Privacy
+## Terms and Privacy Policy
+
+### Website: video-to-markdown.marcomontalbano.com
 
 We anonymously track the number of visitors with Simple Analytics. No personal data is collected or stored.
-> Simple Analytics is a privacy-friendly analytics tool that does not use cookies or collect personal data. It provides insights into website traffic without compromising user privacy. 
+> Simple Analytics is a privacy-friendly analytics tool that does not use cookies or collect personal data. It provides insights into website traffic without compromising user privacy.
 
-All images are generated via [Cloudinary] and stored in it.
-> Cloudinary is a cloud-based image and video management service that provides a comprehensive solution for managing and delivering images and videos. It offers features such as image and video upload, storage, transformation, optimization, and delivery through a global content delivery network (CDN). 
-
-This site and service does not use cookies.
+This site does not use cookies.
 
 We do not store any other data on our servers.
 
-## Terms of Use
+### Browser Extension: Video to Markdown (Chrome/Firefox)
+
+When you use the extension's "Generate" button, the current video thumbnail and URL are sent to our backend for processing. Cloudinary may be involved in image generation depending on the specific operation required.
+> Cloudinary is a cloud-based image and video management service that provides a comprehensive solution for managing and delivering images and videos. It offers features such as image and video upload, storage, transformation, optimization, and delivery through a global content delivery network (CDN).
+
+The backend processes the data but does not store any of it.
+
+No analytics, tracking scripts, or cookies are used by the extension itself.
+
+No personal or usage data is collected, stored, or shared.
+
+### Terms of Use
 
 By using this service, you agree to the following terms:
 

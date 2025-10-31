@@ -41,7 +41,7 @@ body {
 
 .found-an-issue-disclaimer {
   font-size: 12px;
-  margin: 0rem 1rem 1rem;
+  padding: 0rem 1rem 0.5rem;
   line-height: 1.2rem;
   border-radius: 0.5rem;
 }
