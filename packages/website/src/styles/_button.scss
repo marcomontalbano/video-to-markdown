@@ -17,6 +17,7 @@
 }
 
 .button {
+  position: relative;
   padding: 0.6rem 2rem;
   letter-spacing: 1px;
   box-shadow: 0px 0px 0px 0px transparent;
@@ -29,5 +30,23 @@
   &:focus {
     outline: none;
     box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.7);
+  }
+
+  &.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .tag {
+    position: absolute;
+    top: -12px;
+    right: -30px;
+    background: #323639;
+    color: white;
+    padding: 6px 6px;
+    font-size: 10px;
+    border-radius: 20px;
+    line-height: 12px;
+    border: 1px solid;
   }
 }
