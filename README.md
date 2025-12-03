@@ -101,6 +101,9 @@ cp ./packages/service/.env.sample ./packages/service/.env
 * `CLOUDINARY_URL` ( **required** ) - this is the `API Environment variable` that you can get from your Cloudinary dashboard inside the **Account Details** section.
 
 ```sh
+# update types
+pnpm --filter service cf-typegen
+
 # run the service
 pnpm --filter service dev
 ```
