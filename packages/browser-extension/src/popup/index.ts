@@ -1,3 +1,4 @@
+import { hasValidConsent, openConsentPage } from '../consent-manager.js';
 import type { Event } from '../types.js';
 
 const imgElement = document.querySelector('img') as HTMLImageElement;
@@ -10,6 +11,19 @@ const formElement = document.querySelector('form') as HTMLFormElement;
 const videoNotFoundDisclaimerElement = document.querySelector('.video-not-found-disclaimer') as HTMLDivElement;
 
 let latestResponse: Event['extractPage']['response'] | null = null;
+
+async function checkConsent(): Promise<boolean> {
+  const consentGiven = await hasValidConsent();
+
+  if (!consentGiven) {
+    await openConsentPage();
+    window.close();
+  }
+
+  return consentGiven;
+}
+
+checkConsent();
 
 imgElement.addEventListener('error', () => {
   latestResponse = null;
@@ -36,7 +50,13 @@ titleElement.addEventListener('keyup', () => {
 
 formElement.addEventListener('submit', (event) => {
   event.preventDefault();
-  sendMessage();
+
+  // Double-check consent before sending data
+  void checkConsent().then((consentGiven) => {
+    if (consentGiven) {
+      sendMessage();
+    }
+  });
 });
 
 copyElement.addEventListener(
@@ -106,7 +126,7 @@ function checkPage() {
               .then((response) => {
                 if (response?.success === true) {
                   titleElement.value ||= response.video.title ?? '';
-                  // imgElement.src = response.video.thumbnailUrl;
+                  imgElement.src = response.video.thumbnailUrl;
                 } else {
                   videoNotFound(response);
                 }

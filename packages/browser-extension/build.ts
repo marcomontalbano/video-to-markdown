@@ -8,8 +8,10 @@ import manifest from './manifest.json' with { type: 'json' };
   /** Build the extension */
   await build({
     entry: {
+      background: 'src/background/index.ts',
       content: 'src/content/index.ts',
       popup: 'src/popup/index.ts',
+      consent: 'src/consent/consent.ts',
     },
     format: ['iife'], // Mantiene tutto in un unico file senza moduli
     target: 'esnext',
@@ -18,7 +20,7 @@ import manifest from './manifest.json' with { type: 'json' };
     splitting: false,
     clean: true,
     env: {
-      BASE_URL: process.env.BASE_URL ?? 'https://video-to-markdown-api.marcomontalbano.workers.dev',
+      BASE_URL: process.env.BASE_URL ?? 'https://api.video-to-markdown.marcomontalbano.com',
     },
   }).catch(() => process.exit(1));
 
@@ -85,11 +87,13 @@ function fixFirefoxManifest() {
   // @ts-expect-error I want to remove the property
   delete firefoxManifest.$schema;
 
-  // // @ts-expect-error I want to remove the property
-  // delete firefoxManifest.background.persistent;
-
-  // // @ts-expect-error I want to remove the property
-  // delete firefoxManifest.background.service_worker;
+  // Firefox uses scripts array instead of service_worker
+  if (firefoxManifest.background) {
+    firefoxManifest.background = {
+      // @ts-expect-error Converting service_worker to scripts for Firefox
+      scripts: ['dist/background.global.js'],
+    };
+  }
 
   firefoxManifest.permissions = firefoxManifest.permissions.filter((permission) => permission !== 'background');
 
