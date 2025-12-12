@@ -21,4 +21,10 @@ createTest(Bilibili, 'https://www.bilibili.tv/en/video/2040069379?bstar_from=bst
   providerName: 'bilibili',
 });
 
+createTest(Bilibili, 'https://www.bilibili.com/video/BV1W7CTBTErP/', {
+  id: 'BV1W7CTBTErP',
+  isValid: true,
+  providerName: 'bilibili',
+});
+
 test.run();

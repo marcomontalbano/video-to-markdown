@@ -11,6 +11,8 @@ export default class Bilibili extends VideoProvider {
     return [
       // - https://www.bilibili.tv/en/video/2048949558
       /https?:\/\/www\.bilibili\.tv\/.*\/video\/([a-zA-Z0-9]+)/,
+      // - https://www.bilibili.com/video/BV1W7CTBTErP/
+      /https?:\/\/www\.bilibili\.com\/video\/([a-zA-Z0-9]+)/,
     ];
   }
 
@@ -19,6 +21,14 @@ export default class Bilibili extends VideoProvider {
   }
 
   async getThumbnailUrl() {
+    // bilibili.com
+    const thumbnailUrl = (document.getElementById('wxwork-share-pic') as HTMLImageElement | null)?.src ?? null;
+
+    if (thumbnailUrl != null) {
+      return thumbnailUrl;
+    }
+
+    // bilibili.tv
     const text = document.querySelector('script[type="application/ld+json"]')?.innerHTML;
 
     if (text != null) {
