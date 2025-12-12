@@ -145,6 +145,7 @@ header .title strong {
 
 .button {
   flex: 1;
+  max-width: 300px;
   position: relative;
   padding: 0.75rem 2rem;
   letter-spacing: 1px;
@@ -168,16 +169,6 @@ header .title strong {
   pointer-events: none;
 }
 
-.button-decline {
-  background-color: rgba(0, 0, 0, 0.125);
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  color: #37474f;
-}
-
-.button-decline:hover:not(:disabled) {
-  background-color: rgba(0, 0, 0, 0.15);
-}
-
 .button-accept {
   background-color: #42474b;
   border: 1px solid #42474b;
@@ -194,7 +185,7 @@ header .title strong {
   }
 
   .actions {
-    flex-direction: column-reverse;
+    /* flex-direction: column; */
     gap: 0.75rem;
   }
 
