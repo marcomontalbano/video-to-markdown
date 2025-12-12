@@ -14,8 +14,7 @@
   "permissions": [
     "activeTab",
     "scripting",
-    "storage",
-    "management"
+    "storage"
   ],
   "background": {
     "service_worker": "dist/background.global.js"

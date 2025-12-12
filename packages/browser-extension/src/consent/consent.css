@@ -80,6 +80,43 @@ header .title strong {
   font-size: 1.1em;
 }
 
+.browser-extension {
+  display: flex;
+  position: relative;
+
+  .browser-extension--input {
+    width: calc(100% - 400px);
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+
+    position: absolute;
+    width: 400px;
+    right: 0;
+    top: -80px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .browser-extension {
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      position: static;
+      width: 100%;
+      max-width: 400px;
+      margin-top: 1.5rem;
+    }
+
+    .browser-extension--input {
+      width: 100%;
+    }
+  }
+}
+
 .data-list {
   margin: 1rem 0;
   padding-left: 1.5rem;
@@ -136,6 +173,15 @@ header .title strong {
   text-decoration: underline;
 }
 
+.decline-info {
+  max-width: 400px;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #757575;
+  margin: 1.5rem auto 0 auto;
+  line-height: 1.5rem;
+}
+
 .actions {
   display: flex;
   gap: 1rem;
@@ -145,6 +191,7 @@ header .title strong {
 
 .button {
   flex: 1;
+  max-width: 300px;
   position: relative;
   padding: 0.75rem 2rem;
   letter-spacing: 1px;
@@ -168,16 +215,6 @@ header .title strong {
   pointer-events: none;
 }
 
-.button-decline {
-  background-color: rgba(0, 0, 0, 0.125);
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  color: #37474f;
-}
-
-.button-decline:hover:not(:disabled) {
-  background-color: rgba(0, 0, 0, 0.15);
-}
-
 .button-accept {
   background-color: #42474b;
   border: 1px solid #42474b;
@@ -194,7 +231,7 @@ header .title strong {
   }
 
   .actions {
-    flex-direction: column-reverse;
+    /* flex-direction: column; */
     gap: 0.75rem;
   }
 
