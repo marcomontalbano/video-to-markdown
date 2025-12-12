@@ -8,10 +8,10 @@
   },
   "devDependencies": {
     "@types/node": "^22",
-    "@cloudflare/vitest-pool-workers": "^0.10.14",
+    "@cloudflare/vitest-pool-workers": "^0.10.15",
     "cloudinary": "^2.8.0",
     "typescript": "^5.9.3",
     "vitest": "~4.0.15",
-    "wrangler": "^4.53.0"
+    "wrangler": "^4.54.0"
   }
 }

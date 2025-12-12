@@ -42,7 +42,7 @@
     "lint-staged": "^16.2.7"
   },
   "scripts": {
-    "clean": "rm -rf pnpm-lock.yaml node_modules/ */*/node_modules */*/dist */*/dist-*",
+    "clean": "rm -rf pnpm-lock.yaml node_modules/ */*/node_modules */*/pnpm-lock.yaml */*/dist */*/dist-*",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
     "test": "pnpm --filter video-crawler test",
