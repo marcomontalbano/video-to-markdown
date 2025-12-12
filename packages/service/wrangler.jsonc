@@ -12,7 +12,15 @@
   ],
   "observability": {
     "enabled": true
-  }
+  },
+  "routes": [
+    {
+      "pattern": "api.video-to-markdown.marcomontalbano.com",
+      "custom_domain": true
+    }
+  ],
+  "preview_urls": true,
+  "workers_dev": true
   /**
    * Smart Placement
    * Docs: https://developers.cloudflare.com/workers/configuration/smart-placement/#smart-placement

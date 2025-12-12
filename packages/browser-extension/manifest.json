@@ -13,8 +13,13 @@
   },
   "permissions": [
     "activeTab",
-    "scripting"
+    "scripting",
+    "storage",
+    "management"
   ],
+  "background": {
+    "service_worker": "dist/background.global.js"
+  },
   "action": {
     "default_popup": "src/popup/popup.html"
   },

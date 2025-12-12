@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video to Markdown - Data Transmission Consent</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="consent.css">
+  </head>
+  <body>
+    <div class="dark-bg">
+      <div class="container">
+        <header>
+          <h1 class="title">
+            Video to <strong>markdown</strong>!
+          </h1>
+        </header>
+      </div>
+    </div>
+    <div class="container">
+      <section>
+        <h2>Data Transmission Consent Required</h2>
+        <p>
+          To generate markdown snippets with video thumbnails, this extension needs to send the following data to our backend
+          service:
+        </p>
+        <ul class="data-list">
+          <li>
+            <strong>Title and URL</strong> from the current webpage
+          </li>
+          <li>
+            <strong>Video Thumbnail URL</strong> for the image
+          </li>
+        </ul>
+        <p>
+          Data transmission is <strong>only</strong> triggered when you click "<strong>Generate</strong>," sending the data to
+          our backend service at
+          <code>api.video-to-markdown.marcomontalbano.com</code> for necessary image generation and storage by
+          <strong>Cloudinary</strong>.
+        </p>
+        <p><strong>No analytics, tracking, browsing history, personal information, or cookies are collected.</strong></p>
+        <p>Without this consent, the extension cannot function. If you decline, the extension will be uninstalled.
+        </p>
+        <p class="privacy-link">
+          Read our <a href="https://video-to-markdown.marcomontalbano.com/terms.html#extension" target="_blank">Terms and
+            Privacy Policy</a>.
+        </p>
+        <div class="actions">
+          <button id="decline" class="button button-decline">
+            Decline & Uninstall
+          </button>
+          <button id="accept" class="button button-accept">
+            Accept & Continue
+          </button>
+        </div>
+      </section>
+    </div>
+    <script src="../../dist/consent.global.js"></script>
+  </body>
+</html>
