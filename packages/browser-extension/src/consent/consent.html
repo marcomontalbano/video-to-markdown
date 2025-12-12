@@ -16,32 +16,28 @@
           </h1>
         </header>
       </div>
-    </div>
+      </div>
+      <div class="dark-bg">
+        <div class="container">
+          <div class="browser-extension">
+            <section class="browser-extension--input">
+              <div>
+                <h2>Simplify video embedding with our extension.</h2>
+                <p>Extract thumbnail, add play icon, and generate markdown links instantly.</p>
+              </div>
+            </section>
+            <img alt="sample image" src="./extension-for-google-chrome.png" />
+          </div>
+        </div>
+      </div>
     <div class="container">
       <section>
-        <h2>Data Transmission Consent Required</h2>
+        <h2>Welcome!</h2>
         <p>
-          To generate markdown snippets with video thumbnails, this extension needs to send the following data to our backend
-          service:
+          To generate markdown snippets with video thumbnails, this extension sends the page title, the URL, and the video thumbnail of the current webpage to
+          <code>api.video-to-markdown.marcomontalbano.com</code> for image processing when you click the "Generate" button.
         </p>
-        <ul class="data-list">
-          <li>
-            <strong>Title and URL</strong> from the current webpage
-          </li>
-          <li>
-            <strong>Video Thumbnail URL</strong> for the image
-          </li>
-        </ul>
-        <p>
-          Data transmission is <strong>only</strong> triggered when you click "<strong>Generate</strong>," sending the data to
-          our backend service at
-          <code>api.video-to-markdown.marcomontalbano.com</code> for necessary image generation and storage by
-          <strong>Cloudinary</strong>.
-        </p>
-        <p><strong>No analytics, tracking, browsing history, personal information, or cookies are collected.</strong></p>
-        <p>Without this consent, the extension cannot function. If you do not wish to accept, please close this page and
-          uninstall the extension from your browser's extensions page.
-        </p>
+        <p>We don't collect analytics, tracking data, browsing history, personal information, or use cookies.</p>
         <p class="privacy-link">
           Read our <a href="https://video-to-markdown.marcomontalbano.com/terms.html#extension" target="_blank">Terms and
             Privacy Policy</a>.
@@ -51,6 +47,9 @@
             Accept & Continue
           </button>
         </div>
+        <p class="decline-info">
+          If you prefer not to use this extension, you can close this page and uninstall it from your browser's extensions page.
+        </p>
       </section>
     </div>
     <script src="../../dist/consent.global.js"></script>
