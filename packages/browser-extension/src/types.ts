@@ -2,8 +2,9 @@ export type Event = {
   checkPage: {
     message: {
       action: 'checkPage';
+      showPlayIcon: boolean;
     };
-    response?:
+    response:
       | {
           success: true;
           video: {
@@ -14,16 +15,17 @@ export type Event = {
             providerName: string;
             url: string;
             showPlayIcon: boolean;
+            needsCloudinary: boolean;
           };
         }
-      | { success: false; video: { title: string; url: string; showPlayIcon: boolean } };
+      | { success: false; video: { title: string; url: string; showPlayIcon: boolean; needsCloudinary: boolean } };
   };
   extractPage: {
     message: {
       action: 'extractPage';
       showPlayIcon: boolean;
     };
-    response?: Event['checkPage']['response'] &
+    response: Event['checkPage']['response'] &
       (
         | {
             success: true;
@@ -35,3 +37,5 @@ export type Event = {
       );
   };
 };
+
+export type Response = Event['extractPage']['response'] | Event['checkPage']['response'];
