@@ -32,7 +32,7 @@ export default class VideoProvider {
   }
 
   needsCloudinary() {
-    return this.options.showPlayIcon;
+    return this.options.showPlayIcon ?? false;
   }
 
   log(key: string, value: unknown) {

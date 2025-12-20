@@ -11,8 +11,8 @@ const eventCallback: (
 ) => void = (message, _sender, sendResponse) => {
   void (async () => {
     if (message.action === 'checkPage') {
-      const message = await checkUrl(location.href);
-      sendResponse(message);
+      const responseMessage = await checkUrl(location.href, message.showPlayIcon);
+      sendResponse(responseMessage);
     }
 
     if (message.action === 'extractPage') {
@@ -25,6 +25,7 @@ const eventCallback: (
             title: '',
             url: location.href,
             showPlayIcon: message.showPlayIcon,
+            needsCloudinary: false,
           },
         });
 
@@ -78,6 +79,7 @@ async function checkUrl(url: string, showPlayIcon = false): Promise<Event['check
         title: '',
         url,
         showPlayIcon,
+        needsCloudinary: false,
       },
     };
   }
@@ -93,6 +95,7 @@ async function checkUrl(url: string, showPlayIcon = false): Promise<Event['check
         title: '',
         url,
         showPlayIcon,
+        needsCloudinary: false,
       },
     };
   }
@@ -107,6 +110,7 @@ async function checkUrl(url: string, showPlayIcon = false): Promise<Event['check
       providerName: video.providerName,
       url: video.url,
       showPlayIcon,
+      needsCloudinary: video.needsCloudinary(),
     },
   };
 }
