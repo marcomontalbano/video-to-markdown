@@ -22,11 +22,11 @@
   "license": "MIT",
   "dependencies": {
     "@types/node": "^22",
-    "@types/chrome": "^0.1.32",
+    "@types/chrome": "^0.1.37",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3"
   },
   "devDependencies": {
-    "web-ext": "^9.2.0"
+    "web-ext": "^9.4.0"
   }
 }

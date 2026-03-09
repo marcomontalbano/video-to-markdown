@@ -37,12 +37,12 @@
     "node": ">= 22.14.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.3.8",
+    "@biomejs/biome": "^2.4.6",
     "husky": "^9.1.7",
-    "lint-staged": "^16.2.7"
+    "lint-staged": "^16.3.2"
   },
   "scripts": {
-    "clean": "rm -rf pnpm-lock.yaml node_modules/ */*/node_modules */*/pnpm-lock.yaml */*/dist */*/dist-*",
+    "clean": "pnpm dlx rimraf --glob 'pnpm-lock.yaml' 'node_modules/' '**/node_modules' '**/pnpm-lock.yaml' '**/dist' '**/dist-*'",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
     "test": "pnpm --filter video-crawler test",
@@ -50,7 +50,7 @@
     "lint": "pnpm biome check packages/video-crawler/src packages/website/src packages/service/src packages/browser-extension",
     "dep:major": "pnpm dlx npm-check-updates",
     "dep:minor": "pnpm dlx npm-check-updates --target minor",
-    "ls-engines": "pnpm dlx ls-engines",
+    "ls-engines": "pnpm dlx ls-engines@0.9.0",
     "version": "pnpm pnpm --filter browser-extension build && git add -A packages/browser-extension"
   }
 }
