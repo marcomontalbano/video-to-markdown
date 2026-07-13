@@ -34,12 +34,12 @@
     "cloudflare"
   ],
   "engines": {
-    "node": ">= 22.14.0"
+    "node": ">= 22.22.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.4.6",
+    "@biomejs/biome": "^2.5.3",
     "husky": "^9.1.7",
-    "lint-staged": "^16.3.2"
+    "lint-staged": "^17.0.8"
   },
   "scripts": {
     "clean": "pnpm dlx rimraf --glob 'pnpm-lock.yaml' 'node_modules/' '**/node_modules' '**/pnpm-lock.yaml' '**/dist' '**/dist-*'",
