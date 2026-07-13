@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   dep: ['prod', 'dev', 'optional', 'packageManager'],
   deep: true,
   upgrade: true,
