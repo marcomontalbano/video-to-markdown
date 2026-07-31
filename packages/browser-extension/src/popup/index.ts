@@ -215,6 +215,15 @@ function renderResponse(response: Response | null): void {
   }
 }
 
+/**
+ * The markdown link title is wrapped in double quotes, so a title containing one — Instagram
+ * captions usually do — would close it too early. Backslashes are escaped first, otherwise the
+ * one we add here could be swallowed by an existing escape.
+ */
+function escapeTitle(title: string): string {
+  return title.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+}
+
 function renderMarkdown(response: Response | null): void {
   let title = '';
   let videoUrl = '';
@@ -229,6 +238,10 @@ function renderMarkdown(response: Response | null): void {
 
   markdownElement.querySelectorAll('[data-title]').forEach((element) => {
     element.textContent = title;
+  });
+
+  markdownElement.querySelectorAll('[data-title-escaped]').forEach((element) => {
+    element.textContent = escapeTitle(title);
   });
 
   markdownElement.querySelectorAll('[data-video-url]').forEach((element) => {
