@@ -30,9 +30,19 @@ async function checkConsent(): Promise<boolean> {
 // Initial consent check
 void checkConsent().then((consentGiven) => {
   if (consentGiven) {
+    startLoading();
     checkPage().then((response) => renderResponse(response));
   }
 });
+
+/**
+ * Show the spinner while we look for a video: providers may need to reach the network to
+ * resolve the thumbnail, and until then there is nothing to render.
+ */
+function startLoading(): void {
+  document.body.classList.remove('idle');
+  document.body.classList.add('loading');
+}
 
 imgElement.addEventListener('error', () => {
   latestResponse = null;
@@ -90,6 +100,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 chrome.tabs.onUpdated.addListener((_tabId, changeInfo) => {
   if (changeInfo.status === 'complete') {
     titleElement.value ||= changeInfo.title ?? '';
+    startLoading();
     checkPage().then((response) => renderResponse(response));
   }
 });
@@ -127,8 +138,7 @@ function checkPage(): Promise<Event['checkPage']['response'] | null> {
 }
 
 function sendMessage() {
-  document.body.classList.remove('idle');
-  document.body.classList.add('loading');
+  startLoading();
   markdownElement.classList.add('opacity-0');
 
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {

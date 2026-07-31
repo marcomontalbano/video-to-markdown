@@ -5,6 +5,7 @@ export * as Dailymotion from './Dailymotion.js';
 export * as Facebook from './Facebook.js';
 export * as GoogleDrive from './GoogleDrive.js';
 export * as Imgur from './Imgur.js';
+export * as Instagram from './Instagram.js';
 export * as Loom from './Loom.js';
 export * as OneDrive from './OneDrive.js';
 export * as PeerTube from './PeerTube.js';
