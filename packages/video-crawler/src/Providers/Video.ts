@@ -18,7 +18,7 @@ export default class Video extends VideoProvider {
     return super.id ? md5(this.url) : null;
   }
 
-  async getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     const scale = 1;
     const video = document.querySelector('video');
 

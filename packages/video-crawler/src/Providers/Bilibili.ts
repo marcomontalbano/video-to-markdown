@@ -20,7 +20,7 @@ export default class Bilibili extends VideoProvider {
     return true;
   }
 
-  async getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     // bilibili.com
     const thumbnailUrl = (document.getElementById('wxwork-share-pic') as HTMLImageElement | null)?.src ?? null;
 

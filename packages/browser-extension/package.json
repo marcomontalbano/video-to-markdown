@@ -11,7 +11,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "pnpx tsx build.ts"
+    "build": "pnpx tsx build.ts",
+    "ts:check": "tsc --noEmit"
   },
   "keywords": [],
   "author": {

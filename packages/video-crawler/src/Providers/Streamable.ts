@@ -18,11 +18,11 @@ export default class Streamable extends VideoProvider {
     return true;
   }
 
-  async getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     const endpoint = `https://api.streamable.com/oembed.json?url=${encodeURIComponent(`https://streamable.com/${this.id}`)}`;
 
     return fetch(endpoint)
-      .then((response) => response.json())
+      .then((response) => response.json() as Promise<{ thumbnail_url: string }>)
       .then((json) => json.thumbnail_url);
   }
 }

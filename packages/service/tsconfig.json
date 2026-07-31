@@ -5,7 +5,9 @@
     /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
     "target": "es2021",
     /* Specify a set of bundled library declaration files that describe the target runtime environment. */
-    "lib": ["es2021"],
+    /* `DOM` is needed by the video providers: they scrape the thumbnail from the page when they
+       run in the browser extension, while here only their url parsing is used. */
+    "lib": ["es2021", "DOM"],
     /* Specify what JSX code is generated. */
     "jsx": "react-jsx",
 
@@ -37,9 +39,6 @@
     /* Skip type checking all .d.ts files. */
     "skipLibCheck": true,
     "types": ["./node_modules/@types/node", "./worker-configuration.d.ts"],
-
-    /* Specify the base directory to resolve non-relative module names. */
-    "baseUrl": "./",
 
     /* Specify a set of entries that re-map imports to additional lookup locations. */
     "paths": {

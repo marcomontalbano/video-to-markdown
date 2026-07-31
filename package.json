@@ -47,6 +47,7 @@
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
     "test": "pnpm --filter video-crawler test",
+    "ts:check": "pnpm --filter browser-extension --filter service ts:check",
     "format": "pnpm biome format packages/video-crawler/src packages/website/src packages/service/src packages/browser-extension --write",
     "lint": "pnpm biome check packages/video-crawler/src packages/website/src packages/service/src packages/browser-extension",
     "dep:major": "pnpm dlx npm-check-updates",

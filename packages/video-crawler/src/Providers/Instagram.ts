@@ -3,8 +3,6 @@ import VideoProvider from '../VideoProvider.js';
 // https://www.instagram.com/p/DW9Cni5jvXG/?img_index=1
 
 export default class Instagram extends VideoProvider {
-  private thumbnailUrl?: Promise<string | null>;
-
   get providerName() {
     return 'instagram';
   }
@@ -24,14 +22,7 @@ export default class Instagram extends VideoProvider {
     return true;
   }
 
-  getThumbnailUrl() {
-    // `getThumbnailBase64` asks for the thumbnail url again: fetching the page once is enough.
-    this.thumbnailUrl ??= this.fetchThumbnailUrl();
-
-    return this.thumbnailUrl;
-  }
-
-  private async fetchThumbnailUrl(): Promise<string | null> {
+  protected async fetchThumbnailUrl() {
     // Instagram is a single page application: moving from a post to another one does not update
     // the `og:image` already rendered in the document. We re-fetch the current page — same origin,
     // so the request is authenticated — to read the one the server renders for this specific post.

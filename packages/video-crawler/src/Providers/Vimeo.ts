@@ -17,11 +17,11 @@ export default class Vimeo extends VideoProvider {
     ];
   }
 
-  getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     const endpoint = `https://vimeo.com/api/v2/video/${this.id}.json`;
 
     return fetch(endpoint)
-      .then((response) => response.json())
+      .then((response) => response.json() as Promise<{ thumbnail_large: string }[]>)
       .then((json) => json[0].thumbnail_large.replace(/_[0-9]+.jpg/, '_720.jpg'));
   }
 }

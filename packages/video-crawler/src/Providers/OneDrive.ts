@@ -27,7 +27,7 @@ export default class OneDrive extends VideoProvider {
     return true;
   }
 
-  async getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     const image = document.querySelector('img[src^="blob:https://"]') as HTMLImageElement;
 
     if (image) {

@@ -12,7 +12,8 @@
       "!**/dist",
       "!**/dist-*",
       "!**/manifest.json",
-      "!**/*.html"
+      "!**/*.html",
+      "!**/*.svg"
     ]
   },
   "formatter": {

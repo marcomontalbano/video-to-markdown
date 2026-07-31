@@ -20,7 +20,7 @@ export default class Facebook extends VideoProvider {
     ];
   }
 
-  async getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     const image = document.querySelector('meta[property="og:image"]')?.getAttribute('content');
     return image ?? null;
   }

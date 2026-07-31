@@ -18,7 +18,7 @@ export default class CleanShotCloud extends VideoProvider {
     return false;
   }
 
-  async getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     const image = document.querySelector('[property="og:image"]')?.getAttribute('content');
 
     if (this.options.showPlayIcon) {
