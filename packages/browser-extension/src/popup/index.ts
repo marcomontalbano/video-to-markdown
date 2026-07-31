@@ -13,6 +13,12 @@ const videoNotFoundDisclaimerElement = document.querySelector('.video-not-found-
 let latestResponse: Response | null = null;
 
 /**
+ * The tab title is only a placeholder until the provider resolves the real one: we keep it
+ * unless the user typed their own title.
+ */
+let titleEdited = false;
+
+/**
  * Check if the user has given consent, and if not, open the consent page and close the popup
  * @returns A promise that resolves to true if consent is given, false otherwise
  */
@@ -64,6 +70,7 @@ imgElement.addEventListener('load', () => {
 });
 
 titleElement.addEventListener('keyup', () => {
+  titleEdited = true;
   renderMarkdown(latestResponse);
 });
 
@@ -198,7 +205,9 @@ function videoNotFound(response: Response | null): void {
 
 function renderResponse(response: Response | null): void {
   if (response?.success === true) {
-    titleElement.value ||= response.video.title ?? '';
+    if (!titleEdited) {
+      titleElement.value = response.video.title || titleElement.value;
+    }
     imgElement.src =
       'generatedThumbnailUrl' in response.video ? response.video.generatedThumbnailUrl : response.video.thumbnailUrl;
   } else {

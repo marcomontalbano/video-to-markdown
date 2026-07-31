@@ -5,6 +5,7 @@ export default class VideoProvider {
   options: Options;
 
   private thumbnailUrl?: Promise<string | null>;
+  private title?: Promise<string>;
 
   get regex(): RegExp[] {
     return [];
@@ -54,6 +55,20 @@ export default class VideoProvider {
 
   protected async fetchThumbnailUrl(): Promise<string | null> {
     return Promise.resolve(null);
+  }
+
+  /**
+   * Resolve the title, at most once per instance.
+   * Providers customize the lookup overriding `fetchTitle`.
+   */
+  async getTitle(): Promise<string> {
+    this.title ??= this.fetchTitle();
+
+    return this.title;
+  }
+
+  protected async fetchTitle(): Promise<string> {
+    return document.title;
   }
 
   async getThumbnailBase64(): Promise<string | null> {

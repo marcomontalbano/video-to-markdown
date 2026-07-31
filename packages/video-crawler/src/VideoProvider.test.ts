@@ -21,4 +21,22 @@ test('resolves the thumbnail url once, no matter how many times it is asked for'
   equal(calls, 1, 'Expected "fetchThumbnailUrl" to be called once:');
 });
 
+test('resolves the title once, no matter how many times it is asked for', async () => {
+  let calls = 0;
+
+  class Provider extends VideoProvider {
+    protected async fetchTitle() {
+      calls += 1;
+      return Promise.resolve('A video title');
+    }
+  }
+
+  const video = new Provider('https://example.com/video');
+
+  equal(await video.getTitle(), 'A video title');
+  equal(await video.getTitle(), 'A video title');
+
+  equal(calls, 1, 'Expected "fetchTitle" to be called once:');
+});
+
 test.run();
