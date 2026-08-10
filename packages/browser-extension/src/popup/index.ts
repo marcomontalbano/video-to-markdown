@@ -13,6 +13,12 @@ const videoNotFoundDisclaimerElement = document.querySelector('.video-not-found-
 let latestResponse: Response | null = null;
 
 /**
+ * The tab title is only a placeholder until the provider resolves the real one: we keep it
+ * unless the user typed their own title.
+ */
+let titleEdited = false;
+
+/**
  * Check if the user has given consent, and if not, open the consent page and close the popup
  * @returns A promise that resolves to true if consent is given, false otherwise
  */
@@ -30,9 +36,19 @@ async function checkConsent(): Promise<boolean> {
 // Initial consent check
 void checkConsent().then((consentGiven) => {
   if (consentGiven) {
+    startLoading();
     checkPage().then((response) => renderResponse(response));
   }
 });
+
+/**
+ * Show the spinner while we look for a video: providers may need to reach the network to
+ * resolve the thumbnail, and until then there is nothing to render.
+ */
+function startLoading(): void {
+  document.body.classList.remove('idle');
+  document.body.classList.add('loading');
+}
 
 imgElement.addEventListener('error', () => {
   latestResponse = null;
@@ -54,6 +70,7 @@ imgElement.addEventListener('load', () => {
 });
 
 titleElement.addEventListener('keyup', () => {
+  titleEdited = true;
   renderMarkdown(latestResponse);
 });
 
@@ -90,6 +107,7 @@ chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
 chrome.tabs.onUpdated.addListener((_tabId, changeInfo) => {
   if (changeInfo.status === 'complete') {
     titleElement.value ||= changeInfo.title ?? '';
+    startLoading();
     checkPage().then((response) => renderResponse(response));
   }
 });
@@ -127,8 +145,7 @@ function checkPage(): Promise<Event['checkPage']['response'] | null> {
 }
 
 function sendMessage() {
-  document.body.classList.remove('idle');
-  document.body.classList.add('loading');
+  startLoading();
   markdownElement.classList.add('opacity-0');
 
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
@@ -188,12 +205,23 @@ function videoNotFound(response: Response | null): void {
 
 function renderResponse(response: Response | null): void {
   if (response?.success === true) {
-    titleElement.value ||= response.video.title ?? '';
+    if (!titleEdited) {
+      titleElement.value = response.video.title || titleElement.value;
+    }
     imgElement.src =
       'generatedThumbnailUrl' in response.video ? response.video.generatedThumbnailUrl : response.video.thumbnailUrl;
   } else {
     videoNotFound(response);
   }
+}
+
+/**
+ * The markdown link title is wrapped in double quotes, so a title containing one — Instagram
+ * captions usually do — would close it too early. Backslashes are escaped first, otherwise the
+ * one we add here could be swallowed by an existing escape.
+ */
+function escapeTitle(title: string): string {
+  return title.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
 }
 
 function renderMarkdown(response: Response | null): void {
@@ -210,6 +238,10 @@ function renderMarkdown(response: Response | null): void {
 
   markdownElement.querySelectorAll('[data-title]').forEach((element) => {
     element.textContent = title;
+  });
+
+  markdownElement.querySelectorAll('[data-title-escaped]').forEach((element) => {
+    element.textContent = escapeTitle(title);
   });
 
   markdownElement.querySelectorAll('[data-video-url]').forEach((element) => {

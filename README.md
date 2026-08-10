@@ -51,6 +51,7 @@ List of supported video providers:
 - [x] Facebook (low-quality)
 - [x] Google Drive
 - [x] Imgur
+- [x] Instagram
 - [x] Loom
 - [x] OneDrive
 - [x] PeerTube

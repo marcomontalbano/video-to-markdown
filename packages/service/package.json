@@ -4,14 +4,15 @@
   "scripts": {
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
+    "ts:check": "tsc --noEmit",
     "cf-typegen": "wrangler types"
   },
   "devDependencies": {
     "@types/node": "^22",
-    "@cloudflare/vitest-pool-workers": "^0.18.4",
+    "@cloudflare/vitest-pool-workers": "^0.20.3",
     "cloudinary": "^2.10.0",
     "typescript": "^7.0.2",
     "vitest": "~4.1.10",
-    "wrangler": "^4.110.0"
+    "wrangler": "^4.120.0"
   }
 }

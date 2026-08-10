@@ -11,7 +11,8 @@
     "README.md"
   ],
   "scripts": {
-    "build": "pnpx tsx build.ts"
+    "build": "pnpx tsx build.ts",
+    "ts:check": "tsc --noEmit"
   },
   "keywords": [],
   "author": {
@@ -22,11 +23,11 @@
   "license": "MIT",
   "dependencies": {
     "@types/node": "^22",
-    "@types/chrome": "^0.2.2",
+    "@types/chrome": "^0.2.5",
     "tsup": "^8.5.1",
     "typescript": "^7.0.2"
   },
   "devDependencies": {
-    "web-ext": "^10.5.0"
+    "web-ext": "^10.6.0"
   }
 }

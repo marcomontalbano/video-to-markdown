@@ -17,7 +17,7 @@ export default class SharePoint extends VideoProvider {
     return true;
   }
 
-  async getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     const scripts = Array.from(document.querySelectorAll('script'));
 
     const script = scripts.find((script) => {

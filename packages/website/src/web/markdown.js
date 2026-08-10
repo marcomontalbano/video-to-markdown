@@ -1,5 +1,12 @@
 import ClipboardJS from 'clipboard';
 
+/**
+ * The markdown link title is wrapped in double quotes, so a title containing one would close it
+ * too early. Backslashes are escaped first, otherwise the one we add here could be swallowed by
+ * an existing escape.
+ */
+const escapeTitle = (title) => title.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+
 const update = (markdownElement) => {
   let videoUrl_memo;
   let imageUrl_memo;
@@ -15,7 +22,7 @@ const update = (markdownElement) => {
 
     const markdown =
       title !== undefined && videoUrl && imageUrl
-        ? `<span class="token punctuation">[![<span class="token attr-value">${title}</span>](<span class="token attr-value">${imageUrl}</span>)](<span class="token attr-value">${videoUrl}</span> "<span class="token attr-value">${title}</span>")</span>`
+        ? `<span class="token punctuation">[![<span class="token attr-value">${title}</span>](<span class="token attr-value">${imageUrl}</span>)](<span class="token attr-value">${videoUrl}</span> "<span class="token attr-value">${escapeTitle(title)}</span>")</span>`
         : '&nbsp;';
 
     const markdownCodeElement = markdownElement.querySelector('code');

@@ -18,7 +18,7 @@ export default class GoogleDrive extends VideoProvider {
     ];
   }
 
-  async getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     return `https://drive.google.com/thumbnail?authuser=0&sz=w1280&id=${this.id}`;
   }
 }

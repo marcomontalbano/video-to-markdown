@@ -24,11 +24,11 @@ export default class Wistia extends VideoProvider {
     return false;
   }
 
-  getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     const endpoint = `https://fast.wistia.com/oembed?url=http%3A%2F%2Fhome.wistia.com%2Fmedias%2F${this.id}`;
 
     return fetch(endpoint)
-      .then((response) => response.json())
+      .then((response) => response.json() as Promise<{ thumbnail_url: string; player_color?: string }>)
       .then<string>((json) => {
         const { thumbnail_url, player_color = '686560' } = json;
         const options = [

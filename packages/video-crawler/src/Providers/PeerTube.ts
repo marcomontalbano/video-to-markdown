@@ -14,7 +14,7 @@ export default class PeerTube extends VideoProvider {
     ];
   }
 
-  async getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     const platform = document.querySelector('[property="og:platform"]')?.getAttribute('content');
 
     if (platform !== 'PeerTube') {

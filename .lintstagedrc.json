@@ -1,5 +1,6 @@
 {
   "*.{js,jsx,ts,tsx}": [
+    "bash -c \"pnpm ts:check\"",
     "pnpm lint --fix",
     "pnpm test",
     "pnpm format"

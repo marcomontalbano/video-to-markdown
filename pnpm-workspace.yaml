@@ -1,2 +1,9 @@
 packages:
   - 'packages/*'
+allowBuilds:
+  '@parcel/watcher': true
+  esbuild: true
+  sharp: true
+  workerd: true
+minimumReleaseAgeExclude:
+  - tsx@4.23.12

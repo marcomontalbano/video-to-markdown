@@ -35,7 +35,7 @@ export default class Youtube extends VideoProvider {
     ];
   }
 
-  async getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     const maxVideoImage = `https://i.ytimg.com/vi/${this.id}/maxresdefault.jpg`;
     const hqVideoImage = `https://i.ytimg.com/vi/${this.id}/hqdefault.jpg`;
 

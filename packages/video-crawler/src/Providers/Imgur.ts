@@ -14,7 +14,7 @@ export default class Imgur extends VideoProvider {
     ];
   }
 
-  async getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     return document.querySelector('meta[name="twitter:image"]')?.getAttribute('content') ?? null;
   }
 }

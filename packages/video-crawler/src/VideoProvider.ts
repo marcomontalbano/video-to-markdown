@@ -4,6 +4,9 @@ export default class VideoProvider {
   url: string;
   options: Options;
 
+  private thumbnailUrl?: Promise<string | null>;
+  private title?: Promise<string>;
+
   get regex(): RegExp[] {
     return [];
   }
@@ -39,8 +42,33 @@ export default class VideoProvider {
     console.log(`${this.providerName}: [${key}] ${value}`);
   }
 
-  getThumbnailUrl(): Promise<string | null> {
+  /**
+   * Resolve the thumbnail url, at most once per instance: `getThumbnailBase64` needs it too and
+   * providers may have to reach the network to find it.
+   * Providers customize the lookup overriding `fetchThumbnailUrl`.
+   */
+  async getThumbnailUrl(): Promise<string | null> {
+    this.thumbnailUrl ??= this.fetchThumbnailUrl();
+
+    return this.thumbnailUrl;
+  }
+
+  protected async fetchThumbnailUrl(): Promise<string | null> {
     return Promise.resolve(null);
+  }
+
+  /**
+   * Resolve the title, at most once per instance.
+   * Providers customize the lookup overriding `fetchTitle`.
+   */
+  async getTitle(): Promise<string> {
+    this.title ??= this.fetchTitle();
+
+    return this.title;
+  }
+
+  protected async fetchTitle(): Promise<string> {
+    return document.title;
   }
 
   async getThumbnailBase64(): Promise<string | null> {

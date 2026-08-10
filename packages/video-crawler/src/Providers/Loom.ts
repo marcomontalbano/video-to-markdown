@@ -18,7 +18,7 @@ export default class Loom extends VideoProvider {
     return false;
   }
 
-  async getThumbnailUrl() {
+  protected async fetchThumbnailUrl() {
     const playIconSuffix = this.options.showPlayIcon ? 'with-play' : '00001';
     const gifImage = `https://cdn.loom.com/sessions/thumbnails/${this.id}-${playIconSuffix}.gif`;
     const jpgImage = `https://cdn.loom.com/sessions/thumbnails/${this.id}-${playIconSuffix}.jpg`;

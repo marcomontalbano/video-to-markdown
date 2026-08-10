@@ -28,6 +28,7 @@
     "onedrive",
     "peertube",
     "imgur",
+    "instagram",
     "loom",
     "wistia",
     "streamable",
@@ -37,15 +38,16 @@
     "node": ">= 22.22.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.5.3",
+    "@biomejs/biome": "^2.5.7",
     "husky": "^9.1.7",
-    "lint-staged": "^17.0.8"
+    "lint-staged": "^17.3.0"
   },
   "scripts": {
     "clean": "pnpm dlx rimraf --glob 'pnpm-lock.yaml' 'node_modules/' '**/node_modules' '**/pnpm-lock.yaml' '**/dist' '**/dist-*'",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky",
     "test": "pnpm --filter video-crawler test",
+    "ts:check": "pnpm --filter browser-extension --filter service ts:check",
     "format": "pnpm biome format packages/video-crawler/src packages/website/src packages/service/src packages/browser-extension --write",
     "lint": "pnpm biome check packages/video-crawler/src packages/website/src packages/service/src packages/browser-extension",
     "dep:major": "pnpm dlx npm-check-updates",
